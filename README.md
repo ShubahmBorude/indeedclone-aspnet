@@ -26,10 +26,11 @@ The project is built using **ASP.NET Core MVC with a modular HMVC architecture**
 ![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/a20cdb9edb530be7883cfcceee3949ef13709aee/Screenshot%20(195).png)
 ![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/2d432602f38b8f8527890860e48054041b211e02/Screenshot%20(199).png)
 **Login Page**
-![image alt]()
+![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/97d068d9d80c777c0058b7cff84445e47645dcf4/Screenshot%20(196).png)
 
 **Employers/Jobpost First Page**
-![image alt]()
+![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/97d068d9d80c777c0058b7cff84445e47645dcf4/Screenshot%20(202).png)
+![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/97d068d9d80c777c0058b7cff84445e47645dcf4/Screenshot%20(204).png)
 
 **Dashboard Page**
 ![image alt]()
