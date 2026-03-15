@@ -21,8 +21,20 @@ The project is built using **ASP.NET Core MVC with a modular HMVC architecture**
 ---
 
 # Screenshots
-
+**Home Page**
 ![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/3bb7be0e940e6ba5e8586ffe6b68f8d194c93bce/Screenshot%20(200).png)
+
+**Login Page**
+![image alt]()
+
+**Employers/Jobpost First Page**
+![image alt]()
+
+**Dashboard Page**
+![image alt]()
+
+**Apply First Page**
+![image alt]()
 
 
 # Folder Structure
