@@ -1,0 +1,263 @@
+﻿@model IndeedClone.Modules.IndeedClone.DTO.IndeedCloneJobDescriptionDTO
+@{
+    
+ }
+
+    
+         <div class="indeed-job-details">
+            <!-- Sticky Header -->
+            <div class="indeed-sticky-header">
+                <div class="p-1 mb-1"></div>
+                <h1 class="indeed-job-title">@Model.JobTitle</h1>
+                
+                <!-- Company Info Row -->
+                <div class="indeed-company-info">
+                    <a target="_blank" href="https://www.google.com/search?q=@Uri.EscapeDataString(Model.CompanyName)" class="indeed-company-link">
+                        @Model.CompanyName <ion-icon name="open-outline"></ion-icon>
+                    </a>
+                    
+                    <span class="indeed-rating">
+                        <span>5.0</span>
+                        <ion-icon name="star" class="indeed-star"></ion-icon>
+                        <span>(24 reviews)</span>
+                    </span>
+                    
+                    <span class="indeed-location-badge">
+                        <ion-icon name="location-outline"></ion-icon>
+                        @Model.Area, @Model.City, @Model.JobLocation
+                    </span>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="indeed-action-bar">
+                    <a href="@Url.Action("Apply", "JobApplication", new { jobUid = Model.JobUid} )" class="indeed-apply-btn">
+                        Apply now
+                    </a>
+                    <span class="indeed-icon-btn" title="Save job">
+                        <ion-icon name="bookmark-outline"></ion-icon>
+                    </span>
+                    <span class="indeed-icon-btn" title="Share job">
+                        <ion-icon name="link-outline"></ion-icon>
+                    </span>
+                </div>
+            </div>
+
+
+            <!-- Job Details Content -->
+            <div>
+                <!-- Job Details Header -->
+                <div class="mb-3">
+                    <h2 class="indeed-section-header">Job details</h2>
+                    <div class="indeed-section-subheader">
+                        Here's how the job details align with your
+                        <a href="#">profile <ion-icon name="open-outline"></ion-icon></a>
+                    </div>
+                </div>
+
+                <!-- Detail Grid -->
+                <div class="indeed-detail-grid">
+                    <!-- Pay -->
+                    <div class="indeed-detail-row">
+                        <div class="indeed-detail-icon mt-1">
+                            <ion-icon name="cash-outline"></ion-icon>
+                        </div>
+                        <div class="indeed-detail-content">
+                            <span class="indeed-detail-label">Pay</span>
+                            <span class="indeed-detail-value">
+                                <svg class="rupee-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+                                </svg>
+                                @Model.MinimumPay - 
+                                <svg class="rupee-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4z"/>
+                                </svg>
+                                @Model.MaximumPay @Model.PayRateType
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Job Type -->
+                    <div class="indeed-detail-row">
+                        <div class="indeed-detail-icon mt-1">
+                            <ion-icon name="briefcase-outline"></ion-icon>
+                        </div>
+                        <div class="indeed-detail-content">
+                            <span class="indeed-detail-label">Job type</span>
+                            @foreach (var type in Model.EmployeeType)
+                            {
+                                <span class="indeed-detail-value">@type</span>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Supplemented Pay -->
+                    <div class="indeed-detail-row">
+                        <div class="indeed-detail-icon mt-1">
+                            <ion-icon name="time-outline"></ion-icon>
+                        </div>
+                        <div class="indeed-detail-content">
+                            <span class="indeed-detail-label">Supplemental pay</span>
+                            @foreach (var pay in Model.SupplementedPay)
+                            {
+                                <span class="indeed-detail-value">@pay</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="indeed-divider"></div>
+
+                <!-- Location Section -->
+                <div class="mb-4">
+                    <h2 class="indeed-section-header mb-3">Location</h2>
+                    <div class="indeed-detail-row">
+                        <div class="indeed-detail-icon">
+                            <ion-icon name="location-sharp"></ion-icon>
+                        </div>
+                        <div class="indeed-detail-content">
+                            <span class="indeed-detail-value-location">@Model.Area, @Model.City, @Model.JobLocation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="indeed-divider"></div>
+
+                <!-- Benefits Section -->
+                <div class="mb-4">
+                    <h2 class="indeed-section-header">Benefits</h2>
+                    <div class="indeed-section-subheader">
+                        Pulled from the full job description
+                    </div>
+                    
+                    @if (Model.Benefits != null && Model.Benefits.Any())
+                    {
+                        <ul class="indeed-benefits-list">
+                            @foreach (var benefit in Model.Benefits)
+                            {
+                                <li>@benefit</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="indeed-text-muted">Not specified</p>
+                    }
+                </div>
+
+                <!-- Divider -->
+                <div class="indeed-divider"></div>
+
+                <!-- Full Job Description -->
+                <div class="indeed-description-section">
+                    <h2 class="indeed-section-header">Full Job Description</h2>
+                    
+                    <div class="indeed-description-text">
+                        @Html.Raw(Model.JobDescription)
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="indeed-divider"></div>
+
+                    <!-- Work Details Card -->
+                    <div class="indeed-subsection">
+                        <h3 class="indeed-subsection-title">Work details</h3>
+                        <ul class="indeed-subsection-list">
+                            <li><strong>Work Arrangement:</strong> @Model.WorkArrangement</li>
+                            <li><strong>Pay:</strong> ₹@Model.MinimumPay - ₹@Model.MaximumPay @Model.PayRateType</li>
+                        </ul>
+                    </div>
+
+                    <!-- Commute Info -->
+                    <div class="indeed-subsection">
+                        <h3 class="indeed-subsection-title">Ability to Commute/Relocate</h3>
+                        <ul class="indeed-subsection-list">
+                            <li>@Model.StreetAddress, @Model.City, @Model.JobLocation: Reliably commute or planning to relocate before starting work <span class="indeed-text-muted">(Required)</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="indeed-subsection">
+                        <h3 class="indeed-subsection-title">Education</h3>
+                        <ul class="indeed-subsection-list">
+                            @foreach (var edu in Model.Education)
+                            {
+                                <li>@edu <span class="indeed-text-muted">(Preferred)</span></li>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Experience & Skills -->
+                    <div class="indeed-subsection">
+                        <h3 class="indeed-subsection-title">Experience</h3>
+                        <ul class="indeed-subsection-list">
+                            <li><strong>Job Title:</strong> @Model.Experience <span class="indeed-text-muted">(Preferred)</span></li>
+                            <li>
+                                <strong>Skills required:</strong>
+                                @if (Model.Skills != null && Model.Skills.Any())
+                                {
+                                    <div class="indeed-skills-container">
+                                        @foreach (var skill in Model.Skills)
+                                        {
+                                            <span class="indeed-skill-chip">@skill</span>
+                                        }
+                                    </div>
+                                }
+                                else
+                                {
+                                    <p class="indeed-text-muted">Not specified</p>
+                                }
+                            </li>
+                            <li>
+                                <strong>Languages:</strong>
+                                @if (Model.Languages != null && Model.Languages.Any())
+                                {
+                                    @string.Join(", ", Model.Languages)
+                                }
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="indeed-subsection">
+                        <h3 class="indeed-subsection-title">License/Certification</h3>
+                        <ul class="indeed-subsection-list">
+                            @if(Model.Certifications != null && Model.Certifications.Any())
+                            {
+                                @foreach (var cer in Model.Certifications)
+                                {
+                                    <li>@cer <span class="indeed-text-muted">(Preferred)</span></li>
+                                }
+                            }
+                            else
+                            {
+                                <p class="indeed-text-muted">Not specified</p>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="indeed-divider"></div>
+
+                    <!-- Contact Card -->
+                    <div class="indeed-contact-card">
+                        <div class="indeed-contact-info">
+                            <div class="indeed-contact-avatar">
+                                @(string.IsNullOrEmpty(Model.FullName) ? "U" : Model.FullName.Substring(0,1))
+                            </div>
+                            <div class="indeed-contact-details">
+                                <span class="indeed-contact-name">@(string.IsNullOrEmpty(Model.FullName)? "Not found" : Model.FullName)</span>
+                                <a href="tel:@Model.MobileNumber" class="indeed-contact-phone">
+                                    <ion-icon name="call-outline"></ion-icon>
+                                    @(string.IsNullOrWhiteSpace(Model.MobileNumber) ? "Not found" : $"+91{Model.MobileNumber}")
+                                </a>
+                            </div>
+                        </div>
+                        <span class="indeed-contact-badge">Employee Contact</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            

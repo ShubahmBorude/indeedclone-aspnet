@@ -1,0 +1,358 @@
+﻿
+* {
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;
+}
+
+
+/* Form Responsive Styles */
+#employerForm {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.image-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #333;
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+    }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: 1px solid #2557a7;
+/*            box-shadow: 0 0 0 3px rgba(55, 125, 255, 0.1);*/
+        }
+
+.phone-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+    .phone-input .flag {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        background-color: #f8f9fa;
+        border-right: 1px solid #ddd;
+    }
+
+        .phone-input .flag img {
+            width: 20px;
+            height: 15px;
+            margin-right: 8px;
+        }
+
+    .phone-input input {
+        flex: 1;
+        border: none;
+        padding: 0.75rem 1rem;
+        outline: none;
+    }
+
+.custom-dropdown {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    padding-right: 2.5rem;
+    background-color: white;
+}
+
+.custom-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 2rem 0;
+}
+
+.btn {
+    background-color: #2557a7;
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 140px;
+}
+
+    .btn:hover {
+        background-color: #2557a7;
+        color: #fff;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #employerForm {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .image-container h1 {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+        .form-group label {
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 0.675rem 0.875rem;
+            font-size: 0.95rem;
+        }
+
+    .phone-input .flag {
+        padding: 0.675rem 0.875rem;
+    }
+
+        .phone-input .flag img {
+            width: 18px;
+            height: 14px;
+        }
+
+    .custom-divider {
+        margin: 1.5rem 0;
+    }
+
+    small[style*="font-size: 18px"] {
+        font-size: 16px !important;
+    }
+
+    /* Make button full width on mobile */
+    .mb-5[style*="justify-content: flex-end"] {
+        justify-content: center !important;
+    }
+
+        .mb-5[style*="justify-content: flex-end"] .btn {
+            width: 100%;
+            max-width: 100%;
+        }
+}
+
+@media (max-width: 576px) {
+    #employerForm {
+        padding: 12px;
+    }
+
+    .image-container h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+        .form-group input,
+        .form-group select {
+            padding: 0.625rem 0.75rem;
+            font-size: 0.9rem;
+        }
+
+    .phone-input {
+        flex-direction: column;
+        border: none;
+    }
+
+        .phone-input .flag {
+            width: 100%;
+            justify-content: center;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 6px 6px 0 0;
+            padding: 0.5rem;
+            margin-bottom: 0;
+        }
+
+        .phone-input input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 0 0 6px 6px;
+            padding: 0.625rem 0.75rem;
+        }
+
+    small[style*="font-size: 18px"] {
+        font-size: 14px !important;
+        display: block;
+    }
+
+    .custom-dropdown {
+        background-position: right 0.75rem center;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* For very small devices */
+@media (max-width: 375px) {
+    .image-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.625rem;
+    }
+
+    .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Make sure the form is visible */
+#employerForm {
+    display: block !important;
+}
+
+/* Optional: Add some spacing around the form */
+body {
+/*    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;*/
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Ionicon fallback if not loaded */
+ion-icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+}
+
+/* Indeed-Style Dropdown */
+.indeed-dropdown {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Indeed Sans', Arial, sans-serif;
+    border: 1px solid #d9d9d9;
+    /* Light gray border */
+    border-radius: 8px;
+    /* Rounded corners */
+    background-color: #fff;
+    appearance: none;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    /* Remove default arrow for Safari */
+    -moz-appearance: none;
+    /* Remove default arrow for Firefox */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* Hover State */
+    .indeed-dropdown:hover {
+        border-color: #2557a7;
+    }
+
+    /* Focus State */
+    .indeed-dropdown:focus {
+        border-color: rgb(96, 99, 105);
+        box-shadow: 0 0 0 3px rgba(37, 87, 167, 0.2);
+        outline: none;
+    }
+
+    /* Dropdown Options */
+    .indeed-dropdown option {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #fff;
+        color: #333;
+    }
+
+        /* Hover Effect for Options */
+        .indeed-dropdown option:hover {
+            background-color: #f0f6ff;
+        }
+
+        /* Selected Option */
+        .indeed-dropdown option:checked {
+            background-color: #2557a7;
+            color: #fff;
+        }
+
+.form-group select {
+    color: #5f6368;
+}
+
+.dashboard-or {
+    text-align: center;
+    color: rgb(161, 163, 167);
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+    .dashboard-or::before,
+    .dashboard-or::after {
+        content: "";
+        width: 40%;
+        height: 1px;
+        background-color: #ccc;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .dashboard-or::before {
+        left: 0;
+    }
+
+    .dashboard-or::after {
+        right: 0;
+    }

@@ -1,0 +1,319 @@
+﻿/* Desktop Styles */
+small {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5f6368;
+    text-align: inline;
+    margin-bottom: 20px;
+    display: block;
+}
+
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom: 2rem;
+}
+
+    table td {
+        padding: 16px 0;
+        font-size: 16px;
+        color: #202124;
+        vertical-align: top;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    table tr:last-child td {
+        border-bottom: none;
+    }
+
+    table td:first-child {
+        font-weight: 500;
+        color: #5f6368;
+        width: 290px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    table td:nth-child(2) {
+        width: 300px;
+        color: #5f6368;
+        font-weight: 500;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    table td:last-child {
+        text-align: right;
+        color: #5f6368;
+        white-space: nowrap;
+        width: 210px;
+    }
+
+    table td i.bi-pencil-fill {
+        color: rgb(11, 94, 195);
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+
+        table td i.bi-pencil-fill:hover {
+            color: #202124;
+        }
+
+.abc {
+    display: block;
+    font-size: 1.3em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #202124;
+}
+
+/* Job Description specific - Desktop only max-width */
+.job-desc-container {
+    max-height: 150px;
+    overflow: hidden;
+    position: relative;
+    line-height: 1.6;
+    color: #5f6368;
+    /* Added max-width: 450px for PC only */
+    max-width: 450px;
+    width: 100%;
+}
+
+    .job-desc-container.expanded {
+        max-height: none;
+    }
+
+#toggleText {
+    margin-top: 3px;
+    font-weight: bold;
+    color: rgb(25, 75, 173);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+}
+
+    #toggleText:hover {
+        color: rgb(11, 94, 195);
+    }
+
+    #toggleText i {
+        margin-left: 5px;
+        transition: transform 0.3s;
+    }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        table-layout: auto;
+        max-width: 100%;
+    }
+
+        table tbody {
+            display: block;
+        }
+
+        table tr {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            align-items: flex-start;
+        }
+
+            table tr:last-child {
+                border-bottom: none;
+            }
+
+        table td {
+            display: block;
+            padding: 0;
+            border: none;
+            width: 100% !important;
+            max-width: 100% !important;
+        }
+
+            /* First column - Label */
+            table td:first-child {
+                width: 100% !important;
+                font-size: 14px;
+                color: #5f6368;
+                font-weight: 500;
+                margin-bottom: 4px;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: clip;
+            }
+
+            /* Second column - Value with pencil icon on same line for regular rows */
+            table td:nth-child(2) {
+                width: calc(100% - 40px) !important;
+                color: #202124;
+                font-weight: 500;
+                font-size: 16px;
+                white-space: normal;
+                word-break: break-word;
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+            /* Third column - Pencil icon for regular rows */
+            table td:last-child {
+                width: 40px !important;
+                text-align: right;
+                display: inline-block;
+                vertical-align: middle;
+                padding-left: 8px;
+                position: relative;
+                top: 0;
+            }
+
+        /* Special handling for Job Description row ONLY */
+        table tr:nth-child(12) { /* This selects the Job Description row (12th row) */
+            display: block;
+            padding: 12px 0;
+        }
+
+            table tr:nth-child(12) td:nth-child(2) {
+                width: 100% !important;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            table tr:nth-child(12) td:last-child {
+                width: 100% !important;
+                display: block;
+                text-align: left;
+                padding-left: 0;
+                padding-top: 8px;
+                border-top: 1px solid #f0f0f0;
+                margin-top: 4px;
+            }
+
+            table tr:nth-child(12) .job-desc-container {
+                max-height: 120px;
+                font-size: 15px;
+                line-height: 1.5;
+                /* Reset max-width for mobile */
+                max-width: 100% !important;
+            }
+
+            table tr:nth-child(12) #toggleText {
+                margin-top: 8px;
+                font-size: 14px;
+                max-width: 100% !important;
+            }
+
+        table td i.bi-pencil-fill {
+            font-size: 1.2rem;
+            vertical-align: middle;
+        }
+
+    .abc {
+        font-size: 1.2em;
+        margin-bottom: 16px;
+    }
+
+    small {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    table tr {
+        padding: 10px 0;
+    }
+
+        table tr:not(:nth-child(12)) td:first-child {
+            font-size: 13px;
+        }
+
+        table tr:not(:nth-child(12)) td:nth-child(2) {
+            font-size: 15px;
+        }
+
+        table tr:nth-child(12) .job-desc-container {
+            max-height: 100px;
+            font-size: 14px;
+            max-width: 100% !important;
+        }
+
+        table tr:nth-child(12) #toggleText {
+            font-size: 13px;
+            max-width: 100% !important;
+        }
+
+    .abc {
+        font-size: 1.1em;
+        margin-bottom: 14px;
+    }
+
+    small {
+        font-size: 12px;
+        margin-bottom: 14px;
+    }
+}
+
+@media (max-width: 375px) {
+    table tr {
+        padding: 8px 0;
+    }
+
+        table tr:not(:nth-child(12)) td:first-child {
+            font-size: 12px;
+        }
+
+        table tr:not(:nth-child(12)) td:nth-child(2) {
+            font-size: 14px;
+        }
+
+        table tr:nth-child(12) .job-desc-container {
+            max-height: 80px;
+            font-size: 13px;
+            max-width: 100% !important;
+        }
+
+        table tr:nth-child(12) #toggleText {
+            font-size: 12px;
+            max-width: 100% !important;
+        }
+
+    .abc {
+        font-size: 1em;
+        margin-bottom: 12px;
+    }
+
+    small {
+        font-size: 11px;
+        margin-bottom: 12px;
+    }
+}
+
+/* Print styles */
+@media print {
+    table td i.bi-pencil-fill {
+        display: none;
+    }
+
+    #toggleText {
+        display: none !important;
+    }
+
+    .job-desc-container {
+        max-height: none !important;
+        max-width: 450px !important;
+        overflow: visible !important;
+        max-width: 100% !important;
+    }
+}

@@ -1,0 +1,147 @@
+﻿@model IndeedClone.Modules.SubModules.JobPost.DTO.JobDescriptionDTO
+@{
+    Layout = "_JobPostLayout";
+    ViewData["Title"] = "Add Job Details";
+ }
+    @inject IConfiguration Configuration
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone for Employer</title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/jobpost/jobdetails.css">
+    <link rel="stylesheet" href="~/css/jobpost/jobdescription.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+    
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+
+<form id="employerForm" method="post" action="@Url.Action("UpdateJobDescription", "JobDetails", new { jobUid = Model.JobUid, returnToReview = ViewContext.HttpContext.Request.Query["returnToReview"].FirstOrDefault()?.ToLower() == "true" })">
+   @Html.AntiForgeryToken()
+        <div class="image-container mb-3">
+            <h1>Describe the Job</h1>
+        </div>
+
+        <div class="custom-divider" style="margin-bottom:20px !important;"></div>
+
+        <!-- Label -->
+        <label for="jobDescription">Job Description *</label>
+        <small class="d-flex mb-0">* Consider adding a .txt or .docx file upload feature to the text area.</small>
+        <small class="d-flex mb-3">* Minimum 50 characters, Maximum 65535 characters and at least one newline is must .</small>
+
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <button type="button" class="format-button" data-command="bold" title="Text Bold"><i class="bi bi-type-bold"></i></button>
+            <button type="button" class="format-button" data-command="italic" title="Text Itallic"><i class="bi bi-type-italic"></i></button>
+            <button type="button" class="format-button" data-command="insertUnorderedList" title="Insert/Remove bullet list"><i class="bi bi-list-ul"></i></button>
+            <button type="button" class="format-button pdf-button" data-command="Upload File" title="Upload a File"><i class="bi bi-file-earmark-word"></i></button>
+            <button type="button" class="format-button pdf-button" data-command="clear-all" title="Clear All Text"><ion-icon name="trash-outline"></ion-icon></button>
+            <button type="button" class="format-button justify-button" data-command="justifyFull" title="Justify Text"><ion-icon name="menu-outline"></ion-icon></button>
+        </div>
+
+        <!-- Hidden Input Field for File Upload -->
+        <input type="file" id="file-upload" style="display: none;" accept=".txt, .pdf, .docx, .doc">
+        <!-- Contenteditable Div -->
+        <div id="editor" class="text-area mb-5" contenteditable="true">@Html.Raw(Model.Description)</div>
+
+        <!-- Hidden Textarea to Store Content -->
+        <textarea id="jobDescription" name="Description" style="display: none;"></textarea>
+
+        <!-- Custom Divider -->
+        <div class="custom-divider"></div>
+
+        <!-- Continue Button -->
+        <div style="display: flex; justify-content: end; margin-top: 20px;">
+            @* <a class="btn btn-primary pl-1" type="submit">
+                <div class="d-flex align-items-center">
+                    <ion-icon name="arrow-back-outline"></ion-icon>&nbsp;
+                    <span>Back</span>
+                </div>
+            </a> *@
+            <button class="btn btn-primary" type="submit">
+                <div class="d-flex align-items-center justify-content-center">
+                    <span>Continue</span>
+                </div>
+            </button>
+        </div>
+
+    </form>
+
+
+    <script>
+     document.addEventListener("DOMContentLoaded",(function(){const e=document.getElementById("editor"),t=document.getElementById("jobDescription"),n=document.querySelector(".toolbar");function o(e,t=null){document.execCommand(e,!1,t),r()}function r(){n.querySelectorAll(".format-button").forEach((e=>{const t=e.getAttribute("data-command");document.queryCommandState(t)?e.classList.add("active"):e.classList.remove("active")}))}e.innerHTML=e.innerHTML||"",n.querySelectorAll(".format-button").forEach((t=>{t.addEventListener("click",(()=>{const n=t.getAttribute("data-command");"insertUnorderedList"===n?o("insertUnorderedList"):"justifyFull"===n?o("justifyFull"):"clear-all"===n?e.innerHTML="":o(n)}))})),["input","click","keyup"].forEach((t=>e.addEventListener(t,r))),e.addEventListener("paste",(function(e){e.preventDefault();const t=(e.clipboardData||window.clipboardData).getData("text");document.execCommand("insertText",!1,t),document.execCommand("justifyFull")})),document.getElementById("employerForm").addEventListener("submit",(function(){t.value=e.innerHTML}));const c=document.querySelector(".pdf-button"),d=document.getElementById("file-upload");c.addEventListener("click",(()=>d.click())),d.addEventListener("change",(function(t){const n=t.target.files[0];if(!n)return;const o=n.name.split(".").pop().toLowerCase(),r=new FileReader;"txt"===o?(r.onload=function(t){e.innerHTML+=t.target.result},r.readAsText(n)):"docx"!==o&&"doc"!==o||(r.onload=function(t){JSZip.loadAsync(t.target.result).then((t=>{t.file("word/document.xml")?.async("string").then((t=>{const n=t.replace(/<[^>]*>/g,"");e.innerHTML+=n}))}))},r.readAsArrayBuffer(n))}))}));document.addEventListener("DOMContentLoaded",(function(){const t=document.getElementById("editor");function e(){t.querySelectorAll("ul, ol").forEach((t=>{t.style.cssText="padding-left: 1rem !important; margin: 0.5rem 0 !important;"}));t.querySelectorAll("li").forEach((t=>{t.style.cssText="margin-bottom: 0.25rem !important; display: list-item !important;"}))}e();new MutationObserver(e).observe(t,{childList:!0,subtree:!0,characterData:!0}),document.querySelectorAll(".format-button").forEach((t=>{t.addEventListener("click",(()=>{setTimeout(e,50)}))}))}));
+    </script>
+    
+    
+
+</body>
+
+</html>

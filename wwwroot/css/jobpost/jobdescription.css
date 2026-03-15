@@ -1,0 +1,79 @@
+﻿
+* {
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;
+}
+
+/* Toolbar Styles */
+.toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #5f6368;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.format-button {
+    padding: 8px 12px;
+    border: 1px solid #5f6368;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+    .format-button:hover {
+        background-color: #e9ecef;
+    }
+
+    .format-button.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+/* Text Area Styles */
+.text-area {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 380px;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: white;
+    border: 1px solid #5f6368;
+    outline: none;
+    overflow-y: auto;
+    /* Add this line to make the text area scrollable */
+    max-height: 400px;
+    /* Add this line to set a maximum height for the text area */
+}
+
+    .text-area:focus {
+        border-color: #104e91;
+        box-shadow: 0 0 0 1px rgb(11, 87, 208);
+    }
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
+}
+
+.justify-button {
+    margin-left: auto;
+}
+
+small {
+    display: block;
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}

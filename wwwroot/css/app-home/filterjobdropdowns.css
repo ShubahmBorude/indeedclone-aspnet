@@ -1,0 +1,342 @@
+﻿body {
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif !important;
+}
+.indeed-filters {
+    margin-top: 22px !important;
+    margin-bottom: 8px !important;
+    padding: 0 16px;
+}
+
+/* Filter button - Indeed style */
+.indeed-filter-btn {
+    min-width: 110px;
+    height: 38px;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #2d2f31 !important;
+    background-color: #f5f7f9 !important;
+    border: 1px solid #dee0e3 !important;
+    border-radius: 20px !important;
+    padding: 6px 18px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.1s ease !important;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+    .indeed-filter-btn:hover {
+        background-color: #e9ebee !important;
+        border-color: #caced1 !important;
+    }
+
+    .indeed-filter-btn:focus {
+        box-shadow: none !important;
+        border-color: #255aa8 !important;
+        background-color: #ffffff !important;
+    }
+
+    .indeed-filter-btn i,
+    .indeed-filter-btn svg {
+        margin-left: 8px;
+        font-size: 12px;
+        color: #5f6368;
+    }
+
+    .indeed-filter-btn .bi-chevron-down {
+        font-size: 12px;
+        margin-left: 8px;
+        color: #5f6368;
+    }
+
+/* Dropdown menu - Indeed style */
+.indeed-dropdown {
+    margin-top: 8px !important;
+    padding: 6px 0 !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08) !important;
+    min-width: 200px;
+    background-color: #ffffff !important;
+}
+
+    .indeed-dropdown .dropdown-item {
+        padding: 10px 18px !important;
+        font-size: 14px !important;
+        color: #2d2f31 !important;
+        font-weight: 400 !important;
+        transition: all 0.05s ease;
+        white-space: nowrap;
+    }
+
+        .indeed-dropdown .dropdown-item:hover {
+            background-color: #ebf3ff !important;
+            color: #0a66c2 !important;
+        }
+
+        .indeed-dropdown .dropdown-item:active {
+            background-color: #d4e2f0 !important;
+        }
+
+/* Card-style dropdown - Indeed */
+.indeed-card-dropdown {
+    margin-top: 8px !important;
+    padding: 0 !important;
+    border: 1px solid #dee2e6 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+    min-width: 300px;
+    background-color: #ffffff !important;
+    overflow: hidden;
+}
+
+.indeed-card-header {
+    padding: 14px 18px !important;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaedf0 !important;
+}
+
+    .indeed-card-header h6 {
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        color: #1f2a3e !important;
+        margin: 0;
+    }
+
+.indeed-card-body {
+    padding: 14px 18px !important;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.indeed-card-footer {
+    padding: 14px 18px !important;
+    background-color: #fafbfc;
+    border-top: 1px solid #eaedf0 !important;
+}
+
+/* Checkbox styling - Indeed */
+.indeed-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+    .indeed-check:last-child {
+        margin-bottom: 0;
+    }
+
+    .indeed-check .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-right: 12px;
+        border: 1.5px solid #b1b6bd;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .indeed-check .form-check-input:checked {
+            background-color: #0b57d0;
+            border-color: #0b57d0;
+        }
+
+        .indeed-check .form-check-input:focus {
+            box-shadow: none;
+            border-color: #0b57d0;
+        }
+
+    .indeed-check .form-check-label {
+        font-size: 14px !important;
+        color: #2d2f31;
+        cursor: pointer;
+    }
+
+/* Buttons - Indeed */
+.indeed-btn-clear {
+    background-color: #ffffff !important;
+    color: #2d2f31 !important;
+    border: 1px solid #b1b6bd !important;
+    border-radius: 20px !important;
+    padding: 6px 18px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.1s ease;
+}
+
+    .indeed-btn-clear:hover {
+        background-color: #f5f7f9 !important;
+        border-color: #8a939b !important;
+    }
+
+.indeed-btn-update {
+    background-color: #0b57d0 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 6px 22px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: all 0.1s ease;
+}
+
+    .indeed-btn-update:hover {
+        background-color: #1a4b8f !important;
+    }
+
+.btn-close-sm {
+    font-size: 12px !important;
+    opacity: 0.6;
+}
+
+    .btn-close-sm:hover {
+        opacity: 1;
+    }
+
+/* Filter wrapper */
+.filters-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Active filter pill - Indeed style */
+.active-filter-pill {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ebf3ff;
+    border: 1px solid #b3d0f0;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 13px;
+    color: #0a66c2;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+    .active-filter-pill i {
+        margin-left: 6px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+/* Responsive - Mobile Indeed style */
+@media (max-width: 992px) {
+    .filters-wrapper {
+        gap: 8px;
+    }
+
+    .indeed-filter-btn {
+        min-width: 100px;
+        height: 36px;
+        font-size: 13px !important;
+        padding: 5px 14px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .indeed-filters {
+        margin-top: 18px !important;
+        padding: 0 12px;
+    }
+
+    .filters-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(calc(50% - 4px), 1fr));
+        gap: 8px;
+        width: 100%;
+    }
+
+    .indeed-filter-btn {
+        width: 100%;
+        min-width: 100%;
+        height: 40px;
+        justify-content: space-between;
+        background-color: #ffffff !important;
+        border: 1px solid #dee0e3 !important;
+        border-radius: 24px !important;
+    }
+
+    .indeed-dropdown {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .indeed-card-dropdown {
+        width: calc(100vw - 32px);
+        min-width: calc(100vw - 32px);
+        left: 12px !important;
+        right: 12px !important;
+        transform: none !important;
+    }
+
+    .indeed-check {
+        margin-bottom: 12px;
+    }
+
+        .indeed-check .form-check-input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .indeed-check .form-check-label {
+            font-size: 15px !important;
+        }
+
+    .dropdown-menu[data-bs-popper] {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .indeed-filters {
+        margin-top: 16px !important;
+        padding: 0 8px;
+    }
+
+    .filters-wrapper {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .indeed-filter-btn {
+        height: 42px;
+        font-size: 14px !important;
+    }
+
+    .indeed-card-dropdown {
+        width: calc(100vw - 16px);
+        min-width: calc(100vw - 16px);
+        left: 8px !important;
+        right: 8px !important;
+    }
+}
+
+/* Remove default Bootstrap dropdown arrow */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+/* Scrollbar styling */
+.indeed-card-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.indeed-card-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.indeed-card-body::-webkit-scrollbar-thumb {
+    background: #c1c7cc;
+    border-radius: 10px;
+}
+
+    .indeed-card-body::-webkit-scrollbar-thumb:hover {
+        background: #a1aab2;
+    }

@@ -1,0 +1,452 @@
+﻿/* Pricing Page Styles */
+.pricing-page {
+    background: #ffffff;
+}
+
+/* Hero Section */
+.pricing-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d2f31;
+    margin-bottom: 1rem;
+    font-family: 'Indeed Sans', 'Noto Sans', sans-serif;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #5f6b7a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Pricing Toggle */
+.pricing-toggle-section {
+    padding: 2rem 0 0;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.toggle-label {
+    font-size: 1.1rem;
+    color: #2d2f31;
+    font-weight: 500;
+}
+
+.save-badge {
+    background: rgba(37, 90, 168, 0.1);
+    color: rgb(37, 90, 168);
+    padding: 0.2rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e5e7eb;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+    .toggle-label-switch:before {
+        position: absolute;
+        content: "";
+        height: 24px;
+        width: 24px;
+        left: 3px;
+        bottom: 3px;
+        background: white;
+        border-radius: 50%;
+        transition: 0.3s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+.toggle-input:checked + .toggle-label-switch {
+    background: rgb(37, 90, 168);
+}
+
+    .toggle-input:checked + .toggle-label-switch:before {
+        transform: translateX(30px);
+    }
+
+/* Pricing Cards */
+.pricing-cards-section {
+    padding: 3rem 0;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+    .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(37, 90, 168, 0.1);
+    }
+
+    .pricing-card.popular {
+        border: 2px solid rgb(37, 90, 168);
+        transform: scale(1.05);
+    }
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgb(37, 90, 168);
+    color: white;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.plan-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d2f31;
+    margin-bottom: 0.5rem;
+}
+
+.plan-description {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.plan-price {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eef2f6;
+}
+
+    .plan-price.hidden {
+        display: none;
+    }
+
+.currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    vertical-align: super;
+    color: #2d2f31;
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgb(37, 90, 168);
+    line-height: 1;
+}
+
+.period {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.yearly-note {
+    display: block;
+    color: #10b981;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+    .plan-features li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        color: #2d2f31;
+    }
+
+        .plan-features li i {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .plan-features li.disabled {
+            color: #9ca3af;
+        }
+
+            .plan-features li.disabled i {
+                color: #d1d5db;
+            }
+
+.plan-btn {
+    display: block;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid;
+}
+
+    .plan-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 90, 168, 0.2);
+    }
+
+/* Add-on Services */
+.addons-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d2f31;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+    .section-title:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: rgb(37, 90, 168);
+        margin: 0.5rem auto 0;
+    }
+
+.addons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.addon-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #eef2f6;
+    transition: all 0.3s ease;
+}
+
+    .addon-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(37, 90, 168, 0.1);
+    }
+
+    .addon-card i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .addon-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 0.5rem;
+    }
+
+    .addon-card p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+.addon-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgb(37, 90, 168);
+}
+
+    .addon-price span {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #6b7280;
+    }
+
+/* FAQ Section */
+.pricing-faq {
+    padding: 4rem 0;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.faq-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+}
+
+    .faq-item h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 0.75rem;
+    }
+
+    .faq-item p {
+        color: #6b7280;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+/* CTA Section */
+.pricing-cta {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    border-top: 1px solid #e5e7eb;
+}
+
+.cta-content {
+    text-align: center;
+}
+
+    .cta-content h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+        font-size: 1.2rem;
+        color: #5f6b7a;
+        margin-bottom: 2rem;
+    }
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+    .cta-button:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 90, 168, 0.3);
+    }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pricing-card.popular {
+        transform: scale(1);
+    }
+
+    .addons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+
+    .addons-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toggle-container {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .toggle-label {
+        font-size: 0.9rem;
+    }
+
+    .save-badge {
+        display: block;
+        margin: 0.2rem 0 0;
+    }
+}

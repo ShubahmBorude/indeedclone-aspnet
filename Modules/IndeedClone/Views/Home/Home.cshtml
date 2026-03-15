@@ -1,0 +1,703 @@
+﻿
+@* @inject IConfiguration Configuration *@
+@model IndeedClone.Modules.IndeedClone.Models.IndeedCloneHomeViewModel
+@{
+    Layout = "_IndeedCloneHomePageNavbarLayout";
+    ViewData["Title"] = "IndeedClone - Job Search India";
+ }
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- custom css -->
+    @* <link rel="stylesheet" href="~/css/app-home/indeedhomenavabrlayout.css"> *@
+    <link rel="stylesheet" href="~/css/app-home/jobcard.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+ 
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+
+@await Component.InvokeAsync("JobSearchBar", new { filters = Model.SearchFilter })                    
+@await Component.InvokeAsync("FilterJobDropdowns", new { filters = Model.SearchFilter })
+
+<div class="full-width-divider"></div>
+
+<!-- Indeed Split-View Layout -->
+<div class="job-search-wrapper">
+@if (Model.LeftJobCards.Any())
+{
+   <div class="job-search-container">
+    <!-- Left Column - Job Listings -->
+    <div class="job-list-column @(Model.LeftJobCards.Any() ? "" : "no-results-active")">
+       <div id="jobCardsContainer">
+        @foreach (var job in Model.LeftJobCards)
+        {
+            var types = job.SupplementedPay.Take(1).ToList();
+            var remaining = job.EmployeeType.Count() - types.Count;
+            var benefits = job.Benefits.Take(1).ToList();
+            var remainingBenefits = job.Benefits.Count() - benefits.Count;
+            
+            <!-- Active class should be added dynamically based on selected job -->
+            <div class="indeed-job-card" 
+                 data-id="@job.JobUid" 
+                 onclick="showJobDetails('@job.JobUid')">
+                
+                <!-- Header with Title and Menu -->
+                <div class="job-card-header">
+                    <div class="job-title-wrapper">
+                        <h2 class="job-title">
+                            <a href="#" class="job-title-link" onclick="event.preventDefault();">
+                                <span title="@job.JobTitle">@job.JobTitle</span>
+                            </a>
+                        </h2>
+                    </div>
+                    
+                    <!-- Indeed Three Dots Dropdown -->
+                    <div class="dropdown job-menu-container" onclick="event.stopPropagation();">
+                        <button class="job-menu-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg class="job-menu-dots" viewBox="0 0 24 24">
+                                <circle cx="12" cy="6" r="2" fill="currentColor"/>
+                                <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                                <circle cx="12" cy="18" r="2" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <ul class="indeed-dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <ion-icon name="bookmark-outline"></ion-icon>
+                                    Save job
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <ion-icon name="flag-outline"></ion-icon>
+                                    Report job
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Company Name -->
+                <div class="company-name">@job.CompanyName</div>
+
+                <!-- Location -->
+                <div class="job-location">
+                    <svg class="location-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span style="color: #2c3e50;">@job.JobLocation - @job.City, @job.Area</span>
+                </div>
+
+                <!-- Response Time -->
+                @if (!string.IsNullOrEmpty(job.RecruitmentTimeline))
+                {
+                    <div class="response-badge">
+                        <svg class="response-icon" viewBox="0 0 24 24">
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+                        </svg>
+                        Typically responds within @job.RecruitmentTimeline
+                    </div>
+                }
+
+                <!-- Job Attributes -->
+                <div class="job-attributes">
+                    <!-- Salary -->
+                    <div class="attribute-item">
+                        <svg class="attribute-icon" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zm0 17L2 14v5l10 5 10-5v-5l-10 5z"/>
+                        </svg>
+                        <span class="salary-format">
+                            <span class="rupee-symbol">₹</span>@job.MinimumPay - 
+                            <span class="rupee-symbol">₹</span>@job.MaximumPay 
+                            <span style="color: #2c3e50; margin-left: 2px;">@job.PayRateType</span>
+                        </span>
+                    </div>
+
+                    <!-- Employment Type -->
+                    @if (types.Any())
+                    {
+                        <div class="attribute-item">
+                            <svg class="attribute-icon" viewBox="0 0 24 24">
+                                <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4-6h-8V4h8v2z"/>
+                            </svg>
+                            <span class="attribute-text">
+                                @string.Join(", ", types)
+                                @if (remaining > 0)
+                                {
+                                    <span class="more-badge">+@remaining more</span>
+                                }
+                            </span>
+                        </div>
+                    }
+
+                    <!-- Benefits -->
+                    @if (benefits.Any())
+                    {
+                        <div class="attribute-item">
+                            <svg class="attribute-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            <span class="attribute-text">
+                                @string.Join(", ", benefits)
+                                @if (remainingBenefits > 0)
+                                {
+                                    <span class="more-badge">+@remainingBenefits more</span>
+                                }
+                            </span>
+                        </div>
+                    }
+                </div>
+
+                <!-- Footer -->
+                <div class="job-card-footer">
+                    <div class="easily-apply-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" focusable="false" role="img" height="18px" width="18px" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true" class="mosaic-provider-jobcards-1moe62j eac13zx0"><path d="M4.406 19.533a1.103 1.103 0 01-1.082-.097c-.34-.221-.51-.54-.51-.954v-4.314L11.09 12 2.815 9.833V5.518c0-.414.17-.732.51-.954.34-.222.7-.254 1.08-.096l15.341 6.482c.469.207.703.557.703 1.05s-.234.844-.703 1.05l-15.34 6.483z"></path></svg>
+                        Easily apply
+                    </div>
+                    <span class="posted-date">@job.PostedAgo</span>
+                </div>
+            </div>
+        }
+   
+    </div>
+
+    <!-- Pagination -->
+     <nav aria-label="Job listings pagination" class="pagination-nav">
+        <ul class="pagination justify-content-center" id="pagination">
+            <!-- Previous Button -->
+            <li class="page-item @(Model.Pagination.HasPrevious ? "" : "disabled")">
+                <a class="page-link" href="#" data-page="@(Model.Pagination.CurrentPage - 1)" aria-label="Previous" @(Model.Pagination.HasPrevious ? "" : "tabindex='-1' aria-disabled='true'")>
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+            </li>
+            
+            <!-- Page Numbers -->
+            @{
+                var startPage = Math.Max(1, Model.Pagination.CurrentPage - 2);
+                var endPage = Math.Min(Model.Pagination.TotalPages, Model.Pagination.CurrentPage + 2);
+                
+                if (startPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="#" data-page="1">1</a>
+                    </li>
+                    @if (startPage > 2)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+                }
+                
+                for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == Model.Pagination.CurrentPage ? "active" : "")" @(i == Model.Pagination.CurrentPage ? "aria-current='page'" : "")>
+                        <a class="page-link" href="#" data-page="@i">@i</a>
+                    </li>
+                }
+                
+                if (endPage < Model.Pagination.TotalPages)
+                {
+                    @if (endPage < Model.Pagination.TotalPages - 1)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="#" data-page="@Model.Pagination.TotalPages">@Model.Pagination.TotalPages</a>
+                    </li>
+                }
+            }
+            
+            <!-- Next Button -->
+            <li class="page-item @(Model.Pagination.HasNext ? "" : "disabled")">
+                <a class="page-link" href="#" data-page="@(Model.Pagination.CurrentPage + 1)" aria-label="Next" @(Model.Pagination.HasNext ? "" : "tabindex='-1' aria-disabled='true'")>
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    </div>
+    
+          
+    <!-- Right Column - Job Details -->
+    <div class="job-details-column" id="jobDetailsColumn">
+     @if (Model.RightJobDetails != null)
+     {
+        @await Html.PartialAsync("_FullJobDescriptionPartial", Model.RightJobDetails)
+     }
+     else
+     {
+        <div class="indeed-empty-state">
+            <div class="indeed-empty-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V10h16v10z"/>
+                </svg>
+            </div>
+            <h3 class="indeed-empty-title">Select a job to view details</h3>
+            <p class="indeed-empty-text">Click on any job card to see the full description and apply</p>
+        </div>
+     }
+    </div>
+  </div>
+ }
+ else
+ {
+    @await Html.PartialAsync("_NoResultsPartial", Model.SearchFilter)
+ }
+</div>
+         
+<!-- Home Page Footer -->
+<footer class="home-footer">
+    <div class="container">
+        <!-- Main Footer Content -->
+        <div class="footer-grid">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <h3 class="footer-title">IndeedClone</h3>
+                <p class="footer-description">
+                    Find your dream job with India's fastest growing job search platform.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- For Job Seekers -->
+            <div class="footer-section">
+                <h3 class="footer-title">Job seekers</h3>
+                <ul class="footer-links">
+                    <li><a href="@Url.Action("Retrieve", "IndeedClone")">Search jobs</a></li>
+                    <li><a href="#">Create resume</a></li>
+                    <li><a href="#">Job alerts</a></li>
+                    <li><a href="@Url.Action("CareerAdvice", "FooterInfo")">Career advice</a></li>
+                    <li><a href="@Url.Action("CompanyReviews", "IndeedClone")">Company reviews</a></li>
+                </ul>
+            </div>
+
+            <!-- For Employers -->
+            <div class="footer-section">
+                <h3 class="footer-title">Employers</h3>
+                <ul class="footer-links">
+                    <li><a href="@Url.Action("Retrieve", "JobPost")">Post a job</a></li>
+                    <li><a href="@Url.Action("Retrieve", "JobDashboard")">Browse candidates</a></li>
+                    <li><a href="@Url.Action("Pricing", "FooterInfo")">Pricing</a></li>
+                    <li><a href="@Url.Action("Retrieve", "JobDashboard")">Employer dashboard</a></li>
+                    <li><a href="@Url.Action("RecruitmentSolutions", "FooterInfo")">Recruitment solutions</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3 class="footer-title">Quick links</h3>
+                <ul class="footer-links">
+                    <li><a href="@Url.Action("About", "FooterInfo")">About</a></li>
+                    <li><a href="@Url.Action("Contact", "FooterInfo")">Contact</a></li>
+                    <li><a href="@Url.Action("FAQ", "FooterInfo")">FAQ</a></li>
+                    <li><a href="@Url.Action("Privacyy", "FooterInfo")">Privacy</a></li>
+                    <li><a href="@Url.Action("Terms", "FooterInfo")">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                © @DateTime.Now.Year IndeedClone
+            </div>
+            <div class="footer-bottom-links">
+                <a href="@Url.Action("Privacyy", "FooterInfo")">Privacy</a>
+                <span class="separator">•</span>
+                <a href="@Url.Action("Terms", "FooterInfo")">Terms</a>
+                <span class="separator">•</span>
+                <a href="@Url.Action("CookiePolicy", "FooterInfo")">Cookie policy</a>
+                <span class="separator">•</span>
+                <a href="@Url.Action("Accessibility", "FooterInfo")">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function showJobDetails(JobUid) {
+        if (!JobUid) return;
+       
+        localStorage.setItem("selectedJobUid", JobUid);
+        const urlTemplate = '@Url.Action("FullJobDescription", "IndeedClone")';
+
+        fetch(`${urlTemplate}?jobUid=${JobUid}`)
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById("jobDetailsColumn").innerHTML = html;
+                highlightSelectedCard(JobUid);
+            }) 
+            .catch(() => alert("Failed to load job details"));
+    }
+
+    document.getElementById("jobDetailsColumn").scrollTop = 0;
+
+   document.addEventListener("DOMContentLoaded", function () {
+    const savedJobUid = localStorage.getItem("selectedJobUid");
+    if (savedJobUid) {
+        showJobDetails(savedJobUid);
+    } else {
+        const firstJobCard = document.querySelector(".indeed-job-card");
+        if (firstJobCard) {
+            firstJobCard.click();
+        }
+    }
+});
+
+    function highlightSelectedCard(JobUid) {
+
+    document.querySelectorAll(".indeed-job-card").forEach(card => {
+        card.classList.remove("active-job");
+    });
+
+    const selectedCard = document.querySelector(`[data-id="${JobUid}"]`);
+    if (selectedCard) {
+        selectedCard.classList.add("active-job");
+    }
+}
+</script>
+
+<script>
+    let currentPage = @Model.Pagination.CurrentPage;
+    let totalPages = @Model.Pagination.TotalPages;
+
+    document.addEventListener('click', function(e) {
+        const pageLink = e.target.closest('.page-link[data-page]');
+        if (!pageLink) return;
+        e.preventDefault();
+        const page = parseInt(pageLink.dataset.page);
+        if (isNaN(page) || page < 1 || page > totalPages || page === currentPage) return;
+        loadJobsPage(page);
+    });
+
+    function loadJobsPage(page) {
+        const jobCardsContainer = document.getElementById('jobCardsContainer');
+        if (!jobCardsContainer) {
+            console.error('jobCardsContainer not found!');
+            return;
+        }
+        
+        // Show loading state
+        jobCardsContainer.style.opacity = '0.5';
+        
+        // Collect all current filters from the filter form
+        const form = document.getElementById('filterForm');
+        if (!form) {
+            console.error('filterForm not found!');
+            return;
+        }
+        
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData);
+        params.append('page', page);
+        
+        const getJobPage = '@Url.Action("GetJobsPage", "IndeedClone")';
+        
+        fetch(`${getJobPage}?${params.toString()}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(jobs => {
+                if (!jobs || jobs.length === 0) {
+                    // Show empty state
+                    jobCardsContainer.innerHTML = '<div class="no-jobs-message">No jobs found on this page</div>';
+                    jobCardsContainer.style.opacity = '1';
+                    
+                    // Update current page
+                    currentPage = page;
+                    updatePaginationActiveState(page);
+                    
+                    // Show empty state in details column
+                    document.getElementById("jobDetailsColumn").innerHTML = `
+                        <div class="indeed-empty-state">
+                            <div class="indeed-empty-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V10h16v10z"/>
+                                </svg>
+                            </div>
+                            <h3 class="indeed-empty-title">No jobs on this page</h3>
+                            <p class="indeed-empty-text">Try another page</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Build HTML from JSON data
+                let html = '';
+                
+                jobs.forEach(job => {
+                    // Safely access properties with defaults
+                    const supplementedPay = job.supplementedPay || [];
+                    const employeeType = job.employeeType || [];
+                    const benefits = job.benefits || [];
+                    
+                    const types = supplementedPay.slice(0, 1);
+                    const remaining = employeeType.length - types.length;
+                    const benefitItems = benefits.slice(0, 1);
+                    const remainingBenefits = benefits.length - benefitItems.length;
+                    
+                    html += `
+                        <div class="indeed-job-card" data-id="${job.jobUid || ''}" onclick="showJobDetails('${job.jobUid || ''}')">
+                            
+                            <!-- Header with Title and Menu -->
+                            <div class="job-card-header">
+                                <div class="job-title-wrapper">
+                                    <h2 class="job-title">
+                                        <a href="#" class="job-title-link" onclick="event.preventDefault();">
+                                            <span title="${job.jobTitle || ''}">${job.jobTitle || ''}</span>
+                                        </a>
+                                    </h2>
+                                </div>
+                                
+                                <!-- Indeed Three Dots Dropdown -->
+                                <div class="dropdown job-menu-container" onclick="event.stopPropagation();">
+                                    <button class="job-menu-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg class="job-menu-dots" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="6" r="2" fill="currentColor"/>
+                                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                                            <circle cx="12" cy="18" r="2" fill="currentColor"/>
+                                        </svg>
+                                    </button>
+                                    <ul class="indeed-dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="bookmark-outline"></ion-icon>
+                                                Save job
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="flag-outline"></ion-icon>
+                                                Report job
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Company Name -->
+                            <div class="company-name">${job.companyName || ''}</div>
+
+                            <!-- Location -->
+                            <div class="job-location">
+                                <svg class="location-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                                <span style="color: #2c3e50;">${job.jobLocation || ''} - ${job.city || ''}, ${job.area || ''}</span>
+                            </div>
+
+                            <!-- Response Time -->
+                            ${job.recruitmentTimeline ? `
+                                <div class="response-badge">
+                                    <svg class="response-icon" viewBox="0 0 24 24">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+                                    </svg>
+                                    Typically responds within ${job.recruitmentTimeline}
+                                </div>
+                            ` : ''}
+
+                            <!-- Job Attributes -->
+                            <div class="job-attributes">
+                                <!-- Salary -->
+                                <div class="attribute-item">
+                                    <svg class="attribute-icon" viewBox="0 0 24 24">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5zm0 17L2 14v5l10 5 10-5v-5l-10 5z"/>
+                                    </svg>
+                                    <span class="salary-format">
+                                        <span class="rupee-symbol">₹</span>${job.minimumPay || 0} - 
+                                        <span class="rupee-symbol">₹</span>${job.maximumPay || 0} 
+                                        <span style="color: #2c3e50; margin-left: 2px;">${job.payRateType || ''}</span>
+                                    </span>
+                                </div>
+
+                                <!-- Employment Type -->
+                                ${types.length > 0 ? `
+                                    <div class="attribute-item">
+                                        <svg class="attribute-icon" viewBox="0 0 24 24">
+                                            <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4-6h-8V4h8v2z"/>
+                                        </svg>
+                                        <span class="attribute-text">
+                                            ${types.join(', ')}
+                                            ${remaining > 0 ? `<span class="more-badge">+${remaining} more</span>` : ''}
+                                        </span>
+                                    </div>
+                                ` : ''}
+
+                                <!-- Benefits -->
+                                ${benefitItems.length > 0 ? `
+                                    <div class="attribute-item">
+                                        <svg class="attribute-icon" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                        <span class="attribute-text">
+                                            ${benefitItems.join(', ')}
+                                            ${remainingBenefits > 0 ? `<span class="more-badge">+${remainingBenefits} more</span>` : ''}
+                                        </span>
+                                    </div>
+                                ` : ''}
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="job-card-footer">
+                                <div class="easily-apply-badge">
+                                    <svg class="apply-icon" viewBox="0 0 24 24">
+                                        <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+                                    </svg>
+                                    Easily apply
+                                </div>
+                                <span class="posted-date">${job.postedAgo || ''}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                jobCardsContainer.innerHTML = html;
+                jobCardsContainer.style.opacity = '1';
+                currentPage = page;
+                updatePaginationActiveState(page);
+                localStorage.removeItem("selectedJobUid");
+                requestAnimationFrame(() => {
+                const firstJobCard = document.querySelector(".indeed-job-card");
+                if (firstJobCard) {
+                    firstJobCard.click();
+                }
+            });
+                const jobListColumn = document.querySelector('.job-list-column');
+                if (jobListColumn) {
+                    jobListColumn.scrollTop = 0;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading jobs:', error);
+                jobCardsContainer.style.opacity = '1';
+                alert('Failed to load jobs. Please try again.');
+            });
+    }
+
+    function updatePaginationActiveState(page) {
+        document.querySelectorAll('.page-item').forEach(item => {
+            item.classList.remove('active');
+            item.removeAttribute('aria-current');
+        });
+        
+        const activePageLink = document.querySelector(`.page-link[data-page="${page}"]`);
+        if (activePageLink) {
+            const pageItem = activePageLink.closest('.page-item');
+            pageItem.classList.add('active');
+            pageItem.setAttribute('aria-current', 'page');
+        }
+        
+        const prevButton = document.querySelector('.page-link[aria-label="Previous"]');
+        const nextButton = document.querySelector('.page-link[aria-label="Next"]');
+        
+        if (prevButton) {
+            const prevItem = prevButton.closest('.page-item');
+            if (page <= 1) {
+                prevItem.classList.add('disabled');
+                prevButton.setAttribute('tabindex', '-1');
+                prevButton.setAttribute('aria-disabled', 'true');
+            } else {
+                prevItem.classList.remove('disabled');
+                prevButton.removeAttribute('tabindex');
+                prevButton.removeAttribute('aria-disabled');
+                prevButton.dataset.page = page - 1;
+            }
+        }
+        
+        if (nextButton) {
+            const nextItem = nextButton.closest('.page-item');
+            if (page >= totalPages) {
+                nextItem.classList.add('disabled');
+                nextButton.setAttribute('tabindex', '-1');
+                nextButton.setAttribute('aria-disabled', 'true');
+            } else {
+                nextItem.classList.remove('disabled');
+                nextButton.removeAttribute('tabindex');
+                nextButton.removeAttribute('aria-disabled');
+                nextButton.dataset.page = page + 1;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

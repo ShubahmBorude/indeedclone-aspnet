@@ -1,0 +1,333 @@
+﻿
+body {
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;
+    line-height: 1.5;
+    padding: 24px;
+}
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 24px;
+}
+
+/* Header Section */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dashboard-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(45, 45, 45);
+    margin: 0;
+}
+
+.job-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #6f7d8c;
+    font-size: 14px;
+    flex-wrap: wrap;
+}
+
+    .job-subtitle i {
+        color: #0a66c2;
+        font-size: 14px;
+    }
+
+    .job-subtitle .separator {
+        color: #d1d7dc;
+        font-size: 12px;
+    }
+
+/* Status Badge */
+.status-badge-large {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+    .status-badge-large.submitted {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-badge-large.shortlisted {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge-large.rejected {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+/* Main Profile Card */
+.profile-card {
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Candidate Header */
+.candidate-header {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.candidate-info h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(45, 45, 45);
+    margin-bottom: 12px;
+}
+
+.candidate-meta {
+    display: flex;
+/*    flex-direction: column;*/
+    gap: 8px;
+    color: #6f7d8c;
+    font-size: 14px;
+}
+
+    .candidate-meta span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .candidate-meta i {
+        color: #0a66c2;
+        font-size: 16px;
+        width: 20px;
+    }
+
+/* Section Title */
+.section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(45, 45, 45);
+    margin: 24px 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+    .section-title i {
+        color: #0a66c2;
+        font-size: 18px;
+    }
+
+/* Info Grid - 3 columns for better fit */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.info-item {
+    padding: 14px;
+    background-color: #f8fafd;
+    border-radius: 10px;
+    border: 1px solid #eef2f5;
+}
+
+.info-label {
+    font-size: 11px;
+    color: #8a98a9;
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(45, 45, 45);
+}
+
+    .info-value.small {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+/* Timeline */
+.timeline {
+    margin-top: 8px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eef2f5;
+}
+
+    .timeline-item:last-child {
+        border-bottom: none;
+    }
+
+.timeline-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #e8f1fe;
+    color: #0a66c2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+    .timeline-icon i {
+        font-size: 16px;
+    }
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-title {
+    font-weight: 600;
+    color: rgb(45, 45, 45);
+    margin-bottom: 4px;
+    font-size: 15px;
+}
+
+.timeline-subtitle {
+    font-size: 13px;
+    color: #6f7d8c;
+}
+
+/* Skills */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.skill-tag {
+    background-color: #e8f1fe;
+    color: #0a66c2;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid rgba(10, 102, 194, 0.1);
+}
+
+/* Resume Preview */
+.resume-preview {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.resume-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background-color: #f8fafd;
+    border-bottom: 1px solid #e9ecef;
+}
+
+    .resume-header h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: rgb(45, 45, 45);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .resume-header h3 i {
+            color: #0a66c2;
+        }
+
+.resume-download-btn {
+    background-color: #0a66c2;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+    .resume-download-btn:hover {
+        background-color: #0a4ebb;
+    }
+
+.resume-preview-body {
+    background-color: #f5f7fa;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a98a9;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .candidate-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: #6f7d8c;
+        font-size: 14px;
+    }
+
+    .dashboard-wrapper {
+        margin: 15px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

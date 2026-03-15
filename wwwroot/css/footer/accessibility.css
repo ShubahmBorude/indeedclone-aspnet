@@ -1,0 +1,115 @@
+﻿/* Additional accessibility-specific styles */
+.accessibility-controls {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+    margin-bottom: 2rem;
+}
+
+.control-group {
+    margin-bottom: 2rem;
+}
+
+    .control-group h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+    }
+
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 50px;
+    background: white;
+    color: #2d2f31;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .control-btn:hover {
+        border-color: rgb(37, 90, 168);
+        color: rgb(37, 90, 168);
+    }
+
+    .control-btn.active {
+        background: rgb(37, 90, 168);
+        border-color: rgb(37, 90, 168);
+        color: white;
+    }
+
+.font-size-demo {
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+    .font-size-demo p {
+        margin-bottom: 0.5rem;
+    }
+
+.demo-small {
+    font-size: 0.85rem;
+}
+
+.demo-normal {
+    font-size: 1rem;
+}
+
+.demo-large {
+    font-size: 1.2rem;
+}
+
+.demo-xlarge {
+    font-size: 1.5rem;
+}
+
+.contrast-demo {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.contrast-box {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.contrast-normal {
+    background: white;
+    color: #2d2f31;
+    border: 1px solid #e5e7eb;
+}
+
+.contrast-high {
+    background: #000000;
+    color: #ffff00;
+}
+
+.contrast-blue {
+    background: #000080;
+    color: #ffffff;
+}
+
+.accessibility-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(37, 90, 168, 0.1);
+    color: rgb(37, 90, 168);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}

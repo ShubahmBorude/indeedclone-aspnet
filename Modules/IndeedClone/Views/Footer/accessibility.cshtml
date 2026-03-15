@@ -1,0 +1,263 @@
+﻿@{
+    Layout = "_AuthNavbarLayout";
+    ViewData["Title"] = "Accessibility - IndeedClone";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/footer/policy-pages.css" />
+    
+</head>
+<body>
+
+<div class="policy-page">
+    <!-- Hero Section -->
+    <section class="policy-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Accessibility <span style="color: rgb(37, 90, 168);">Statement</span></h1>
+                <p class="hero-subtitle">Making IndeedClone accessible to everyone, regardless of ability</p>
+                <p class="last-updated">Last Updated: March 10, 2026</p>
+                <div class="accessibility-badge" style="margin-top: 1rem;">
+                    <i class="bi bi-eye-fill"></i>
+                    <span>WCAG 2.1 AA Compliant</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessibility Tools Demo -->
+    <section class="policy-content-section">
+        <div class="container">
+            <div class="accessibility-controls">
+                <h2 style="margin-bottom: 1.5rem;">Accessibility Tools</h2>
+                <p style="margin-bottom: 2rem;">Try our accessibility features below. These settings can be adjusted anytime from your profile.</p>
+                
+                <div class="control-group">
+                    <h3>Font Size</h3>
+                    <div class="control-buttons">
+                        <button class="control-btn" onclick="document.body.style.fontSize='14px'">Small</button>
+                        <button class="control-btn active" onclick="document.body.style.fontSize='16px'">Normal</button>
+                        <button class="control-btn" onclick="document.body.style.fontSize='18px'">Large</button>
+                        <button class="control-btn" onclick="document.body.style.fontSize='20px'">Extra Large</button>
+                    </div>
+                    <div class="font-size-demo">
+                        <p class="demo-small">Small text (14px) - Lorem ipsum dolor sit amet</p>
+                        <p class="demo-normal">Normal text (16px) - Lorem ipsum dolor sit amet</p>
+                        <p class="demo-large">Large text (18px) - Lorem ipsum dolor sit amet</p>
+                        <p class="demo-xlarge">Extra large text (20px) - Lorem ipsum dolor sit amet</p>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>Contrast Mode</h3>
+                    <div class="control-buttons">
+                        <button class="control-btn active">Normal</button>
+                        <button class="control-btn">High Contrast</button>
+                        <button class="control-btn">Dark Mode</button>
+                    </div>
+                    <div class="contrast-demo">
+                        <div class="contrast-box contrast-normal">
+                            <p>Normal contrast</p>
+                            <small>Standard viewing</small>
+                        </div>
+                        <div class="contrast-box contrast-high">
+                            <p>High contrast</p>
+                            <small>Black & yellow</small>
+                        </div>
+                        <div class="contrast-box contrast-blue">
+                            <p>Dark mode</p>
+                            <small>Blue background</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <h3>Other Settings</h3>
+                    <div class="control-buttons">
+                        <button class="control-btn">Reduce Motion</button>
+                        <button class="control-btn">Screen Reader Optimized</button>
+                        <button class="control-btn">Keyboard Navigation</button>
+                        <button class="control-btn">Link Underline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="policy-content-section">
+        <div class="container">
+            <div class="policy-container">
+                <div class="policy-toc">
+                    <h3>Table of Contents</h3>
+                    <ul>
+                        <li><a href="#commitment">1. Our Commitment</a></li>
+                        <li><a href="#standards">2. Accessibility Standards</a></li>
+                        <li><a href="#features">3. Accessibility Features</a></li>
+                        <li><a href="#compatibility">4. Browser & Device Compatibility</a></li>
+                        <li><a href="#limitations">5. Known Limitations</a></li>
+                        <li><a href="#feedback">6. Feedback & Assistance</a></li>
+                        <li><a href="#contact">7. Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="policy-content">
+                    <section id="commitment" class="policy-section">
+                        <h2>1. Our Commitment</h2>
+                        <p>At IndeedClone, we believe that everyone deserves equal access to job opportunities. We are committed to ensuring that our platform is accessible to all users, regardless of ability or technology. We continuously work to improve the user experience for everyone and apply relevant accessibility standards.</p>
+                        
+                        <div class="note-box" style="background: rgba(37, 90, 168, 0.05); border-left: 4px solid rgb(37, 90, 168); margin-top: 1.5rem;">
+                            <p><strong>Our Goal:</strong> To provide an inclusive job search experience that empowers all job seekers, including those with disabilities, to find meaningful employment.</p>
+                        </div>
+                    </section>
+
+                    <section id="standards" class="policy-section">
+                        <h2>2. Accessibility Standards</h2>
+                        <p>IndeedClone strives to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. These guidelines outline how to make web content more accessible to people with a wide range of disabilities, including:</p>
+                        <ul>
+                            <li><strong>Visual:</strong> Blindness, low vision, color blindness</li>
+                            <li><strong>Auditory:</strong> Deafness and hard of hearing</li>
+                            <li><strong>Motor:</strong> Limited movement, muscle slowness</li>
+                            <li><strong>Cognitive:</strong> Learning disabilities, memory issues</li>
+                            <li><strong>Seizures:</strong> Photosensitive epilepsy</li>
+                        </ul>
+                    </section>
+
+                    <section id="features" class="policy-section">
+                        <h2>3. Accessibility Features</h2>
+                        
+                        <h3>Keyboard Navigation</h3>
+                        <p>Our platform is fully navigable using a keyboard. You can use the Tab key to move between interactive elements, Enter to activate buttons and links, and arrow keys for dropdown menus and sliders.</p>
+                        
+                        <h3>Screen Reader Compatibility</h3>
+                        <p>IndeedClone is optimized for screen readers including JAWS, NVDA, and VoiceOver. We provide:</p>
+                        <ul>
+                            <li>Proper heading structure for easy navigation</li>
+                            <li>Descriptive alt text for all images</li>
+                            <li>ARIA labels for interactive elements</li>
+                            <li>Announcements for dynamic content changes</li>
+                        </ul>
+                        
+                        <h3>Text Customization</h3>
+                        <p>Users can adjust text size and spacing using browser controls or our accessibility tools. All text remains readable when zoomed up to 200%.</p>
+                        
+                        <h3>Color and Contrast</h3>
+                        <p>We maintain high contrast ratios between text and backgrounds. Information is never conveyed by color alone, ensuring it's accessible to color-blind users.</p>
+                        
+                        <h3>Focus Indicators</h3>
+                        <p>Interactive elements have clear visual focus indicators, making it easy to track your position when navigating by keyboard.</p>
+                        
+                        <h3>Form Labels and Instructions</h3>
+                        <p>All form fields have clear, descriptive labels and instructions. Error messages are specific and guide users toward resolution.</p>
+                    </section>
+
+                    <section id="compatibility" class="policy-section">
+                        <h2>4. Browser & Device Compatibility</h2>
+                        <p>IndeedClone is designed to work with assistive technologies across modern browsers and devices:</p>
+                        
+                        <h3>Supported Browsers</h3>
+                        <ul>
+                            <li>Chrome (latest 2 versions)</li>
+                            <li>Firefox (latest 2 versions)</li>
+                            <li>Safari (latest 2 versions)</li>
+                            <li>Edge (latest 2 versions)</li>
+                        </ul>
+                        
+                        <h3>Mobile Accessibility</h3>
+                        <p>Our mobile-responsive design ensures accessibility on smartphones and tablets, with touch targets sized appropriately and support for mobile screen readers like VoiceOver (iOS) and TalkBack (Android).</p>
+                    </section>
+
+                    <section id="limitations" class="policy-section">
+                        <h2>5. Known Limitations</h2>
+                        <p>While we strive for full accessibility, some areas may have limitations:</p>
+                        <ul>
+                            <li><strong>Third-Party Content:</strong> Job descriptions and company profiles submitted by employers may not always meet accessibility standards.</li>
+                            <li><strong>Legacy Content:</strong> Some older job postings may have accessibility issues. We're working to improve this.</li>
+                            <li><strong>Complex Interactions:</strong> Some advanced filter combinations may be challenging for screen reader users. We provide alternative navigation methods.</li>
+                        </ul>
+                        <p>If you encounter any accessibility barriers, please let us know.</p>
+                    </section>
+
+                    <section id="feedback" class="policy-section">
+                        <h2>6. Feedback & Assistance</h2>
+                        <p>We welcome your feedback on the accessibility of IndeedClone. If you encounter accessibility barriers or need assistance, please contact us:</p>
+                        
+                        <h3>Requesting Accommodations</h3>
+                        <p>If you need assistance applying for a job due to a disability, our support team can help. We can provide alternative formats or assist with the application process.</p>
+                        
+                        <h3>Reporting Issues</h3>
+                        <p>Please include the following information when reporting accessibility issues:</p>
+                        <ul>
+                            <li>Page URL where the issue occurred</li>
+                            <li>Description of the issue</li>
+                            <li>Browser and assistive technology used</li>
+                            <li>Screenshots if applicable</li>
+                        </ul>
+                        
+                        <div class="note-box" style="background: rgba(37, 90, 168, 0.05); border-left: 4px solid rgb(37, 90, 168);">
+                            <p><strong>Response Time:</strong> We aim to respond to accessibility inquiries within 2 business days and resolve issues as quickly as possible.</p>
+                        </div>
+                    </section>
+
+                    <section id="contact" class="policy-section">
+                        <h2>7. Contact Us</h2>
+                        <p>For accessibility-related questions or assistance, please reach out to our Accessibility Team:</p>
+                        <ul class="contact-list">
+                            <li><i class="bi bi-envelope" style="color: rgb(37, 90, 168);"></i> accessibility@indeedclone.com</li>
+                            <li><i class="bi bi-telephone" style="color: rgb(37, 90, 168);"></i> +91 98765 43210 (ext. 123)</li>
+                            <li><i class="bi bi-chat-dots" style="color: rgb(37, 90, 168);"></i> Live chat: Mention "accessibility assistance"</li>
+                        </ul>
+                        
+                        <p style="margin-top: 2rem;">We're committed to making IndeedClone accessible to everyone and appreciate your partnership in this effort.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    // Simple demo functionality for accessibility controls
+    $(document).ready(function() {
+        $('.control-btn').click(function() {
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
+
+</body>
+</html>

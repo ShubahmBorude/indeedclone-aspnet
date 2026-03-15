@@ -1,0 +1,405 @@
+﻿@model IndeedClone.Modules.IndeedClone.DTO.IndeedCloneJobSearchFilterDTO
+@{
+
+ }
+
+ <!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/app-home/indeedhomenavabrlayout.css">
+    <link rel="stylesheet" href="~/css/app-home/filterjobdropdowns.css">
+    
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style> body{ padding : 0 !important} </style>
+
+</head>
+
+ <body>
+     
+
+    <form action="@Url.Action("Retrieve", "IndeedClone")" method="get" id="filterForm"> <!-- Changed ID to filterForm -->
+
+    <input type="hidden" name="Keyword" value="@Model?.Keyword" />
+    <input type="hidden" name="Location" value="@Model?.Location" />
+    <input type="hidden" name="Page" value="1" id="pageInput" />
+
+    <!-- Indeed-style filter bar -->
+    <div class="indeed-filters d-flex justify-content-center">
+        <div class="filters-wrapper">
+            
+            <!-- Remote/Work Arrangement Filter -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" 
+                        type="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                    @(Model?.WorkArrangement ?? "Remote")
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu indeed-dropdown">
+                    <li><button type="submit" name="WorkArrangement" value="" class="dropdown-item @(string.IsNullOrEmpty(Model?.WorkArrangement) ? "active" : "")">All</button></li>
+                    <li><button type="submit" name="WorkArrangement" value="Full-time" class="dropdown-item @(Model?.WorkArrangement == "Full-time" ? "active" : "")">Full-time</button></li> <!-- Fixed value -->
+                    <li><button type="submit" name="WorkArrangement" value="Part-time" class="dropdown-item @(Model?.WorkArrangement == "Part-time" ? "active" : "")">Part-time</button></li> <!-- Fixed value -->
+                    <li><button type="submit" name="WorkArrangement" value="Contractual" class="dropdown-item @(Model?.WorkArrangement == "Contractual" ? "active" : "")">Contractual</button></li> <!-- Fixed value -->
+                    <li><button type="submit" name="WorkArrangement" value="Remote" class="dropdown-item @(Model?.WorkArrangement == "Remote" ? "active" : "")">Remote</button></li> <!-- Fixed value -->
+                    <li><button type="submit" name="WorkArrangement" value="On-Site" class="dropdown-item @(Model?.WorkArrangement == "On-Site" ? "active" : "")">On-Site</button></li> <!-- Fixed value -->
+                </ul>
+            </div>
+
+            <!-- Date Posted Filter -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     @{
+                        var dateDisplay = Model?.DatePosted switch
+                        {
+                            "24h" => "Last 24 hours",
+                            "3d" => "Last 3 days",
+                            "7d" => "Last 7 days",
+                            "14d" => "Last 14 days",
+                            _ => "Date Posted"
+                        };
+                     }
+                     @dateDisplay
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu indeed-dropdown">
+                    <li><button type="submit" name="DatePosted" value="" class="dropdown-item @(string.IsNullOrEmpty(Model?.DatePosted) ? "active" : "")">All Time</button></li>
+                    <li><button type="submit" name="DatePosted" value="24h" class="dropdown-item @(Model?.DatePosted == "24h" ? "active" : "")">Last 24 hours</button></li>
+                    <li><button type="submit" name="DatePosted" value="3d" class="dropdown-item @(Model?.DatePosted == "3d" ? "active" : "")">Last 3 days</button></li>
+                    <li><button type="submit" name="DatePosted" value="7d" class="dropdown-item @(Model?.DatePosted == "7d" ? "active" : "")">Last 7 days</button></li>
+                    <li><button type="submit" name="DatePosted" value="14d" class="dropdown-item @(Model?.DatePosted == "14d" ? "active" : "")">Last 14 days</button></li>
+                </ul>
+            </div>
+
+            <!-- Salary Pay Filter -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if (Model?.Salary.HasValue == true)
+                    {
+                        <text>₹ @Model.Salary.Value.ToString("N0")+</text>
+                    }
+                    else
+                    {
+                        <text>Salary Pay</text>
+                    }
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu indeed-dropdown" style="min-width: 220px;">
+                    <li><button type="submit" name="Salary" value="" class="dropdown-item @(!Model?.Salary.HasValue == true ? "active" : "")">All Salaries</button></li>
+                    <li><hr class="dropdown-divider"></li>
+                @{
+                    var salaryValues = new[] { 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000 };
+                    foreach (var salary in salaryValues)
+                    {
+                        <li>
+                            <button type="submit" name="Salary" value="@salary" class="dropdown-item @(Model?.Salary == salary ? "active" : "")">
+                             ₹ @salary.ToString("N0")+/month
+                            </button>
+                        </li>
+                    }
+                }
+                </ul>
+            </div>
+
+            <!-- Job Type Filter - Card Style -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    Job Type
+                    @if (Model?.JobTypes?.Any() == true)
+                    {
+                        <span class="filter-badge">@Model.JobTypes.Count</span>
+                    }
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu indeed-card-dropdown p-0">
+                    <div class="indeed-card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">Job Type</h6>
+                        <button type="button" class="btn-close btn-close-sm close-dropdown"></button> <!-- Changed to class for JS -->
+                    </div>
+                    <div class="indeed-card-body">
+                   @{
+                        var jobTypes = new[] { "Full Time", "Permanent", "Contractual", "Fresher", "Freelancer", "Internship", "Volunteer", "Student Job" };
+                        foreach (var type in jobTypes)
+                        {
+                            var isChecked = Model?.JobTypes?.Contains(type) == true;
+                            <div class="indeed-check">
+                                <input class="form-check-input job-type-checkbox" type="checkbox" value="@type" id="jobType_@type.Replace(" ", "")" @(isChecked ? "checked" : "")>
+                                <label class="form-check-label" for="jobType_@type.Replace(" ", "")">@type</label>
+                            </div>
+                        }
+                    }
+                    </div>
+                    <div class="indeed-card-footer">
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="btn indeed-btn-clear clear-job-types">Clear</button> <!-- Changed to class -->
+                            <button type="button" class="btn indeed-btn-update update-job-types">Update</button> <!-- Changed to button type and class -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Filter -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @(Model?.Company ?? "Company")
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu indeed-dropdown">
+                    <li><button type="submit" name="Company" value="" class="dropdown-item @(string.IsNullOrEmpty(Model?.Company) ? "active" : "")">All Companies</button></li>
+                    <li><hr class="dropdown-divider"></li>
+               @{
+                    var companies = new[] { "MNC", "Mid Level", "Start Up", "Ecommercial", "Government", "Semi Government" };
+                    foreach (var company in companies)
+                    {
+                        <li>
+                            <button type="submit" name="Company" value="@company" class="dropdown-item @(Model?.Company == company ? "active" : "")">
+                                @company
+                            </button>
+                        </li>
+                    }
+                }
+                </ul>
+            </div>
+
+            <!-- Language Filter -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @(Model?.Language ?? "Language")
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu indeed-dropdown">
+                    <li><button type="submit" name="Language" value="" class="dropdown-item @(string.IsNullOrEmpty(Model?.Language) ? "active" : "")">All Languages</button></li>
+                    <li><hr class="dropdown-divider"></li>
+               @{
+                    var languages = new[] { "English", "Hindi", "Tamil", "Telugu", "Kannada", "Marathi", "Gujarati", "Bengali" };
+                    foreach (var language in languages)
+                    {
+                        <li>
+                            <button type="submit" name="Language" value="@language"  class="dropdown-item @(Model?.Language == language ? "active" : "")">
+                                @language
+                            </button>
+                        </li>
+                    }
+                }
+                </ul>
+            </div>
+
+            <!-- Location Filter -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    @(Model?.Location ?? "Location")
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu indeed-dropdown">
+                    <li><button type="submit" name="Location" value="" class="dropdown-item @(string.IsNullOrEmpty(Model?.Location) ? "active" : "")">All Locations</button></li>
+                    <li><hr class="dropdown-divider"></li>
+              @{
+                    var locations = new[] { "Maharashtra", "Karnataka", "Telangana", "Tamilnadu", "New Delhi", "Gujrat" };
+                    foreach (var location in locations)
+                    {
+                        <li>
+                            <button type="submit" name="Location" value="@location" 
+                                    class="dropdown-item @(Model?.Location == location ? "active" : "")">
+                                @location
+                            </button>
+                        </li>
+                    }
+                }
+                </ul>
+            </div>
+
+            <!-- Education Level Filter - Card Style -->
+            <div class="btn-group">
+                <button class="btn indeed-filter-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                    Education Level
+                    @if (Model?.EducationLevels?.Any() == true)
+                    {
+                        <span class="filter-badge">@Model.EducationLevels.Count</span>
+                    }
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+                <div class="dropdown-menu indeed-card-dropdown p-0">
+                    <div class="indeed-card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">Education Level</h6>
+                        <button type="button" class="btn-close btn-close-sm close-dropdown"></button> <!-- Changed to class -->
+                    </div>
+                    <div class="indeed-card-body">
+                   @{
+                        var educationLevels = new[] { "Computer Science", "Information Technology", "Master Degree", 
+                                                      "Electrical Engineering", "Mechanical Engineering", 
+                                                      "Civil Engineering", "Marketing" };
+                        foreach (var edu in educationLevels)
+                        {
+                            var isChecked = Model?.EducationLevels?.Contains(edu) == true;
+                            <div class="indeed-check">
+                                <input class="form-check-input education-checkbox" type="checkbox" 
+                                       value="@edu" id="edu_@edu.Replace(" ", "")" 
+                                       @(isChecked ? "checked" : "")>
+                                <label class="form-check-label" for="edu_@edu.Replace(" ", "")">@edu</label>
+                            </div>
+                        }
+                    }
+                    </div>
+                    <div class="indeed-card-footer">
+                        <div class="d-flex justify-content-end gap-2">
+                            <button type="button" class="btn indeed-btn-clear clear-education">Clear</button> <!-- Changed to class -->
+                            <button type="button" class="btn indeed-btn-update update-education">Update</button> <!-- Changed to button type and class -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+   <!-- JavaScript for handling complex filters -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('filterForm'); // Get form reference
+    
+        // Handle Job Type filter
+        const jobTypeUpdateBtn = document.querySelector('.update-job-types');
+        if (jobTypeUpdateBtn) {
+            jobTypeUpdateBtn.addEventListener('click', function() {
+                const checkboxes = document.querySelectorAll('.job-type-checkbox:checked');
+            
+                // Remove existing JobTypes inputs
+                document.querySelectorAll('input[name="JobTypes"]').forEach(input => input.remove());
+            
+                // Add selected values
+                checkboxes.forEach(cb => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'JobTypes';
+                    input.value = cb.value;
+                    form.appendChild(input);
+                });
+            
+                form.submit();
+            });
+        }
+    
+        // Clear Job Types
+        const clearJobTypes = document.querySelector('.clear-job-types');
+        if (clearJobTypes) {
+            clearJobTypes.addEventListener('click', function() {
+                document.querySelectorAll('.job-type-checkbox').forEach(cb => cb.checked = false);
+            });
+        }
+    
+        // Handle Education Level filter
+        const educationUpdateBtn = document.querySelector('.update-education');
+        if (educationUpdateBtn) {
+            educationUpdateBtn.addEventListener('click', function() {
+                const checkboxes = document.querySelectorAll('.education-checkbox:checked');
+            
+                // Remove existing EducationLevels inputs
+                document.querySelectorAll('input[name="EducationLevels"]').forEach(input => input.remove());
+            
+                // Add selected values
+                checkboxes.forEach(cb => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'EducationLevels';
+                    input.value = cb.value;
+                    form.appendChild(input);
+                });
+            
+                form.submit();
+            });
+        }
+    
+        // Clear Education filters
+        const clearEducation = document.querySelector('.clear-education');
+        if (clearEducation) {
+            clearEducation.addEventListener('click', function() {
+                document.querySelectorAll('.education-checkbox').forEach(cb => cb.checked = false);
+            });
+        }
+    
+        // Close dropdown buttons
+        document.querySelectorAll('.close-dropdown').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const dropdown = this.closest('.dropdown-menu');
+                const trigger = dropdown?.previousElementSibling;
+                if (trigger && trigger.classList.contains('dropdown-toggle')) {
+                    const bsDropdown = bootstrap.Dropdown.getInstance(trigger);
+                    if (bsDropdown) {
+                        bsDropdown.hide();
+                    }
+                }
+            });
+        });
+    
+        // Auto-submit for simple dropdown filters (buttons with type="submit")
+        document.querySelectorAll('button[type="submit"][name]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                const name = this.getAttribute('name');
+                const value = this.getAttribute('value');
+            
+                // Create or update the hidden input for this filter
+                let input = form.querySelector(`input[name="${name}"]`);
+                if (!input) {
+                    input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    form.appendChild(input);
+                }
+                input.value = value;
+            
+                form.submit();
+            });
+        });
+    });
+</script>
+
+    <!-- Add this CSS for the filter badge -->
+    <style>
+        .filter-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2557a7;
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 12px;
+            margin-left: 8px;
+            min-width: 20px;
+        }
+    
+        .dropdown-item.active {
+            background-color: #e8f0fe;
+            color: #2557a7;
+            font-weight: 500;
+        }
+    </style>
+
+ </body>
+
+</html>

@@ -1,0 +1,471 @@
+﻿@using System.Reflection
+@using System.ComponentModel.DataAnnotations
+@using IndeedClone.Modules.SubModules.JobPost.Enums
+@model IndeedClone.Modules.SubModules.JobPost.DTO.JobQualificationsDTO
+@{
+    Layout = "_JobPostLayout";
+    ViewData["Title"] = "Add Job Qualifications";
+ }
+    @inject IConfiguration Configuration
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone for Employer</title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/jobpost/jobpreferences.css">
+    <link rel="stylesheet" href="~/css/jobpost/jobqualifications.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />   
+    
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+   
+</head>
+
+<body>
+
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+
+  <form id="employerForm" method="post" action="@Url.Action("UpdateQualifications", "JobReview", new {jobUid = Model.JobUid})">
+    @Html.AntiForgeryToken() 
+    <div class="image-container mb-5">
+        <h1>Qualifications for your job</h1>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider"></div>
+
+    <div class="instructions">
+        <small class="d-flex mb-0 mt-2">* Based on your job description, we've identified qualifications commonly needed for your job.</small>
+        <small class="d-flex mb-0">* Review candidates faster by specifying which qualifications you require.</small>
+        <small class="d-flex mb-0">* Candidates who meet all your required qualifications will be added to your candidate list.</small>
+        <small>* You can then use your preferred qualifications to evaluate and prioritize those candidates.</small>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider mb-5"></div>
+
+    <!-- Skills Dropdown -->
+    <div class="multi-select-dropdown">
+        <label for="skills">Skills <span class="required-asterisk">*</span></label>
+        <div class="dropdown-container">
+            <div class="dropdown-trigger" id="skillsTrigger" tabindex="0">
+                <span class="placeholder">Select skills</span>
+                <span class="dropdown-arrow">▼</span>
+            </div>
+            <div class="dropdown-menu" id="skillsDropdown">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search skills..." id="skillsSearch">
+                </div>
+                <div class="dropdown-items" id="skillsItems">
+                    @IndeedClone.Modules.SubModules.JobPost.Helpers.Dropdowns.DropdownHelper.RenderDropdown(ViewBag.Skills as string[])
+                </div>
+            </div>
+            <input type="hidden" name="SkillsRaw" id="skillsHidden" value="">
+        </div>
+    </div>
+
+    <!-- Education Dropdown -->
+    <div class="multi-select-dropdown">
+        <label for="education">Education <span class="required-asterisk">*</span></label>
+        <div class="dropdown-container">
+            <div class="dropdown-trigger" id="educationTrigger" tabindex="0">
+                <span class="placeholder">Select education levels</span>
+                <span class="dropdown-arrow">▼</span>
+            </div>
+            <div class="dropdown-menu" id="educationDropdown">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search education..." id="educationSearch">
+                </div>
+                <div class="dropdown-items" id="educationItems">
+                    @IndeedClone.Modules.SubModules.JobPost.Helpers.Dropdowns.DropdownHelper.RenderDropdown(ViewBag.Education as string[])
+                </div>
+            </div>
+            <input type="hidden" name="EducationRaw" id="educationHidden" value="">
+        </div>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider mb-5"></div>
+
+    <!-- Interview Dates Radio -->
+    <div class="form-group">
+        <label for="interviewDates">Ask applicants to list some dates and times they could do an interview? <span class="required-asterisk">*</span></label>
+        <div class="d-grid d-md-flex justify-content-md-start gap-2">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="AskInterviewDates" id="interviewYes" value="true" @(Model.AskInterviewDates ? "checked" : "") required>
+                <label class="form-check-label" for="interviewYes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="AskInterviewDates" id="interviewNo" value="false" @(!Model.AskInterviewDates ? "checked" : "") required>
+                <label class="form-check-label" for="interviewNo">No</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Relocation Radio -->
+    <div class="form-group">
+        <label for="relocation">Are you ready to relocate? <span class="required-asterisk">*</span></label>
+        <div class="d-grid d-md-flex justify-content-md-start gap-2">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="AskRelocation" id="relocationYes" value="true" @(Model.AskRelocation ? "checked" : "") required>
+                <label class="form-check-label" for="relocationYes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="AskRelocation" id="relocationNo" value="false" @(!Model.AskRelocation ? "checked" : "") required>
+                <label class="form-check-label" for="relocationNo">No</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider mb-5"></div>
+
+    <!-- Language Dropdown -->
+    <div class="multi-select-dropdown">
+        <label for="language">Language <span class="required-asterisk">*</span></label>
+        <div class="dropdown-container">
+            <div class="dropdown-trigger" id="languageTrigger" tabindex="0">
+                <span class="placeholder">Select languages</span>
+                <span class="dropdown-arrow">▼</span>
+            </div>
+            <div class="dropdown-menu" id="languageDropdown">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search languages..." id="languageSearch">
+                </div>
+                <div class="dropdown-items" id="languageItems">
+                    @IndeedClone.Modules.SubModules.JobPost.Helpers.Dropdowns.DropdownHelper.RenderDropdown(ViewBag.Languages as string[])
+                </div>
+            </div>
+            <input type="hidden" name="LanguageRaw" id="languageHidden" value="">
+        </div>
+    </div>
+
+    <!-- Certification Dropdown -->
+    <div class="multi-select-dropdown">
+        <label for="certification">Certifications and Licenses <span class="required-asterisk">*</span></label>
+        <div class="dropdown-container">
+            <div class="dropdown-trigger" id="certificationTrigger" tabindex="0">
+                <span class="placeholder">Select certifications</span>
+                <span class="dropdown-arrow">▼</span>
+            </div>
+            <div class="dropdown-menu" id="certificationDropdown">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search certifications..." id="certificationSearch">
+                </div>
+                <div class="dropdown-items" id="certificationItems">
+                    @IndeedClone.Modules.SubModules.JobPost.Helpers.Dropdowns.DropdownHelper.RenderDropdown(ViewBag.Certification as string[])
+                </div>
+            </div>
+            <input type="hidden" name="CertificationsRaw" id="certificationHidden" value="">
+        </div>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider mb-5"></div>
+
+    <!-- Experience Dropdown -->
+    <div class="form-group">
+        <label for="experience">Experience <span class="required-asterisk">*</span></label>
+        <select id="experience" name="Experience" >
+           <option value="" disabled selected>--Select experience--</option>
+            @foreach (var exp in Enum.GetValues(typeof(ExperienceLevel)).Cast<ExperienceLevel>())
+            {
+                var displayName = exp
+                    .GetType()
+                    .GetMember(exp.ToString())[0]
+                    .GetCustomAttribute<DisplayAttribute>()?
+                    .Name ?? exp.ToString();
+
+                <option value="@exp" @(Model.Experience == exp ? "selected" : "")>
+                    @displayName
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- Employment Time Dropdown -->
+    <div class="form-group">
+        <label for="emp_time">Employment Time <span class="required-asterisk">*</span></label>
+          <select id="emp_time" name="EmploymentTime" >
+            <option value="" disabled selected>--Select employment time--</option>
+            @foreach (var time in Enum.GetValues(typeof(EmploymentTime)).Cast<EmploymentTime>())
+            {
+                var displayName = time
+                    .GetType()
+                    .GetMember(time.ToString())[0]
+                    .GetCustomAttribute<DisplayAttribute>()?
+                    .Name ?? time.ToString();
+
+                <option value="@time" @(Model.EmploymentTime == time ? "selected" : "")>
+                    @displayName
+                </option>
+            }
+        </select>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider mb-5"></div>
+
+    <!-- Continue Button -->
+    <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+        <button class="btn btn-primary" type="submit">
+            <div class="d-flex align-items-center justify-content-center">
+                <span>Continue</span>
+            </div>
+        </button>
+    </div>
+
+</form>
+
+
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    const selections = {
+        skills: @Html.Raw(Model.Skills != null ? Json.Serialize(Model.Skills) : "[]"),
+        education: @Html.Raw(Model.Education != null ? Json.Serialize(Model.Education) : "[]"),
+        language: @Html.Raw(Model.Language != null ? Json.Serialize(Model.Language) : "[]"),
+        certifications: @Html.Raw(Model.Certifications != null ? Json.Serialize(Model.Certifications) : "[]")
+    };
+
+    const jsonInput = document.createElement('input');
+    jsonInput.type = 'hidden';
+    jsonInput.name = 'SelectionsJson';
+    jsonInput.id = 'selectionsJson';
+    jsonInput.value = JSON.stringify(selections);
+    document.getElementById('employerForm').appendChild(jsonInput);
+    initializeDropdownSelections();
+    setupDropdownToggles();
+    setupFormSubmission();
+
+    function initializeDropdownSelections() {
+        updateDropdownUI('skills', selections.skills);
+        updateDropdownUI('education', selections.education);
+        updateDropdownUI('language', selections.language);
+        updateDropdownUI('certification', selections.certifications); 
+    }
+    function updateDropdownUI(dropdownId, values) {
+        const container = document.getElementById(dropdownId + 'Items');
+        if (container) {
+            container.querySelectorAll('.dropdown-item').forEach(item => {
+                item.classList.toggle('selected', values.includes(item.dataset.value));
+            });
+        }
+
+        const trigger = document.getElementById(dropdownId + 'Trigger');
+        if (trigger) {
+            trigger.querySelectorAll('.chip').forEach(chip => chip.remove());
+            values.forEach(value => {
+
+                const item = container?.querySelector(`.dropdown-item[data-value="${value}"]`);
+                if (item) {
+                    const chip = createChip(item.textContent.trim(), value, dropdownId);
+                    const arrow = trigger.querySelector('.dropdown-arrow');
+                    trigger.insertBefore(chip, arrow);
+                }
+            });
+
+            const placeholder = trigger.querySelector('.placeholder');
+            if (placeholder) {
+                placeholder.style.display = values.length > 0 ? 'none' : 'inline';
+            }
+        }
+    }
+
+    function createChip(text, value, dropdownId) {
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.dataset.value = value;
+        chip.innerHTML = `${text} <button type="button" class="chip-remove">&times;</button>`;
+
+        const removeBtn = chip.querySelector('.chip-remove');
+        removeBtn.style.cssText = `
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 0 0 6px;
+            margin: 0;
+            line-height: 1;
+            height: 18px;
+            width: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        chip.querySelector('.chip-remove').addEventListener('click', function(e) {
+            e.stopPropagation();
+            removeSelection(dropdownId, value);
+        });
+        
+        return chip;
+    }
+
+    function removeSelection(dropdownId, value) {
+        const selectionKey = dropdownId === 'certification' ? 'certifications' : dropdownId;
+        const index = selections[selectionKey].indexOf(value);
+        if (index > -1) {
+            selections[selectionKey].splice(index, 1);
+        }
+
+        const container = document.getElementById(dropdownId + 'Items');
+        const item = container?.querySelector(`.dropdown-item[data-value="${value}"]`);
+        if (item) {
+            item.classList.remove('selected');
+        }
+
+        updateDropdownUI(dropdownId, selections[selectionKey]);
+        jsonInput.value = JSON.stringify(selections);
+    }
+
+    function setupDropdownToggles() {
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const menuId = this.id.replace('Trigger', 'Dropdown');
+                const menu = document.getElementById(menuId);
+                document.querySelectorAll('.dropdown-menu').forEach(m => {
+                    if (m !== menu) m.classList.remove('show');
+                });
+                document.querySelectorAll('.dropdown-trigger').forEach(t => {
+                    if (t !== this) t.classList.remove('active');
+                });
+                menu.classList.toggle('show');
+                this.classList.toggle('active');
+                const search = menu.querySelector('.search-input');
+                if (search && menu.classList.contains('show')) {
+                    search.focus();
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown-container')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+                document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+                    trigger.classList.remove('active');
+                });
+            }
+        });
+
+        document.querySelectorAll('.dropdown-items').forEach(container => {
+            container.addEventListener('click', function(e) {
+                const item = e.target.closest('.dropdown-item');
+                if (!item) return;
+                const value = item.dataset.value;
+                let dropdownId = this.closest('.dropdown-menu').id
+                    .replace('Dropdown', '')
+                    .toLowerCase();
+                const selectionKey = dropdownId === 'certification' ? 'certifications' : dropdownId;
+                const isSelected = item.classList.toggle('selected');
+                if (isSelected) {
+                    if (!selections[selectionKey].includes(value)) {
+                        selections[selectionKey].push(value);
+                    }
+                } else {
+                    const index = selections[selectionKey].indexOf(value);
+                    if (index > -1) {
+                        selections[selectionKey].splice(index, 1);
+                    }
+                }
+                updateDropdownUI(dropdownId, selections[selectionKey]);
+                jsonInput.value = JSON.stringify(selections);
+            });
+        });
+
+        document.querySelectorAll('.search-input').forEach(search => {
+            search.addEventListener('input', function() {
+                const container = this.closest('.dropdown-menu').querySelector('.dropdown-items');
+                const items = container.querySelectorAll('.dropdown-item');
+                const query = this.value.toLowerCase();
+
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    item.style.display = text.includes(query) ? '' : 'none';
+                });
+            });
+        });
+    }
+
+    function setupFormSubmission() {
+        const form = document.getElementById('employerForm');
+        
+        form.addEventListener('submit', function() {
+            document.getElementById('skillsHidden').value = selections.skills.join(',');
+            document.getElementById('educationHidden').value = selections.education.join(',');
+            document.getElementById('languageHidden').value = selections.language.join(',');
+            document.getElementById('certificationHidden').value = selections.certifications.join(',');
+            jsonInput.value = JSON.stringify(selections);
+        });
+    }
+});
+</script>
+
+
+
+</body>
+
+</html>

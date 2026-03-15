@@ -1,0 +1,166 @@
+﻿@* _IndeedCloneHomePageNavbarLayout *@
+@using IndeedClone.ThirdParty.EncDec
+@inject IConfiguration Configuration
+@{
+    var logoUrl = Configuration["Branding:Logo"];
+
+}
+
+ 
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/app-home/indeedhomenavabrlayout.css">
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style> body{ padding : 0 !important} </style>
+
+</head>
+
+<body>
+
+
+
+   <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand me-3" href="@Url.Action("Retrieve", "IndeedClone")">
+                <div class="d-flex align-items-center">
+                    <img src="@logoUrl" alt="Logo" style="height: 30px;">
+                    <div class="mt-1" style="font-size:2.1rem; font-family:'Arial Rounded MT Bold', 'Nunito', sans-serif;color: #0A4299; font-weight: bold; letter-spacing: -2px !important;">clone</div> 
+                </div>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Left Navigation Links -->
+                <ul class="navbar-nav me-auto mb-2 mt-3 mb-lg-0">
+                    <li class="nav-item me-1">
+                        <a class="nav-link active" aria-current="page" href="@Url.Action("Retrieve", "IndeedClone")">Home</a>
+                    </li>
+                    <li class="nav-item me-1">
+                        <a class="nav-link" href="#">Company Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Salaries</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="sidebar-header">
+            <h4 style="color: #2557a7; font-weight: 700;"></h4>
+            <button type="button" class="btn-close" id="closeSidebar" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+        
+      
+        <!-- Main Navigation -->
+        <div class="sidebar-section">
+            <h6 class="sidebar-section-title">Navigation</h6>
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="@Url.Action("Retrieve", "IndeedClone")" class="sidebar-nav-link active">
+                        <span class="sidebar-nav-icon"><i class="bi bi-house-door"></i></span>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon"><i class="bi bi-building"></i></span>
+                        Company Reviews
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#" class="sidebar-nav-link">
+                        <span class="sidebar-nav-icon"><i class="bi bi-cash-stack"></i></span>
+                        Salaries
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+              
+                   @RenderBody()   
+                   
+
+  <script>
+        // Mobile sidebar functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            
+            // Open sidebar
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileSidebar.classList.add('active');
+                sidebarOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close sidebar
+            function closeMobileSidebar() {
+                mobileSidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            closeSidebar.addEventListener('click', closeMobileSidebar);
+            sidebarOverlay.addEventListener('click', closeMobileSidebar);
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 992 && 
+                    !mobileSidebar.contains(event.target) && 
+                    !mobileMenuToggle.contains(event.target) &&
+                    mobileSidebar.classList.contains('active')) {
+                    closeMobileSidebar();
+                }
+            });
+            
+            // Close sidebar on escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+                    closeMobileSidebar();
+                }
+            });
+        });
+ </script>
+ 
+</body>
+</html>

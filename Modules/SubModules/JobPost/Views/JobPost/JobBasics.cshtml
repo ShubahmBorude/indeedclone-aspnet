@@ -1,0 +1,182 @@
+﻿@model IndeedClone.Modules.SubModules.JobPost.DTO.JobBasicDTO
+@{
+    Layout = "_JobPostLayout";
+    ViewData["Title"] = "Add Job Basics";
+ }
+    @inject IConfiguration Configuration
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone for Employer</title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/jobpost/employeraccount.css">
+    <link rel="stylesheet" href="~/css/jobpost/jobdetails.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+    
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+   
+</head>
+
+<body>
+
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+
+    <form class="mt-3" id="employerForm" method="POST" action="@Url.Action("updateJobBaics", "JobPost", new { jobUid = Model.JobUid, returnToReview = ViewContext.HttpContext.Request.Query["returnToReview"].FirstOrDefault()?.ToLower() == "true" })">
+      @Html.AntiForgeryToken() 
+        <div class="image-container mb-5">
+            <h1>Add Job Basics</h1>
+        </div>
+
+        <div class="custom-divider"></div>
+
+        <div class="form-group mt-5">
+            <label for="companyName">Company Description* <small>( At least 40 or more characters needed )</small></label>
+            <textarea style="width: 100%" id="companyName" name="CompanyDescription">@Model.CompanyDescription</textarea>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="fullName">Job Title* <small>( eg. Jr. .Net Backend Developer )</small></label>
+            <input type="text" id="fullName" name="JobTitle" value="@Model.JobTitle">
+        </div>
+
+        <!-- Custom Divider -->
+        <div class="custom-divider"></div>
+
+        <div class="form-group mt-5">
+            <label for="job_location">Job Posting Location*</label>
+            <select id="job_location" name="JobLocation" placeholder="select job post location" style="height: 50px;">
+                <option disabled selected="@(string.IsNullOrEmpty(Model?.JobLocation) ? "selected" : null)">-- Select State --</option>
+                @foreach (var state in ViewBag.States as string[])
+                {
+                    <option value="@state">@state</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="work_arrangement">Which Option best describes you?*</label>
+            <select id="work_arrangement" name="WorkArrangement" style="height: 50px;">
+                <option disabled selected="@(string.IsNullOrEmpty(Model?.WorkArrangement) ? "selected" : null)">-- Select one --</option>
+                <option value="On-Site" selected="@(Model?.WorkArrangement == "On-Site" ? "selected" : null)">On-Site</option>
+                <option value="Hybrid Work" selected="@(Model?.WorkArrangement == "Hybrid Work" ? "selected" : null)">Hybrid Work</option>
+                <option value="Remote" selected="@(Model?.WorkArrangement == "Remote" ? "selected" : null)"">Remote</option>
+            </select>
+        </div>
+
+        <!-- Custom Divider -->
+        <div class="custom-divider mt-4"></div>
+
+        <div class="form-group mt-5">
+            <label for="city">City*</label>
+            <select id="city" name="City" style="height: 50px;">
+                <option selected disabled>-- Select City --</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="area">Area*</label>
+            <select id="area" name="Area" style="height: 50px;">
+                <option selected disabled>-- Select Area --</option>
+            </select>
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="fullName">Street Address*</label>
+            <input type="text" id="fullName" name="StreetAddress" value="@Model.StreetAddress">
+        </div>
+
+        <!-- Custom Divider -->
+        <div class="custom-divider mt-4"></div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="btn btn-lg" type="submit" style="max-width: 140px;display: flex; flex-direction: column; align-items:center;">
+                <div>
+                    <span>Continue</span>
+                </div>
+            </button>
+        </div>
+    </form>
+
+
+
+<script>
+   
+    const savedState = "@Model?.JobLocation";
+    const savedCity  = "@Model?.City";
+    const savedArea  = "@Model?.Area";
+
+    const states = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.States));
+    const cities = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Cities));
+    const areas  = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Areas));
+
+   const stateDropdown=document.getElementById("job_location"),cityDropdown=document.getElementById("city"),areaDropdown=document.getElementById("area");function populateCities(){const e=states.indexOf(stateDropdown.value);cityDropdown.innerHTML="<option selected disabled>-- Select City --</option>",areaDropdown.innerHTML="<option selected disabled>-- Select Area --</option>",-1!==e&&(cities[e].forEach((e=>{const t=document.createElement("option");t.value=e,t.textContent=e,cityDropdown.appendChild(t)})),savedCity&&(cityDropdown.value=savedCity,populateAreas()))}function populateAreas(){const e=states.indexOf(stateDropdown.value),t=cities[e].indexOf(cityDropdown.value);areaDropdown.innerHTML="<option selected disabled>-- Select Area --</option>",-1!==e&&-1!==t&&areas[e][t].forEach((e=>{const t=document.createElement("option");t.value=e,t.textContent=e,e===savedArea&&(t.selected=!0),areaDropdown.appendChild(t)}))}stateDropdown.addEventListener("change",populateCities),cityDropdown.addEventListener("change",populateAreas),savedState&&(stateDropdown.value=savedState,populateCities());
+
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<svg width="220" height="80" viewBox="0 0 220 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Text with Half "I" -->
+  <text x="110" y="57" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#003A96" letter-spacing="-2">
+    <!-- Half "I" with part removed -->
+    <tspan x="110" y="57">I</tspan>
+    <rect x="115" y="42" width="3" height="30" fill="#003A96"/> <!-- Cutting part of "I" to create a half effect -->
+  </text>
+  
+  <!-- Dot above the "I" -->
+  <circle cx="114" cy="30" r="3" fill="#003A96"/>
+  
+  <!-- Slightly More Bent Curve -->
+  <path d="M8 40 Q30 10 40 25" stroke="#003A96" stroke-width="2" fill="none"/>
+</svg>

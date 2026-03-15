@@ -1,0 +1,101 @@
+﻿@model IndeedClone.Modules.IndeedClone.DTO.IndeedCloneJobSearchFilterDTO
+
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- custom css -->
+    @* <link rel="stylesheet" href="~/css/app-home/indeedhomenavabrlayout.css"> *@
+    <link rel="stylesheet" href="~/css/app-home/jobcard.css">
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    @* <style>background-color: #f3f5f7;</style> *@
+
+</head>
+
+<div class="no-results-container">
+    <div class="no-results-svg">
+        <img src="~/new/anime-girl-laptop.png"/>
+    </div>
+    <h3 class="no-results-title">No jobs found</h3>
+    <p class="no-results-message">
+        We couldn't find any jobs matching your search criteria.
+        Try adjusting your filters or search terms.
+    </p>
+    
+    @if (Model != null && (Model.Keyword != null || Model.Location != null || 
+         Model.WorkArrangement != null || Model.Salary.HasValue || 
+         (Model.JobTypes != null && Model.JobTypes.Any()) ||
+         (Model.EducationLevels != null && Model.EducationLevels.Any())))
+    {
+        <div class="no-results-filters">
+            <p>Active filters:</p>
+            <div class="filter-chips">
+                @if (!string.IsNullOrEmpty(Model.Keyword))
+                {
+                    <span class="filter-chip">
+                        <i class="bi bi-search"></i> @Model.Keyword
+                    </span>
+                }
+                @if (!string.IsNullOrEmpty(Model.Location))
+                {
+                    <span class="filter-chip">
+                        <i class="bi bi-geo-alt"></i> @Model.Location
+                    </span>
+                }
+                @if (!string.IsNullOrEmpty(Model.WorkArrangement))
+                {
+                    <span class="filter-chip">
+                        <i class="bi bi-briefcase"></i> @Model.WorkArrangement
+                    </span>
+                }
+                @if (Model.Salary.HasValue)
+                {
+                    <span class="filter-chip">
+                        <i class="bi bi-currency-rupee"></i> ₹@Model.Salary.Value.ToString("N0")+
+                    </span>
+                }
+                @if (Model.JobTypes != null && Model.JobTypes.Any())
+                {
+                    <span class="filter-chip">
+                        <i class="bi bi-tags"></i> @string.Join(", ", Model.JobTypes)
+                    </span>
+                }
+                @if (Model.EducationLevels != null && Model.EducationLevels.Any())
+                {
+                    <span class="filter-chip">
+                        <i class="bi bi-mortarboard"></i> @string.Join(", ", Model.EducationLevels)
+                    </span>
+                }
+            </div>
+            <button class="clear-filters-btn" onclick="clearAllFilters()" style="font-weight: 700;">
+                Clear all filters
+            </button>
+        </div>
+    }
+</div>
+
+<script>
+    function clearAllFilters() {
+        // Redirect to Retrieve action without any filters
+        window.location.href = '@Url.Action("Retrieve", "IndeedClone")';
+    }
+</script>

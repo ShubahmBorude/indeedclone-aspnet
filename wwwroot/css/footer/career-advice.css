@@ -1,0 +1,390 @@
+﻿/* Career Advice Page Styles */
+.career-advice-page {
+    background: #ffffff;
+}
+
+/* Hero Section */
+.advice-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d2f31;
+    margin-bottom: 1rem;
+    font-family: 'Indeed Sans', 'Noto Sans', sans-serif;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #5f6b7a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Categories Section */
+.categories-section {
+    padding: 4rem 0 2rem;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 1.5rem 1rem;
+    background: white;
+    border: 1px solid #eef2f6;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(37, 90, 168, 0.1);
+        border-color: rgb(37, 90, 168);
+    }
+
+    .category-card i {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .category-card span {
+        color: #2d2f31;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: center;
+    }
+
+/* Featured Articles */
+.featured-section {
+    padding: 2rem 0 4rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d2f31;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+    .section-title:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: rgb(37, 90, 168);
+        margin: 0.5rem auto 0;
+    }
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.featured-card {
+    background: white;
+    border: 1px solid #eef2f6;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+    .featured-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(37, 90, 168, 0.1);
+    }
+
+    .featured-card.large {
+        grid-row: span 2;
+    }
+
+.card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.featured-card.large .card-image {
+    height: 300px;
+}
+
+.card-image.resume-tips {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-image.interview-tips {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.card-image.salary-tips {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-category {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.card-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d2f31;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.featured-card.large h3 {
+    font-size: 1.8rem;
+}
+
+.card-content p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.read-more {
+    color: rgb(37, 90, 168);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .read-more:hover {
+        gap: 0.75rem;
+    }
+
+/* Articles Grid */
+.articles-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+}
+
+.article-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+    transition: all 0.3s ease;
+}
+
+    .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(37, 90, 168, 0.1);
+    }
+
+    .article-card h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+.article-meta {
+    color: #9ca3af;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.article-excerpt {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.article-link {
+    color: rgb(37, 90, 168);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .article-link:hover {
+        gap: 0.75rem;
+    }
+
+.load-more-container {
+    text-align: center;
+}
+
+.load-more-btn {
+    display: inline-block;
+    padding: 0.8rem 2.5rem;
+    border: 2px solid;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .load-more-btn:hover {
+        background: rgb(37, 90, 168);
+        color: white !important;
+    }
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 4rem 0;
+}
+
+.newsletter-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 3rem;
+    border-radius: 30px;
+    text-align: center;
+    color: white;
+}
+
+    .newsletter-card h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .newsletter-card p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+    .newsletter-form input {
+        flex: 1;
+        padding: 1rem 1.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    .newsletter-form button {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .categories-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .featured-card.large {
+        grid-column: span 2;
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-card.large {
+        grid-column: auto;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-card {
+        padding: 2rem;
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .featured-card.large h3 {
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,391 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Reflection
+@using IndeedClone.Modules.SubModules.JobPost.Enums
+@model IndeedClone.Modules.SubModules.JobPost.DTO.JobOrganizationDTO
+
+@{
+    Layout = "_JobPostLayout";
+    ViewData["Title"] = "Create an Employer Account";
+ }
+    @inject IConfiguration Configuration
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone for Employer</title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/jobpost/employeraccount.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+   
+</head>
+
+
+
+<body>
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+<!-- The Form -->
+<form id="employerForm" method="post" action="@Url.Action("updateOrganization", "JobPost", new {jobUid = Model.JobUid, returnToReview = ViewContext.HttpContext.Request.Query["returnToReview"].FirstOrDefault()?.ToLower() == "true" })">
+   @Html.AntiForgeryToken()
+    <div class="image-container">
+        <h1>Create an employer account</h1>
+    </div>
+
+    <small style="font-size: 18px;">
+        If you have previously posted a job, please log in to your employer account to access the dashboard.
+        <a href="" class="d-inline-flex align-items-center text-decoration-none">
+            <span style="color: #377dff; font-weight: 600; text-decoration: none;" class="me-1">Employer Dashboard</span>
+            <ion-icon name="open-outline"></ion-icon>
+        </a>
+    </small>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider"></div>
+
+    <div class="form-group">
+        <label for="companyName">Company Name *</label>
+        <input type="text" id="companyName" name="CompanyName" value="@Model.CompanyName" placeholder="Enter your company name">
+    </div>
+
+    <div class="form-group">
+        <label for="gstinNumber">GSTIN Number *</label>
+        <input type="text" id="gstinNumber" name="GstinNumber" value="@Model.GstinNumber" placeholder="Enter 15 digits GSTIN number">
+    </div>
+
+    <div class="form-group">
+        <label for="fullName">First & Last Name *</label>
+        <input type="text" id="fullName" name="FullName" value="@Model.FullName" placeholder="Enter your full name">
+    </div>
+
+   <div class="form-group">
+     <label for="gstinNumber">How did you hear about us? *</label>
+      <select id="howDidYouHear" name="ReferralSource" class="custom-dropdown">
+        <option value="" disabled style="color:rgba(48, 48, 49, 0.48);">Select an option</option>
+            @foreach (ReferralSource source in Enum.GetValues(typeof(ReferralSource)))
+            {
+                var displayName = source
+                    .GetType()
+                    .GetMember(source.ToString())
+                    .First()
+                    .GetCustomAttribute<DisplayAttribute>()?.Name ?? source.ToString();
+
+                <option value="@source" @(Model.ReferralSource == source ? "selected" : "")>
+                    @displayName
+                </option>
+            }
+    </select>
+  </div>
+
+
+    <div class="form-group mb-5">
+        <label for="contactInfo">Phone No *</label>
+        <div class="phone-input">
+            <div class="flag">
+                <img src="https://flagcdn.com/in.svg" alt="Indian Flag">
+                <span>+91</span>
+            </div>
+            <input type="tel" id="contactInfo" name="MobileNumber" value="@Model.MobileNumber" placeholder="Enter your contact number" 
+                   pattern="[0-9]{10}" maxlength="10">
+        </div>
+        <small class="text-muted" style="display: block; margin-top: 0.25rem;">Enter 10-digit phone number</small>
+    </div>
+
+    <!-- Custom Divider -->
+    <div class="custom-divider"></div>
+
+    <div class="mb-5 d-flex justify-content-center justify-content-md-end">
+        <button class="btn btn-lg" type="submit">
+            <div class="d-flex align-items-center justify-content-center">
+                <span>Continue</span>
+            </div>
+        </button>
+    </div>
+</form>
+
+    
+
+   
+        @* <form id="employerForm" method="post" action="">
+            <div class="image-container">
+                <h1>varify your business</h1>
+            </div>
+
+            <label class="mb-0">Please varify your business with GSTIN number and Email address OTP to access the dashboard</label>
+            <label>Note : Please enter either GSTIN number or Email Address to access the dashboard</label>
+
+            <!-- Custom Divider -->
+            <div class="custom-divider"></div>
+
+            <div class="form-group mb-3">
+                <label for="companyName">GSTIN Number *</label>
+                <input type="text" id="token" name="token" placeholder="Enter 15 digits GSTIN number" oninput="disableEmailInput(this)">
+            </div>
+
+            <div class="dashboard-or"> OR </div>
+
+            <div class="form-group mb-5">
+                <label for="companyName">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" oninput="disableTokenInput(this)">
+            </div>
+
+            <!-- Custom Divider -->
+            <div class="custom-divider"></div>
+
+
+            <!-- Continue Button -->
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <a href="" class="btn btn-primary" type="submit">
+                    <div class="d-flex align-items-center">
+                        <ion-icon name="arrow-back-outline"></ion-icon>&nbsp;
+                        <span>Back</span>
+                    </div>
+                </a>
+                <button target="_blank" class="btn btn-primary" type="submit">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <span>Continue</span>
+                    </div>
+                </button>
+            </div>
+
+            <div id="message" style="color: red;"></div>
+
+        </form>
+    *@
+
+
+
+   
+        @* <script>
+            function disableEmailInput(tokenInput) {
+                const emailInput = document.getElementById('email');
+                if (tokenInput.value.trim() !== '') {
+                    emailInput.disabled = true;
+                } else {
+                    emailInput.disabled = false;
+
+                }
+            }
+
+            function disableTokenInput(emailInput) {
+                const tokenInput = document.getElementById('token');
+                if (emailInput.value.trim() !== '') {
+                    tokenInput.disabled = true;
+                } else {
+                    tokenInput.disabled = false;
+                }
+            }
+        </script>
+    *@
+
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('show');
+        }
+
+        function selectOption(option) {
+            const dropdownInput = document.querySelector('.dropdown-input');
+            const chip = document.createElement('div');
+            chip.classList.add('chip');
+            chip.textContent = option;
+            const removeButton = document.createElement('span');
+            removeButton.classList.add('remove');
+            removeButton.textContent = '×';
+            removeButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                chip.remove();
+                document.getElementById('howDidYouHear').value = ''; // Reset the value of the hidden input field
+            });
+            chip.appendChild(removeButton);
+            dropdownInput.insertBefore(chip, dropdownInput.querySelector('input'));
+            document.getElementById('howDidYouHear').value = option; // Update the value of the hidden input field
+            toggleDropdown();
+        }
+
+        function filterSkills() {
+            const input = document.querySelector('.dropdown-input input').value.toLowerCase();
+            const dropdownOptions = document.querySelectorAll('.dropdown-item');
+            dropdownOptions.forEach(option => {
+                const value = option.textContent.toLowerCase();
+                if (value.includes(input)) {
+                    option.style.display = 'block';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+
+
+  @if (TempData["LastPage"] != null && (int)TempData["LastPage"] > 1)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const currentPage = @TempData["LastPage"];
+        const jobUid = '@TempData["JobUid"]';
+
+        const jobPages = {
+            1: { name: "Organization", action: "Retrieve", controller: "JobPost", emoji: "🏢" },
+            2: { name: "Basics", action: "JobBasics", controller: "JobPost", emoji: "📝" },
+            3: { name: "Details", action: "JobDeatils", controller: "JobPost", emoji: "📑" },
+            4: { name: "Pay & Benefits", action: "PayBenefits", controller: "JobDetails", emoji: "💰" },
+            5: { name: "Description", action: "JobDescription", controller: "JobDetails", emoji: "🖋️" },
+            6: { name: "Preferences", action: "JobPreferences", controller: "JobDetails", emoji: "⚙️" },
+            7: { name: "Review", action: "Review", controller: "JobReview", emoji: "🔍" },
+            8: { name: "Qualifications", action: "Qualifications", controller: "JobReview", emoji: "🎓" }
+        };
+
+        function getPageUrl(pageNumber) {
+            const page = jobPages[pageNumber];
+            if (!page) return '@Url.Action("Retrieve", "JobPost")';
+            return '@Url.Action("__ACTION__", "__CONTROLLER__", new { jobUid = "__JOBUID__" })'
+                .replace("__ACTION__", page.action)
+                .replace("__CONTROLLER__", page.controller)
+                .replace("__JOBUID__", jobUid);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            if (currentPage > 1) {
+                showIndeedAlert(currentPage);
+            }
+        });
+
+        function showIndeedAlert(pageNumber) {
+            const page = jobPages[pageNumber] || jobPages[1];
+            const screenWidth = window.innerWidth;
+            const alertWidth = screenWidth <= 480 ? '90vw' : screenWidth <= 768 ? '85vw' : '500px';
+            const alertPadding = screenWidth <= 480 ? '1.5rem' : '2rem';
+            const titleSize = screenWidth <= 480 ? '20px' : '24px';
+            const contentSize = screenWidth <= 480 ? '14px' : '15px';
+
+            Swal.fire({
+                title: 'Resume your job posting?',
+                html: `
+                    <div style="text-align: center;">
+                        <div style="font-size: ${screenWidth <= 480 ? '40px' : '48px'}; color: #2557a7; margin-bottom: ${screenWidth <= 480 ? '12px' : '16px'};">${page.emoji}</div>
+                        <p style="color: #666;font-weight:600; margin-bottom: ${screenWidth <= 480 ? '6px' : '8px'}; font-size: ${contentSize};">You were working on:</p>
+                        <div style="background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%); padding: ${screenWidth <= 480 ? '10px' : '12px'}; border-radius: ${screenWidth <= 480 ? '4px' : '6px'}; margin: ${screenWidth <= 480 ? '12px' : '16px'} 0; border-left: ${screenWidth <= 480 ? '3px' : '4px'} solid #2557a7;">
+                            <strong style="color: #2557a7; font-size: ${screenWidth <= 480 ? '15px' : '16px'};">Page ${pageNumber}: ${page.name}</strong>
+                        </div>
+                        <p style="color: #666; font-size: ${contentSize}; line-height: 1.5; font-weight:600;">Would you like to continue where you left off?</p>
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: 'Continue',
+                cancelButtonText: 'Start Over',
+                allowOutsideClick: false,
+                width: alertWidth,
+                padding: alertPadding,
+                customClass: {
+                    popup: 'indeed-swal',
+                    title: 'indeed-title',
+                    htmlContainer: 'indeed-content',
+                    confirmButton: 'indeed-confirm-btn',
+                    cancelButton: 'indeed-cancel-btn',
+                    actions: 'indeed-actions'
+                },
+                buttonsStyling: false,
+                backdrop: screenWidth <= 768 ? true : 'rgba(0,0,0,0.4)'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = getPageUrl(pageNumber);
+                } else {
+                    fetch('@Url.Action("SoftDeleteDraft", "JobPost")', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ jobUid: jobUid })
+                    })
+                    .finally(() => {
+                        window.location.href = '@Url.Action("Retrieve", "JobPost")';
+                    });
+                }
+            });
+            const style = document.createElement('style');
+            style.textContent = `
+                .indeed-swal { border-radius: ${screenWidth <= 480 ? '12px' : '16px'} !important; border: 1px solid #e0e0e0 !important; box-shadow: 0 ${screenWidth <= 480 ? '8px' : '12px'} ${screenWidth <= 480 ? '24px' : '32px'} rgba(0, 0, 0, 0.15) !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif !important; overflow: hidden !important; max-width: ${screenWidth <= 480 ? '95%' : 'none'} !important; margin: ${screenWidth <= 480 ? '10px' : '0'} !important; }
+                .indeed-title { color: #000 !important; font-weight: 600 !important; font-size: ${titleSize} !important; margin-bottom: 0 !important; line-height: 1.3 !important; }
+                .indeed-content { padding: 8px 0 0 0 !important; color: #333 !important; font-size: ${contentSize} !important; line-height: 1.5 !important; }
+                .indeed-confirm-btn { background: #2557a7 !important; color: white !important; border: none !important; padding: ${screenWidth <= 480 ? '10px 16px' : '12px 24px'} !important; border-radius: ${screenWidth <= 480 ? '6px' : '8px'} !important; font-size: ${screenWidth <= 480 ? '14px' : '15px'} !important; font-weight: bold !important; width: ${screenWidth <= 480 ? '100%' : 'auto'} !important; }
+                .indeed-cancel-btn { background: #999 !important; color: white !important; border: none !important; padding: ${screenWidth <= 480 ? '10px 16px' : '12px 24px'} !important; border-radius: ${screenWidth <= 480 ? '6px' : '8px'} !important; font-size: ${screenWidth <= 480 ? '14px' : '15px'} !important; font-weight: bold !important; width: ${screenWidth <= 480 ? '100%' : 'auto'} !important; }
+                .indeed-actions { margin-top: ${screenWidth <= 480 ? '20px' : '24px'} !important; gap: ${screenWidth <= 480 ? '10px' : '12px'} !important; flex-direction: ${screenWidth <= 480 ? 'column' : 'row'} !important; }
+                .swal2-timer-progress-bar { background: #2557a7 !important; height: 3px !important; }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+}
+
+
+
+
+
+
+
+</body>
+
+</html>

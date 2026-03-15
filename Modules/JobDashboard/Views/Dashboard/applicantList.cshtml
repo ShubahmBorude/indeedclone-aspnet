@@ -1,0 +1,380 @@
+﻿@using IndeedClone.Modules.Shared.Enums
+@model IndeedClone.Modules.JobDashboard.DTO.ApplicantListPaginatedDTO
+@{
+    Layout = "_DashboardNavbarLayout";
+    ViewData["Title"] = " Your Jobs - IndeedClone";
+ }
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/dashboard/applicantlist.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    @* <style>background-color: #f3f5f7;</style> *@
+
+</head>
+
+<body>
+
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+  <div class="dashboard-wrapper">
+        <!-- Header Section -->
+        <div class="dashboard-header">
+            <div class="header-left">
+                <h1 class="dashboard-title">@Model.JobInfo.JobTitle</h1>
+                <div class="job-subtitle">
+                    <span><i class="bi bi-building me-2"></i>@Model.JobInfo.CompanyName</span>
+                    <span class="separator">•</span>
+                    <span><i class="bi bi-geo-alt me-2"></i>@Model.JobInfo.City, @Model.JobInfo.JobLocation</span>
+                    <span class="separator">•</span>
+                    <span><i class="bi bi-calendar me-2"></i>Posted @Model.JobInfo.Posted.ToString("MMM dd, yyyy")</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn-outline">
+                    <i class="bi bi-download"></i> Export List
+                </a>
+                <a href="#" class="btn-primary">
+                    <i class="bi bi-envelope"></i> Message All
+                </a>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="bi bi-people"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-label">Total Applicants</span>
+                    <span class="stat-value">@Model.TotalApplicants</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-label">Submitted</span>
+                    <span class="stat-value">@Model.SubmittedCount</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="bi bi-star"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-label">Shortlisted</span>
+                    <span class="stat-value">@Model.ShortlistedCount</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="bi bi-eye"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-label">Reviewed</span>
+                    <span class="stat-value">@Model.ReviewedCount</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon gray">
+                    <i class="bi bi-x-circle"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-label">Rejected</span>
+                    <span class="stat-value">@Model.RejectedCount</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-tabs">
+                <span class="filter-tab active" onclick="filterApplicants('all', this)">
+                    All <span class="count-badge">@Model.TotalApplicants</span>
+                </span>
+                <span class="filter-tab" onclick="filterApplicants('submitted', this)">
+                    Submitted <span class="count-badge">@Model.SubmittedCount</span>
+                </span>
+                <span class="filter-tab" onclick="filterApplicants('shortlisted', this)">
+                    Shortlisted <span class="count-badge">@Model.ShortlistedCount</span>
+                </span>
+                <span class="filter-tab" onclick="filterApplicants('reviewed', this)">
+                    Reviewed <span class="count-badge">@Model.ReviewedCount</span>
+                </span>
+                <span class="filter-tab" onclick="filterApplicants('rejected', this)">
+                    Rejected <span class="count-badge">@Model.RejectedCount</span>
+                </span>
+            </div>
+            <div class="search-box">
+                <i class="bi bi-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by name or email..." onkeyup="filterApplicants()">
+            </div>
+        </div>
+
+        <!-- Applicants Table -->
+        <div class="table-card">
+            <div class="table-responsive">
+                <table id="applicantsTable">
+                    <thead>
+                        <tr>
+                            <th>Applicant</th>
+                            <th>Applied Date</th>
+                            <th>Experience</th>
+                            <th>Current CTC</th>
+                            <th>Expected CTC</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                @if (Model.Applicants != null && Model.Applicants.Any())
+                {
+                    foreach (var applicant in Model.Applicants)
+                    {
+                        <tr data-status="@applicant.Status.ToString().ToLower()" data-applicationuid="@applicant.ApplicationUid">
+                            <td>
+                                <div class="applicant-info">
+                                    <div class="applicant-avatar">@applicant.FullName.Substring(0, Math.Min(2, applicant.FullName.Length)).ToUpper()</div>
+                                    <div class="applicant-details">
+                                        <div class="applicant-name">
+                                            <a href="@Url.Action("CandidateDetails", "JobDashboard", new { jobUid = Model.JobInfo.JobUid, applicationUid = applicant.ApplicationUid })">@applicant.FullName</a>
+                                        </div>
+                                        <div class="applicant-meta">
+                                            <span><i class="bi bi-envelope"></i>@applicant.Email</span>
+                                            <span><i class="bi bi-telephone"></i>@applicant.Phone</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@applicant.AppliedDate.ToString("MMM dd, yyyy")</td>
+                            <td>@applicant.Experience</td>
+                            <td>@applicant.CurrentCTC.ToString("C")</td>
+                            <td>@applicant.ExpectedCTC.ToString("C")</td>
+                            <td><span class="status-badge @applicant.Status.ToString().ToLower()">@applicant.Status.ToString()</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="@Url.Action("CandidateDetails", "JobDashboard", new { jobUid = Model.JobInfo.JobUid, applicationUid = applicant.ApplicationUid })" class="action-btn view" title="View Profile">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    @if (applicant.Status == JobApplicationStatus.SUBMITTED || applicant.Status == JobApplicationStatus.REVIEWED)
+                                    {
+                                        <button class="action-btn shortlist" title="Shortlist" onclick="updateStatus(this, 'shortlisted')">
+                                            <i class="bi bi-star"></i>
+                                        </button>
+                                        <button class="action-btn reject" title="Reject" onclick="updateStatus(this, 'rejected')">
+                                            <i class="bi bi-x"></i>
+                                        </button>
+                                    }
+                                    else if (applicant.Status == JobApplicationStatus.SHORTLISTED)
+                                    {
+                                        <button class="action-btn" title="Schedule Interview">
+                                            <i class="bi bi-calendar"></i>
+                                        </button>
+                                        <button class="action-btn reject" title="Reject" onclick="updateStatus(this, 'rejected')">
+                                            <i class="bi bi-x"></i>
+                                        </button>
+                                    }
+                                    else if (applicant.Status == JobApplicationStatus.REJECTED)
+                                    {
+                                        <button class="action-btn" title="Send Feedback">
+                                            <i class="bi bi-chat"></i>
+                                        </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                     }
+                     <tr id="noFilterRow" style="display:none;">
+                        <td colspan="7" class="text-center">
+                            No applicants match your filter.
+                        </td>
+                     </tr>
+                 }
+                 else
+                 {
+                     <tr>
+                        <td colspan="7" class="text-center">No applicants found.</td>
+                    </tr>
+                 }
+                       
+                    </tbody>
+                </table>
+            </div>
+       </div>
+
+
+            <!-- Pagination -->
+            <div class="table-pagination">
+                <div class="pagination-info">
+                    Showing <strong>@(((Model.Pagination.CurrentPage - 1) * Model.Pagination.PageSize) + 1) - @Math.Min(Model.Pagination.CurrentPage * Model.Pagination.PageSize, Model.Pagination.TotalItems)</strong> of <strong>@Model.Pagination.TotalItems</strong> applicants
+                </div>
+           
+                <ul class="pagination">
+                    <li class="page-item @(Model.Pagination.HasPrevious ? "" : "disabled")">
+                        <a class="page-link" href="@Url.Action("Applicants", new { jobUid = ViewContext.HttpContext.Request.Query["jobUid"], page = Model.Pagination.CurrentPage - 1, pageSize = Model.Pagination.PageSize })">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    @{
+                        int startPage = Math.Max(1, Model.Pagination.CurrentPage - 2);
+                        int endPage = Math.Min(Model.Pagination.TotalPages, Model.Pagination.CurrentPage + 2);
+
+                        if (startPage > 1)
+                        {
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Applicants", new { jobUid = ViewContext.HttpContext.Request.Query["jobUid"], page = 1, pageSize = Model.Pagination.PageSize })">1</a></li>
+                            if (startPage > 2)
+                            {
+                                <li class="page-item"><span class="page-link">...</span></li>
+                            }
+                        }
+
+                        for (int i = startPage; i <= endPage; i++)
+                        {
+                            <li class="page-item @(i == Model.Pagination.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Applicants", new { jobUid = ViewContext.HttpContext.Request.Query["jobUid"], page = i, pageSize = Model.Pagination.PageSize })">@i</a>
+                            </li>
+                        }
+
+                        if (endPage < Model.Pagination.TotalPages)
+                        {
+                            if (endPage < Model.Pagination.TotalPages - 1)
+                            {
+                                <li class="page-item"><span class="page-link">...</span></li>
+                            }
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Applicants", new { jobUid = ViewContext.HttpContext.Request.Query["jobUid"], page = Model.Pagination.TotalPages, pageSize = Model.Pagination.PageSize })">@Model.Pagination.TotalPages</a></li>
+                        }
+                    }
+
+                        <li class="page-item @(Model.Pagination.HasNext ? "" : "disabled")">
+                            <a class="page-link" href="@Url.Action("Applicants", new { jobUid = ViewContext.HttpContext.Request.Query["jobUid"], page = Model.Pagination.CurrentPage + 1, pageSize = Model.Pagination.PageSize })">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+              </ul>
+
+       </div>
+   </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        let currentFilter="all";function filterApplicants(e,t){e&&(currentFilter=e,document.querySelectorAll(".filter-tab").forEach((e=>{e.classList.remove("active")})),t&&t.classList.add("active"));const l=document.getElementById("searchInput").value.toLowerCase(),r=document.querySelectorAll("#applicantsTable tbody tr:not(#noFilterRow)");let n=0;r.forEach((e=>{const t=e.getAttribute("data-status"),r=e.querySelector(".applicant-name")?.innerText.toLowerCase()||"",a=e.querySelector(".applicant-meta span:first-child")?.innerText.toLowerCase()||"",c="all"===currentFilter||t===currentFilter,o=""===l||r.includes(l)||a.includes(l);c&&o?(e.style.display="",n++):e.style.display="none"}));const a=document.getElementById("noFilterRow");a&&(a.style.display=0===n?"":"none")}
+        
+        function updateStatus(button, newStatus) {
+          const row = button.closest('tr');
+          const statusCell = row.querySelector('.status-badge');
+          const applicationUid = row.getAttribute('data-applicationuid');
+
+          statusCell.className = `status-badge ${newStatus}`;
+          statusCell.innerText = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+          row.setAttribute('data-status', newStatus.toLowerCase());
+
+          updateActionButtons(row, newStatus);
+
+          if (currentFilter !== 'all') filterApplicants();
+         
+          const actionUrl = '@Url.Action("UpdateStatus", "JobDashboard")';
+
+        fetch(actionUrl, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value
+            },
+            body: JSON.stringify({
+                ApplicationUid: applicationUid,
+                NewStatus: newStatus
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.success) {
+
+                statusCell.className = `status-badge ${newStatus}`;
+                statusCell.innerText =
+                    newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+
+                row.setAttribute('data-status', newStatus.toLowerCase());
+
+                updateActionButtons(row, newStatus);
+                showToast(data.message);
+            }
+            else {
+                alert(data.message);
+            }
+        })
+        .catch(() => {
+            alert('Failed to update status.');
+        });
+    }
+
+       function updateActionButtons(t,i){const e=t.querySelector("td:last-child"),n=(t.querySelector(".applicant-name a").innerText,t.querySelector(".applicant-name a").getAttribute("href").split("/").pop());let a="";switch(i){case"submitted":case"reviewed":a=`\n  <div class="action-buttons">\n  <a href="/recruiter/applicant/${n}" class="action-btn view" title="View Profile">\n  <i class="bi bi-eye"></i>\n  </a>\n  <button class="action-btn shortlist" title="Shortlist" onclick="updateStatus(this, 'shortlisted')">\n  <i class="bi bi-star"></i>\n  </button>\n  <button class="action-btn reject" title="Reject" onclick="updateStatus(this, 'rejected')">\n  <i class="bi bi-x"></i>\n </button>\n  </div>\n `;break;case"shortlisted":a=`\n  <div class="action-buttons">\n  <a href="/recruiter/applicant/${n}" class="action-btn view" title="View Profile">\n <i class="bi bi-eye"></i>\n </a>\n  <button class="action-btn" title="Schedule Interview">\n <i class="bi bi-calendar"></i>\n </button>\n  <button class="action-btn reject" title="Reject" onclick="updateStatus(this, 'rejected')">\n <i class="bi bi-x"></i>\n  </button>\n </div>\n `;break;case"rejected":a=`\n <div class="action-buttons">\n <a href="/recruiter/applicant/${n}" class="action-btn view" title="View Profile">\n <i class="bi bi-eye"></i>\n  </a>\n <button class="action-btn" title="Send Feedback">\n <i class="bi bi-chat"></i>\n  </button>\n  </div>\n `}e.innerHTML=a}
+       function exportApplicants(){const e=document.querySelectorAll("#applicantsTable tbody tr");let t=[];t.push("Name,Email,Phone,Applied Date,Experience,Current CTC,Expected CTC,Status"),e.forEach((e=>{if("none"!==e.style.display){const n=e.querySelector(".applicant-name a").innerText,l=e.querySelector(".applicant-meta span:first-child").innerText.replace("bi-envelope","").trim(),c=e.querySelector(".applicant-meta span:last-child").innerText.replace("bi-telephone","").trim(),a=e.cells[1].innerText,r=e.cells[2].innerText,i=e.cells[3].innerText,o=e.cells[4].innerText,p=e.querySelector(".status-badge").innerText;t.push(`${n},${l},${c},${a},${r},${i},${o},${p}`)}}));const n=t.join("\n"),l=new Blob([n],{type:"text/csv"}),c=window.URL.createObjectURL(l),a=document.createElement("a");a.href=c,a.download="applicants.csv",a.click()}document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector(".btn-outline");e&&e.addEventListener("click",(e=>{e.preventDefault(),exportApplicants()}))}));
+
+    </script>
+
+</body>
+</html>

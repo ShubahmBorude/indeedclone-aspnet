@@ -1,0 +1,96 @@
+﻿@media (max-width: 768px) {
+    .job-search-input .input-group {
+        flex-wrap: wrap;
+        border-radius: 8px !important;
+        overflow: hidden;
+    }
+
+    .job-search-input .position-relative {
+        width: 100%;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+        .job-search-input .position-relative:last-of-type {
+            border-bottom: none;
+        }
+
+    .vertical-separator {
+        display: none !important;
+    }
+
+    .job-search-input .form-control {
+        border-radius: 0 !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        padding-left: 48px !important;
+    }
+
+    .job-search-input .find-jobs {
+        width: 100%;
+        padding: 12px !important;
+        background-color: white;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .job-search-input .btn {
+        width: 100%;
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+
+    .job-search-input ion-icon {
+        width: 18px !important;
+        height: 18px !important;
+    }
+}
+
+/* Desktop specific */
+@media (min-width: 769px) {
+    .job-search-input .form-control:focus {
+        box-shadow: none !important;
+        background-color: white !important;
+    }
+
+    .job-search-input .input-group:focus-within {
+        border-color: #255aa8 !important;
+        box-shadow: 0 0 0 3px rgba(37,90,168,0.08) !important;
+    }
+
+    .job-search-input .btn:hover {
+        transform: none;
+    }
+}
+
+/* Remove Bootstrap overrides */
+.job-search-input .form-control:focus {
+    outline: none;
+}
+
+.job-search-input .btn:focus {
+    box-shadow: none;
+}
+
+.z-index-1 {
+    z-index: 5;
+}
+
+/* Indeed subtle styling */
+.job-search-input .form-control::placeholder {
+    color: #888888;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.vertical-separator {
+    flex-shrink: 0;
+}
+
+/* Remove all extra margins */
+.job-search-input {
+    margin-top: 24px !important;
+    margin-bottom: 0 !important;
+}
+
+    .job-search-input .input-group {
+        margin: 0 !important;
+    }

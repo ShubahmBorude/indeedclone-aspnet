@@ -1,0 +1,187 @@
+﻿@model IndeedClone.Modules.SubModules.JobPost.DTO.JobPreferencesDTO
+@{
+    Layout = "_JobPostLayout";
+    ViewData["Title"] = "Add Job Details";
+ }
+    @inject IConfiguration Configuration
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone for Employer</title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/jobpost/jobpreference.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+    
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+   
+   
+</head>
+
+<body>
+
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+
+     <form id="employerForm" method="post" action="@Url.Action("UpdateJobPreferences", "JobDetails", new { jobUid = Model.JobUid, returnToReview = ViewContext.HttpContext.Request.Query["returnToReview"].FirstOrDefault()?.ToLower() == "true" })">
+        @Html.AntiForgeryToken()
+
+        <div class="image-container">
+            <h1>Set Preferences</h1>
+        </div>
+
+        <div class="custom-divider"></div>
+
+
+        <label class="fs-5">Communication Preferences</label>
+
+        <div class="communication-preferences">
+            <label for="emailUpdates">Send daily Updates to*</label>
+            <div class="d-flex align-items-center">
+                <input type="email" id="emailUpdates" name="EmpContactEmail" value="@Model.EmpContactEmail" placeholder="Enter email address">
+            </div>
+
+            <div class="benefits-option mt-2">
+                <input type="checkbox"
+                       id="provident-fund"
+                       name="EmailUpdates"
+                       value="true"
+                       @(Model.EmailUpdates == true ? "checked" : "") />
+                <span class="custom-checkbox">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <ion-icon name="checkmark-sharp"></ion-icon>
+                </span>
+                <span style="color: #80868b;">Send an individual email update each time someone applies</span>
+            </div>
+        </div>
+
+        <!-- Custom Divider -->
+        <div class="custom-divider"></div>
+
+        <label class="fs-5">Application Preferences</label>
+
+        <div class="communication-preferences">
+           
+            <label for="emailUpdates">Set custom Apllication Preferences*</label>
+            <div class="benefits-option mt-2">
+                <input type="checkbox" id="provident-fund" name="DisplayCV" value="true" @(Model.DisplayCV ? "checked" : "")>
+                <span class="custom-checkbox">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <ion-icon name="checkmark-sharp"></ion-icon>
+                </span>
+                <span style="color: #80868b;">Is Resume reqired?</span>
+            </div>
+            <div class="benefits-option mt-2">
+                <input type="checkbox" id="provident-fund" name="CanContactYou" value="true" @(Model.CanContactYou ? "checked" : "")>
+                <span class="custom-checkbox">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <ion-icon name="checkmark-sharp"></ion-icon>
+                </span>
+                <span style="color: #80868b;">Let potential candidates contact you about this job by email to the address provided
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="plannedStartDate"> Is there an application deadline?</label>
+                <div class="d-grid d-md-flex justify-content-md-start gap-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="HasDeadLine" id="yes" value="yes" @(Model.HasDeadLine ? "checked=\"checked\"" : "")>
+                        <label class="form-check-label" for="yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="HasDeadLine" id="no" value="no" @(!Model.HasDeadLine  ? "checked=\"checked\"" : "")>
+                        <label class="form-check-label" for="no">No</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Date Picker (Conditional) -->
+        <div id="plannedStartDateCalendar" style="display: :@(Model.DeadLineDate.HasValue ? "block" : "none");">
+            <label for="plannedStartDate" class="label-style">Deadline Date:</label>
+            <input type="date" id="plannedStartDate" name="DeadLineDate" value="@(Model.DeadLineDate?.ToString("yyyy-MM-dd"))" placeholder="dd/mm/yyyy" class="input-style">
+        </div>
+
+        <!-- Continue Button -->
+        <div style="display: flex; justify-content: end; margin-top: 20px;">
+            @* <a class="btn btn-primary pl-1" type="submit">
+                <div class="d-flex align-items-center">
+                    <ion-icon name="arrow-back-outline"></ion-icon>&nbsp;
+                    <span>Back</span>
+                </div>
+            </a> *@
+            <button class="btn btn-primary" type="submit">
+                <div class="d-flex align-items-center justify-content-center">
+                    <span>Continue</span>
+                </div>
+            </button>
+        </div>
+
+    </form>
+
+    <script> const benefitsOptions=document.querySelectorAll(".benefits-option");benefitsOptions.forEach((e=>{e.addEventListener("click",(()=>{const t=e.querySelector('input[type="checkbox"]');t.checked=!t.checked,e.classList.toggle("selected")}))}));const plannedStartDateOption=document.getElementsByName("HasDeadLine"),plannedStartDateCalendar=document.getElementById("plannedStartDateCalendar");plannedStartDateOption.forEach((e=>{e.addEventListener("change",(()=>{"yes"===e.value?plannedStartDateCalendar.style.display="block":plannedStartDateCalendar.style.display="none"}))}));const jobTypeOptions=document.querySelectorAll(".job-type-option");jobTypeOptions.forEach((e=>{e.addEventListener("click",(()=>{const t=e.querySelector('input[type="checkbox"]');t.checked=!t.checked,e.classList.toggle("selected")}))}));</script>
+
+</body>
+
+</html>

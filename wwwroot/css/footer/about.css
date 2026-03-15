@@ -1,0 +1,477 @@
+﻿/* About Page Styles */
+.about-page {
+    background: #ffffff;
+}
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d2f31;
+    margin-bottom: 1rem;
+    font-family: 'Indeed Sans', 'Noto Sans', sans-serif;
+}
+
+.text-primary {
+    color: #2557a7 !important;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #5f6b7a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Section Styling */
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d2f31;
+    margin-bottom: 2rem;
+    font-family: 'Indeed Sans', 'Noto Sans', sans-serif;
+}
+
+    .section-title:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: #2557a7;
+        margin-top: 0.5rem;
+    }
+
+    .section-title.text-center:after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+/* Story Section */
+.story-section {
+    padding: 5rem 0;
+}
+
+.story-text {
+    color: #5f6b7a;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f6;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2557a7;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+/* Mission Section */
+.mission-section {
+    padding: 4rem 0;
+    background: #f8fafc;
+}
+
+.mission-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+}
+
+.mission-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(37, 87, 167, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+    .mission-icon i {
+        font-size: 2rem;
+        color: #2557a7;
+    }
+
+.mission-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2d2f31;
+}
+
+.mission-card p {
+    color: #5f6b7a;
+    line-height: 1.7;
+}
+
+/* Values Section */
+.values-section {
+    padding: 5rem 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.value-card {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(37, 87, 167, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+    .value-icon i {
+        font-size: 1.5rem;
+        color: #2557a7;
+    }
+
+.value-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2d2f31;
+}
+
+.value-card p {
+    color: #6b7280;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* How It Works */
+.how-it-works {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.steps-container {
+    max-width: 800px;
+    margin: 3rem auto 0;
+}
+
+.step-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #2557a7;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2d2f31;
+}
+
+.step-content p {
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+/* Why Choose Section */
+.why-choose-section {
+    padding: 5rem 0;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+    .benefits-list li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+        font-size: 1.1rem;
+        color: #2d2f31;
+    }
+
+    .benefits-list i {
+        font-size: 1.3rem;
+        flex-shrink: 0;
+    }
+
+.testimonial-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f6;
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 3rem;
+    color: #2557a7;
+    opacity: 0.2;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2d2f31;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: #2557a7;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.author-info h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #2d2f31;
+}
+
+.author-info p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Team Section */
+.team-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.team-subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.team-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+    transition: transform 0.3s ease;
+}
+
+    .team-card:hover {
+        transform: translateY(-5px);
+    }
+
+.team-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #2557a7 0%, #1a4580 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 auto 1.5rem;
+}
+
+.team-card h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2d2f31;
+}
+
+.team-card p {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #2557a7 0%, #1a4580 100%);
+    color: white;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-primary {
+    background: white;
+    color: #2557a7;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+    .btn-primary:hover {
+        background: #f8fafc;
+        transform: translateY(-2px);
+    }
+
+.btn-outline-primary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+    .btn-outline-primary:hover {
+        background: white;
+        color: #2557a7;
+        transform: translateY(-2px);
+    }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .values-grid,
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .stats-grid {
+        margin-top: 2rem;
+    }
+
+    .step-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-outline-primary {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}

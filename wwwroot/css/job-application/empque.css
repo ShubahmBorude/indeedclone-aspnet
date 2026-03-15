@@ -1,0 +1,376 @@
+﻿/* Container */
+.container {
+    max-width: 650px; /* Slightly wider for questions */
+    width: 100%;
+    margin: 30px auto 0;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Job Header Card */
+.indeed-job-header-card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.indeed-job-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.01em;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+.indeed-company-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5f6b7a;
+    font-size: 15px;
+    flex-wrap: wrap;
+}
+
+    .indeed-company-info i {
+        font-size: 16px;
+        color: #0a66c2;
+    }
+
+.indeed-company-divider {
+    color: #d1d7dc;
+    font-size: 12px;
+}
+
+/* Progress Bar */
+.indeed-progress-container {
+    margin-bottom: 24px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: #edf2f6;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #0a66c2;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+/* Section Title */
+.indeed-section-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+    .indeed-section-title i {
+        color: #0a66c2;
+        font-size: 22px;
+    }
+
+/* Info Message */
+.indeed-info-message {
+    background-color: #f0f7ff;
+    border: 1px solid #d4e2fd;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #1a3e6f;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+    .indeed-info-message i {
+        font-size: 20px;
+        color: #0a66c2;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+/* Questions Container */
+.indeed-questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+
+.indeed-questions-section {
+/*  background-color: #f8fafd;*/
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.indeed-questions-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+    .indeed-questions-section-title i {
+        color: #0a66c2;
+        font-size: 20px;
+    }
+
+/* Form Elements */
+.indeed-form-group {
+    margin-bottom: 24px;
+}
+
+    .indeed-form-group:last-child {
+        margin-bottom: 0;
+    }
+
+.indeed-form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2d3e50;
+    margin-bottom: 8px;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+.indeed-required {
+    color: #dc3545;
+    margin-left: 2px;
+}
+
+.indeed-form-input,
+.indeed-form-select {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #d1d7dc;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+    color: #1a1a1a;
+}
+
+.indeed-form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235f6b7a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 48px;
+}
+
+.indeed-form-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #d1d7dc;
+    border-radius: 12px;
+    transition: all 0.15s ease;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+    resize: vertical;
+    min-height: 120px;
+}
+
+    .indeed-form-input:hover,
+    .indeed-form-select:hover,
+    .indeed-form-textarea:hover {
+        border-color: #0a66c2;
+    }
+
+    .indeed-form-input:focus,
+    .indeed-form-select:focus,
+    .indeed-form-textarea:focus {
+        outline: none;
+        border-color: #0a66c2;
+        box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+    }
+
+    .indeed-form-input::placeholder,
+    .indeed-form-textarea::placeholder {
+        color: #9aa6b2;
+        font-size: 14px;
+    }
+
+.indeed-form-hint {
+    font-size: 12px;
+    color: #6f7d8c;
+    margin-top: 6px;
+    margin-left: 4px;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+/* Salary Input Group */
+.indeed-salary-input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d7dc;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: all 0.15s ease;
+}
+
+    .indeed-salary-input-group:hover {
+        border-color: #0a66c2;
+    }
+
+    .indeed-salary-input-group:focus-within {
+        border-color: #0a66c2;
+        box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+    }
+
+.indeed-currency-symbol {
+    padding: 0 12px 0 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #5f6b7a;
+    background-color: #f8fafd;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #d1d7dc;
+    border-radius: 12px 0 0 12px;
+}
+
+.indeed-salary-input {
+    border: none !important;
+    flex: 1;
+    border-radius: 0 12px 12px 0 !important;
+}
+
+    .indeed-salary-input:focus {
+        box-shadow: none !important;
+    }
+
+/* Radio Group */
+.indeed-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.indeed-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: #2d3e50;
+    cursor: pointer;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+.indeed-radio-input {
+    width: 18px;
+    height: 18px;
+    accent-color: #0a66c2;
+    cursor: pointer;
+}
+
+/* Job Card */
+.job-card {
+    background-color: #fff;
+    padding: 28px;
+    border: 1px solid #e9ecef;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Button Container */
+.indeed-button-container {
+    margin-top: 28px;
+    margin-bottom: 16px;
+}
+
+.indeed-btn-primary {
+    width: 100%;
+    padding: 16px;
+    background-color: rgb(37, 90, 168);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+    box-shadow: 0 2px 8px rgba(10, 102, 194, 0.2);
+}
+
+    .indeed-btn-primary:hover {
+        background-color: rgb(37, 90, 168);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px rgba(10, 102, 194, 0.3);
+    }
+
+/* Skip Option */
+.indeed-skip-option {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.indeed-skip-link {
+    color: #6f7d8c;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.15s ease;
+    border-bottom: 1px dashed #d1d7dc;
+    padding-bottom: 2px;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', sans-serif;
+}
+
+    .indeed-skip-link:hover {
+        color: #0a66c2;
+        border-bottom-color: #0a66c2;
+    }
+
+/* Responsive */
+@media (max-width: 640px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .indeed-job-title {
+        font-size: 20px;
+    }
+
+    .job-card {
+        padding: 20px;
+    }
+
+    .indeed-questions-section {
+        padding: 20px;
+    }
+
+    .indeed-section-title {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,187 @@
+﻿@{
+    Layout = "_AuthNavbarLayout";
+    ViewData["Title"] = "Career Advice - IndeedClone";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/footer/career-advice.css" />
+</head>
+<body>
+
+<div class="career-advice-page">
+    <!-- Hero Section -->
+    <section class="advice-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Career <span style="color: rgb(37, 90, 168);">Advice</span></h1>
+                <p class="hero-subtitle">Expert tips and guidance to advance your career</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <i class="bi bi-file-text" style="color: rgb(37, 90, 168);"></i>
+                    <span>Resume Tips</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="bi bi-chat" style="color: rgb(37, 90, 168);"></i>
+                    <span>Interview Prep</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="bi bi-graph-up" style="color: rgb(37, 90, 168);"></i>
+                    <span>Career Growth</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="bi bi-briefcase" style="color: rgb(37, 90, 168);"></i>
+                    <span>Job Search</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="bi bi-star" style="color: rgb(37, 90, 168);"></i>
+                    <span>Personal Branding</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="bi bi-currency-rupee" style="color: rgb(37, 90, 168);"></i>
+                    <span>Salary Negotiation</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Featured Articles</h2>
+            <div class="featured-grid">
+                <div class="featured-card large">
+                    <div class="card-image resume-tips"></div>
+                    <div class="card-content">
+                        <span class="card-category" style="color: rgb(37, 90, 168);">Resume Tips</span>
+                        <h3>10 Tips to Make Your Resume Stand Out in 2026</h3>
+                        <p>Learn how to craft a resume that catches recruiters' attention and lands you more interviews.</p>
+                        <a href="#" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <div class="card-image interview-tips"></div>
+                    <div class="card-content">
+                        <span class="card-category" style="color: rgb(37, 90, 168);">Interview Prep</span>
+                        <h3>Common Interview Questions and How to Answer Them</h3>
+                        <p>Prepare for your next interview with these expert tips and sample answers.</p>
+                        <a href="#" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="featured-card">
+                    <div class="card-image salary-tips"></div>
+                    <div class="card-content">
+                        <span class="card-category" style="color: rgb(37, 90, 168);">Salary Negotiation</span>
+                        <h3>How to Negotiate Your Salary Like a Pro</h3>
+                        <p>Master the art of salary negotiation and get the compensation you deserve.</p>
+                        <a href="#" class="read-more">Read More <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles Grid -->
+    <section class="articles-section">
+        <div class="container">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="articles-grid">
+                <div class="article-card">
+                    <h3>5 In-Demand Skills for 2026</h3>
+                    <p class="article-meta">By Priya Singh • 5 min read</p>
+                    <p class="article-excerpt">Discover the skills that employers are looking for this year and how to develop them.</p>
+                    <a href="#" class="article-link">Read Article <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="article-card">
+                    <h3>How to Ace Virtual Interviews</h3>
+                    <p class="article-meta">By Rahul Verma • 4 min read</p>
+                    <p class="article-excerpt">Tips and tricks to make a great impression in online interviews.</p>
+                    <a href="#" class="article-link">Read Article <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="article-card">
+                    <h3>Building Your Personal Brand on LinkedIn</h3>
+                    <p class="article-meta">By Anjali Mehta • 6 min read</p>
+                    <p class="article-excerpt">Learn how to optimize your LinkedIn profile and attract recruiters.</p>
+                    <a href="#" class="article-link">Read Article <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="article-card">
+                    <h3>Career Change Guide: Switching Industries</h3>
+                    <p class="article-meta">By Vikram Reddy • 7 min read</p>
+                    <p class="article-excerpt">A step-by-step guide to successfully transition to a new industry.</p>
+                    <a href="#" class="article-link">Read Article <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="article-card">
+                    <h3>Work-Life Balance in Remote Jobs</h3>
+                    <p class="article-meta">By Neha Gupta • 5 min read</p>
+                    <p class="article-excerpt">Strategies to maintain healthy boundaries while working from home.</p>
+                    <a href="#" class="article-link">Read Article <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="article-card">
+                    <h3>Networking Tips for Introverts</h3>
+                    <p class="article-meta">By Arjun Patel • 4 min read</p>
+                    <p class="article-excerpt">Build meaningful professional connections without feeling overwhelmed.</p>
+                    <a href="#" class="article-link">Read Article <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="load-more-container">
+                <a href="#" class="load-more-btn" style="border-color: rgb(37, 90, 168); color: rgb(37, 90, 168);">Load More Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-card" style="background: linear-gradient(135deg, rgb(37, 90, 168) 0%, #1e4a8a 100%);">
+                <h2>Get Career Tips in Your Inbox</h2>
+                <p>Subscribe to our newsletter for weekly advice and job search strategies</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" style="background: white; color: rgb(37, 90, 168);">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+﻿/* Legal Pages (Privacy, Terms) Styles */
+.legal-page {
+    background: #ffffff;
+}
+
+/* Hero Section */
+.legal-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d2f31;
+    margin-bottom: 1rem;
+    font-family: 'Indeed Sans', 'Noto Sans', sans-serif;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #5f6b7a;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+}
+
+.last-updated {
+    color: #6b7280;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+/* Content Section */
+.legal-content-section {
+    padding: 4rem 0;
+}
+
+.legal-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Table of Contents */
+.legal-toc {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+    .legal-toc h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid rgb(37, 90, 168);
+    }
+
+    .legal-toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .legal-toc li {
+        margin-bottom: 0.5rem;
+    }
+
+    .legal-toc a {
+        color: #5f6b7a;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+        display: block;
+        padding: 0.25rem 0;
+    }
+
+        .legal-toc a:hover {
+            color: rgb(37, 90, 168);
+            padding-left: 0.5rem;
+        }
+
+/* Legal Content */
+.legal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid #eef2f6;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.legal-section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 2rem;
+}
+
+    .legal-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .legal-section h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+        .legal-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: rgb(37, 90, 168);
+        }
+
+    .legal-section h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin: 1.5rem 0 1rem;
+    }
+
+    .legal-section p {
+        color: #5f6b7a;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .legal-section ul,
+    .legal-section ol {
+        color: #5f6b7a;
+        line-height: 1.7;
+        padding-left: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .legal-section li {
+        margin-bottom: 0.5rem;
+    }
+
+    .legal-section strong {
+        color: #2d2f31;
+    }
+
+/* Contact List */
+.contact-list {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+    .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-list i {
+        font-size: 1.2rem;
+        width: 24px;
+    }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .legal-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .legal-toc {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .legal-content-section {
+        padding: 2rem 1rem;
+    }
+
+    .legal-content {
+        padding: 1.5rem;
+    }
+
+    .legal-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .legal-section h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+}

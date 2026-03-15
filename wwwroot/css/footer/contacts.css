@@ -1,0 +1,440 @@
+﻿/* Contact Page Styles */
+.contact-page {
+    background: #ffffff;
+}
+
+/* Hero Section */
+.contact-hero {
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2d2f31;
+    margin-bottom: 1rem;
+    font-family: 'Indeed Sans', 'Noto Sans', sans-serif;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #5f6b7a;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Info Cards Section */
+.info-cards-section {
+    padding: 4rem 0;
+}
+
+.info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+    transition: transform 0.3s ease;
+}
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+.info-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+    .info-icon i {
+        font-size: 1.8rem;
+    }
+
+.info-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #2d2f31;
+}
+
+.info-detail {
+    color: #2d2f31;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.info-text {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.chat-link {
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+    .chat-link:hover {
+        text-decoration: underline;
+    }
+
+/* Form & Map Section */
+.form-map-section {
+    padding: 2rem 0 5rem;
+    background: #f8fafc;
+}
+
+.contact-form-container,
+.office-info-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eef2f6;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2d2f31;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+    .form-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: rgb(37, 90, 168);
+    }
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2d2f31;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d0d9e4;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        outline: none;
+        border-color: rgb(37, 90, 168);
+        box-shadow: 0 0 0 3px rgba(37, 90, 168, 0.1);
+    }
+
+    .form-control:hover,
+    .form-select:hover {
+        border-color: rgb(37, 90, 168);
+    }
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .submit-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 90, 168, 0.3);
+    }
+
+/* Office Hours */
+.office-hours {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 16px;
+}
+
+    .office-hours h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+.hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hour-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2d2f31;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #d0d9e4;
+}
+
+    .hour-item:last-child {
+        border-bottom: none;
+    }
+
+.hour-time {
+    font-weight: 500;
+    color: #2d2f31;
+}
+
+    .hour-time.closed {
+        color: #ef4444;
+    }
+
+/* Social Connect */
+.social-connect {
+    margin-top: 2rem;
+}
+
+    .social-connect h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+.contact-social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.contact-social-link {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    .contact-social-link:hover {
+        transform: translateY(-3px);
+        background: rgb(37, 90, 168) !important;
+    }
+
+        .contact-social-link:hover i {
+            color: white !important;
+        }
+
+    .contact-social-link i {
+        font-size: 1.3rem;
+    }
+
+/* FAQ Section */
+.faq-section {
+    padding: 5rem 0;
+}
+
+.faq-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d2f31;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+    .faq-title:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: rgb(37, 90, 168);
+        margin: 0.5rem auto 0;
+    }
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #eef2f6;
+    transition: all 0.3s ease;
+}
+
+    .faq-item:hover {
+        box-shadow: 0 10px 30px rgba(37, 90, 168, 0.05);
+    }
+
+    .faq-item h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+    }
+
+    .faq-item p {
+        color: #6b7280;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+/* CTA Section */
+.contact-cta {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #f0f4fa 100%);
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.cta-content {
+    text-align: center;
+}
+
+    .cta-content h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2d2f31;
+        margin-bottom: 1rem;
+    }
+
+    .cta-content p {
+        font-size: 1.2rem;
+        color: #5f6b7a;
+        margin-bottom: 2rem;
+    }
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+    .cta-button:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(37, 90, 168, 0.3);
+        color: white;
+    }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .info-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .info-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-container,
+    .office-info-container {
+        padding: 1.5rem;
+    }
+
+    .contact-social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .faq-item {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hour-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .cta-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+}

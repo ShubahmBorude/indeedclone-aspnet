@@ -1,0 +1,249 @@
+﻿@{
+    Layout = "_AuthNavbarLayout";
+    ViewData["Title"] = "Pricing - IndeedClone";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/footer/pricing.css" />
+</head>
+<body>
+
+<div class="pricing-page">
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Simple, <span style="color: rgb(37, 90, 168);">Transparent</span> Pricing</h1>
+                <p class="hero-subtitle">Choose the plan that's right for your hiring needs. No hidden fees.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Toggle -->
+    <section class="pricing-toggle-section">
+        <div class="container">
+            <div class="toggle-container">
+                <span class="toggle-label">Monthly</span>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="pricingToggle" class="toggle-input">
+                    <label for="pricingToggle" class="toggle-label-switch"></label>
+                </div>
+                <span class="toggle-label">Yearly <span class="save-badge">Save 20%</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="pricing-cards-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3 class="plan-name">Basic</h3>
+                        <p class="plan-description">For small businesses and startups</p>
+                    </div>
+                    <div class="plan-price monthly-price">
+                        <span class="currency">₹</span>
+                        <span class="amount">0</span>
+                        <span class="period">/forever</span>
+                    </div>
+                    <div class="plan-price yearly-price hidden">
+                        <span class="currency">₹</span>
+                        <span class="amount">0</span>
+                        <span class="period">/forever</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Post 1 job at a time</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Basic job listing</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> 30 days visibility</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Email support</li>
+                        <li class="disabled"><i class="bi bi-x-circle-fill"></i> Featured listing</li>
+                        <li class="disabled"><i class="bi bi-x-circle-fill"></i> Candidate analytics</li>
+                    </ul>
+                    <a href="#" class="plan-btn" style="border-color: rgb(37, 90, 168); color: rgb(37, 90, 168);">Get Started</a>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="card-header">
+                        <h3 class="plan-name">Professional</h3>
+                        <p class="plan-description">For growing companies</p>
+                    </div>
+                    <div class="plan-price monthly-price">
+                        <span class="currency">₹</span>
+                        <span class="amount">2,999</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="plan-price yearly-price hidden">
+                        <span class="currency">₹</span>
+                        <span class="amount">2,399</span>
+                        <span class="period">/month</span>
+                        <span class="yearly-note">billed annually ₹28,788</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Post up to 5 jobs</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Featured listing for 7 days</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> 60 days visibility</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Priority email support</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Basic candidate analytics</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Company profile page</li>
+                    </ul>
+                    <a href="#" class="plan-btn" style="background: rgb(37, 90, 168); color: white;">Choose Professional</a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <p class="plan-description">For large organizations</p>
+                    </div>
+                    <div class="plan-price monthly-price">
+                        <span class="currency">₹</span>
+                        <span class="amount">9,999</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="plan-price yearly-price hidden">
+                        <span class="currency">₹</span>
+                        <span class="amount">7,999</span>
+                        <span class="period">/month</span>
+                        <span class="yearly-note">billed annually ₹95,988</span>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Unlimited job postings</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Featured listing for 30 days</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> 90 days visibility</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Dedicated account manager</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Advanced analytics & reports</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> API access</li>
+                        <li><i class="bi bi-check-circle-fill" style="color: rgb(37, 90, 168);"></i> Custom branding</li>
+                    </ul>
+                    <a href="#" class="plan-btn" style="border-color: rgb(37, 90, 168); color: rgb(37, 90, 168);">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-on Services -->
+    <section class="addons-section">
+        <div class="container">
+            <h2 class="section-title">Add-on Services</h2>
+            <div class="addons-grid">
+                <div class="addon-card">
+                    <i class="bi bi-star-fill" style="color: rgb(37, 90, 168);"></i>
+                    <h3>Featured Listing</h3>
+                    <p>Highlight your job at the top of search results</p>
+                    <div class="addon-price">₹499 <span>/job</span></div>
+                </div>
+                <div class="addon-card">
+                    <i class="bi bi-envelope-paper-fill" style="color: rgb(37, 90, 168);"></i>
+                    <h3>Email Campaign</h3>
+                    <p>Send job alerts to matching candidates</p>
+                    <div class="addon-price">₹999 <span>/campaign</span></div>
+                </div>
+                <div class="addon-card">
+                    <i class="bi bi-graph-up-arrow" style="color: rgb(37, 90, 168);"></i>
+                    <h3>Advanced Analytics</h3>
+                    <p>Detailed insights on job performance</p>
+                    <div class="addon-price">₹299 <span>/month</span></div>
+                </div>
+                <div class="addon-card">
+                    <i class="bi bi-person-badge-fill" style="color: rgb(37, 90, 168);"></i>
+                    <h3>Verified Employer Badge</h3>
+                    <p>Build trust with job seekers</p>
+                    <div class="addon-price">₹199 <span>/month</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="pricing-faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>Can I change plans later?</h3>
+                    <p>Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a contract?</h3>
+                    <p>No long-term contracts. You can cancel your subscription at any time.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What payment methods do you accept?</h3>
+                    <p>We accept all major credit cards, debit cards, UPI, and net banking.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer refunds?</h3>
+                    <p>We offer a 30-day money-back guarantee for all paid plans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pricing-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to start hiring?</h2>
+                <p>Join thousands of employers who trust IndeedClone</p>
+                <a href="@Url.Action("Retrieve", "JobPost")" class="cta-button" style="background: rgb(37, 90, 168);">
+                    Post a Job Now <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#pricingToggle').change(function() {
+            if($(this).is(':checked')) {
+                $('.monthly-price').addClass('hidden');
+                $('.yearly-price').removeClass('hidden');
+            } else {
+                $('.yearly-price').addClass('hidden');
+                $('.monthly-price').removeClass('hidden');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

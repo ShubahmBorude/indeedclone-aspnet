@@ -1,0 +1,470 @@
+﻿@{
+    Layout = "_AuthNavbarLayout";
+    ViewData["Title"] = "Contact Us - IndeedClone";
+
+    var emailPattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
+    var phonePattern = @"^[0-9+\-\s()]{10,15}$";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+    
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/footer/contacts.css" />
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+    
+    <style>
+        /* Flash message styles */
+        .flash-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            max-width: 400px;
+            animation: slideInRight 0.3s ease-out;
+        }
+        
+        @@keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .error-feedback {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+        
+        .form-control.is-valid {
+            border-color: #198754;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Flash Message Container -->
+<div id="flashMessageContainer"></div>
+
+<div class="contact-page">
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Get in <span style="color: rgb(37, 90, 168);">Touch</span></h1>
+                <p class="hero-subtitle">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="info-cards-section">
+        <div class="container">
+            <div class="info-cards-grid">
+                <!-- Phone -->
+                <div class="info-card">
+                    <div class="info-icon" style="background: rgba(37, 90, 168, 0.1);">
+                        <i class="bi bi-telephone-fill" style="color: rgb(37, 90, 168);"></i>
+                    </div>
+                    <h3>Call Us</h3>
+                    <p class="info-detail">+91 9370950037</p>
+                    <p class="info-detail">+91 9370950037</p>
+                    <p class="info-text">Mon-Fri, 9am to 6pm</p>
+                </div>
+
+                <!-- Email -->
+                <div class="info-card">
+                    <div class="info-icon" style="background: rgba(37, 90, 168, 0.1);">
+                        <i class="bi bi-envelope-fill" style="color: rgb(37, 90, 168);"></i>
+                    </div>
+                    <h3>Email Us</h3>
+                    <p class="info-detail">support@indeedclone.com</p>
+                    <p class="info-detail">careers@indeedclone.com</p>
+                    <p class="info-text">We reply within 24 hours</p>
+                </div>
+
+                <!-- Visit -->
+                <div class="info-card">
+                    <div class="info-icon" style="background: rgba(37, 90, 168, 0.1);">
+                        <i class="bi bi-geo-alt-fill" style="color: rgb(37, 90, 168);"></i>
+                    </div>
+                    <h3>Visit Us</h3>
+                    <p class="info-detail">123 Tech Park, Baner</p>
+                    <p class="info-detail">Pune, Maharashtra 411045</p>
+                    <p class="info-text">India</p>
+                </div>
+
+                <!-- Chat -->
+                <div class="info-card">
+                    <div class="info-icon" style="background: rgba(37, 90, 168, 0.1);">
+                        <i class="bi bi-chat-dots-fill" style="color: rgb(37, 90, 168);"></i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p class="info-detail">Chat with our support team</p>
+                    <a href="#" class="chat-link" style="color: rgb(37, 90, 168);">Start Live Chat <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map Section -->
+    <section class="form-map-section">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Contact Form -->
+                <div class="col-lg-6">
+                    <div class="contact-form-container">
+                        <h2 class="form-title">Send us a Message</h2>
+                        <form class="contact-form" id="contactForm" novalidate>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" name="FirstName" required>
+                                        <div class="error-feedback" id="firstNameError">First name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" name="LastName" required>
+                                        <div class="error-feedback" id="lastNameError">Last name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email *</label>
+                                        <input type="email" class="form-control" id="email" name="Email" required>
+                                        <div class="error-feedback" id="emailError">Valid email is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" name="Phone">
+                                        <div class="error-feedback" id="phoneError">Please enter a valid phone number</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="subject">Subject *</label>
+                                        <select class="form-select" id="subject" name="Subject" required>
+                                            <option value="" disabled selected>Select a subject</option>
+                                            <option value="general">General Inquiry</option>
+                                            <option value="support">Technical Support</option>
+                                            <option value="jobs">Job Related</option>
+                                            <option value="employers">Employer Related</option>
+                                            <option value="feedback">Feedback</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="error-feedback" id="subjectError">Please select a subject</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="message">Message *</label>
+                                        <textarea class="form-control" id="message" name="Message" rows="5" required></textarea>
+                                        <div class="error-feedback" id="messageError">Message cannot be empty</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="submit-btn" style="background: rgb(37, 90, 168);">
+                                        Send Message <i class="bi bi-send ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Map & Office Info -->
+                <div class="col-lg-6">
+                    <div class="office-info-container">
+                        <h2 class="form-title">Our Office</h2>
+                        
+                        <!-- Map -->
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.2655!2d73.7869!3d18.5648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7b8d3b8b8b%3A0x8b8b8b8b8b8b8b8b!2sBaner%2C%20Pune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: 12px;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+
+                        <!-- Office Hours -->
+                        <div class="office-hours">
+                            <h3><i class="bi bi-clock" style="color: rgb(37, 90, 168);"></i> Office Hours</h3>
+                            <div class="hours-list">
+                                <div class="hour-item">
+                                    <span>Monday - Friday</span>
+                                    <span class="hour-time">9:00 AM - 6:00 PM</span>
+                                </div>
+                                <div class="hour-item">
+                                    <span>Saturday</span>
+                                    <span class="hour-time">10:00 AM - 2:00 PM</span>
+                                </div>
+                                <div class="hour-item">
+                                    <span>Sunday</span>
+                                    <span class="hour-time closed">Closed</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Connect -->
+                        <div class="social-connect">
+                            <h3><i class="bi bi-share" style="color: rgb(37, 90, 168);"></i> Connect With Us</h3>
+                            <div class="contact-social-links">
+                                <a href="#" class="contact-social-link" style="background: rgba(37, 90, 168, 0.1);">
+                                    <i class="bi bi-facebook" style="color: rgb(37, 90, 168);"></i>
+                                </a>
+                                <a href="#" class="contact-social-link" style="background: rgba(37, 90, 168, 0.1);">
+                                    <i class="bi bi-twitter-x" style="color: rgb(37, 90, 168);"></i>
+                                </a>
+                                <a href="#" class="contact-social-link" style="background: rgba(37, 90, 168, 0.1);">
+                                    <i class="bi bi-linkedin" style="color: rgb(37, 90, 168);"></i>
+                                </a>
+                                <a href="#" class="contact-social-link" style="background: rgba(37, 90, 168, 0.1);">
+                                    <i class="bi bi-instagram" style="color: rgb(37, 90, 168);"></i>
+                                </a>
+                                <a href="#" class="contact-social-link" style="background: rgba(37, 90, 168, 0.1);">
+                                    <i class="bi bi-youtube" style="color: rgb(37, 90, 168);"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How quickly do you respond to inquiries?</h3>
+                    <p>We aim to respond to all inquiries within 24 hours during business days. For urgent matters, we recommend calling our support line.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I apply for jobs through the contact form?</h3>
+                    <p>No, the contact form is for general inquiries only. To apply for jobs, please use the "Apply Now" button on the job listing page.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you provide support for employers?</h3>
+                    <p>Yes! We have a dedicated team for employers. Please select "Employer Related" in the subject dropdown and our team will assist you.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a phone number for international callers?</h3>
+                    <p>Yes, international callers can reach us at +91 98765 43210. Standard international rates may apply.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="contact-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Looking to post a job?</h2>
+                <p>Join thousands of employers who trust IndeedClone for their hiring needs</p>
+                <a href="@Url.Action("Retrieve", "JobPost")" class="cta-button" style="background: rgb(37, 90, 168);">
+                    Post a Job Now <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script>
+    // These regex variables are now available globally
+    const emailRegex = new RegExp(@Html.Raw(Json.Serialize(emailPattern)));
+    const phoneRegex = new RegExp(@Html.Raw(Json.Serialize(phonePattern)));
+
+    $(document).ready(function() {
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset previous validation states
+            $('.form-control, .form-select').removeClass('is-valid is-invalid');
+            $('.error-feedback').hide();
+            
+            // Get form values
+            const firstName = $('#firstName').val().trim();
+            const lastName = $('#lastName').val().trim();
+            const email = $('#email').val().trim();
+            const phone = $('#phone').val().trim();
+            const subject = $('#subject').val();
+            const message = $('#message').val().trim();
+            
+            let isValid = true;
+            
+            // Validate First Name
+            if (!firstName) {
+                $('#firstName').addClass('is-invalid');
+                $('#firstNameError').show();
+                isValid = false;
+            } else {
+                $('#firstName').addClass('is-valid');
+            }
+            
+            // Validate Last Name
+            if (!lastName) {
+                $('#lastName').addClass('is-invalid');
+                $('#lastNameError').show();
+                isValid = false;
+            } else {
+                $('#lastName').addClass('is-valid');
+            }
+            
+            // Validate Email using regex from Razor
+            if (!email || !emailRegex.test(email)) {
+                $('#email').addClass('is-invalid');
+                $('#emailError').show();
+                isValid = false;
+            } else {
+                $('#email').addClass('is-valid');
+            }
+            
+            // Validate Phone (optional but if provided, check format)
+            if (phone) {
+                if (!phoneRegex.test(phone)) {
+                    $('#phone').addClass('is-invalid');
+                    $('#phoneError').show();
+                    isValid = false;
+                } else {
+                    $('#phone').addClass('is-valid');
+                }
+            }
+            
+            // Validate Subject
+            if (!subject) {
+                $('#subject').addClass('is-invalid');
+                $('#subjectError').show();
+                isValid = false;
+            } else {
+                $('#subject').addClass('is-valid');
+            }
+            
+            // Validate Message
+            if (!message) {
+                $('#message').addClass('is-invalid');
+                $('#messageError').show();
+                isValid = false;
+            } else if (message.length < 10) {
+                $('#message').addClass('is-invalid');
+                $('#messageError').text('Message must be at least 10 characters').show();
+                isValid = false;
+            } else {
+                $('#message').addClass('is-valid');
+            }
+            
+            // If form is valid, show success message and reset form
+            if (isValid) {
+                // Collect form data for display
+                const formData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phone: phone || 'Not provided',
+                    subject: $('#subject option:selected').text(),
+                    message: message
+                };
+                
+                // Show success message
+                showFlashMessage('success', 'Message sent successfully! We\'ll get back to you within 24 hours.');
+                
+                // Log to console (for demo purposes)
+                console.log('Form submitted successfully:', formData);
+                
+                // Reset form
+                $('#contactForm')[0].reset();
+                $('.form-control, .form-select').removeClass('is-valid is-invalid');
+            } else {
+                // Show error message
+                showFlashMessage('error', 'Please fix the errors in the form and try again.');
+            }
+        });
+        
+        // Real-time validation on input
+        $('#firstName, #lastName, #email, #phone, #subject, #message').on('input change', function() {
+            const id = $(this).attr('id');
+            $(this).removeClass('is-invalid is-valid');
+            $(`#${id}Error`).hide();
+        });
+        
+        // Function to show flash messages
+        function showFlashMessage(type, message) {
+            const icon = type === 'success' ? 
+                '<i class="bi bi-check-circle-fill me-2"></i>' : 
+                '<i class="bi bi-exclamation-triangle-fill me-2"></i>';
+            
+            const bgColor = type === 'success' ? '#10b981' : '#ef4444';
+            
+            const flashHtml = `
+                <div class="flash-message alert alert-dismissible fade show" role="alert" style="background: ${bgColor}; color: white; border: none; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                    <div class="d-flex align-items-center">
+                        ${icon}
+                        <span>${message}</span>
+                        <button type="button" class="btn-close btn-close-white ms-3" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            `;
+            
+            $('#flashMessageContainer').html(flashHtml);
+            
+            // Auto dismiss after 5 seconds
+            setTimeout(function() {
+                $('.flash-message').alert('close');
+            }, 5000);
+        }
+    });
+</script>
+
+
+</body>
+</html>

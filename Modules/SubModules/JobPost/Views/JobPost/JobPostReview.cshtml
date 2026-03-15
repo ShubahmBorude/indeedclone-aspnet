@@ -1,0 +1,356 @@
+﻿@model IndeedClone.Modules.SubModules.JobPost.DTO.JobReviewDTO
+@{
+    Layout = "_JobPostLayout";
+    ViewData["Title"] = "Review";
+ }
+    @inject IConfiguration Configuration
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone for Employer</title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/jobpost/employeraccount.css">
+    <link rel="stylesheet" href="~/css/jobpost/jobreview.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+    
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+   
+   
+</head>
+
+<body>
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+
+    <form id="employerForm" method="GET" action="@Url.Action("Review", "JobReview")" style="max-width: 850px !important;">
+
+    <div class="image-container mb-5">
+        <h1>Set Preferences</h1>
+    </div>
+
+    @* <div class="custom-divider mb-3"></div> *@
+
+    <label class="abc" for="review job-type">Job Details</label>
+    <table>
+        <tr>
+            <td>Job title</td>
+            <td>@(Model.JobBasic?.JobTitle ?? "Job title")</td>
+            <td><a href="@Url.Action("JobBasics", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Company for this job</td>
+            <td>@(Model.JobOrganization?.CompanyName ?? "Company Name")</td>
+            <td>
+                <a href="@Url.Action("Retrieve", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Number of openings</td>
+            <td>@(Model.JobDetail != null ? Model.JobDetail.HireEmployeeNumber.ToString() : "Number of openings")</td>
+            <td>
+                <a href="@Url.Action("JobDeatils", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Advertising location</td>
+            <td>@(Model.JobBasic == null ? "Job Location" : $"{Model.JobBasic.Area}, {Model.JobBasic.City}, {Model.JobBasic.JobLocation}")</td>
+            <td>
+                <a href="@Url.Action("JobBasics", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Job Type</td>
+            <td>@(Model.JobDetail?.EmployeeType?.Any() == true ? string.Join(", ", Model.JobDetail.EmployeeType) : "Job Type")</td>
+            <td>
+                <a href="@Url.Action("JobDeatils", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Pay</td>
+            <td>@(Model.PayBenefits != null ? $"{Model.PayBenefits.PayType} : ₹{Model.PayBenefits.MinimumPay} - ₹{Model.PayBenefits.MaximumPay} / {Model.PayBenefits.PayRateType}" : "Pay")</td>
+            <td>
+                <a href="@Url.Action("PayBenefits", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Supplemented Pay</td>
+            <td>@(Model.PayBenefits?.SupplementedPay?.Any()== true ? string.Join(", ", Model.PayBenefits.SupplementedPay) : "Supplemented Pay")</td>
+            <td>
+                <a href="@Url.Action("PayBenefits", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Benefits</td>
+            <td>@(Model.PayBenefits?.Benefits?.Any() == true ? string.Join(", ", Model.PayBenefits.Benefits) : "Benefits")</td>
+            <td>
+                <a href="@Url.Action("PayBenefits", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Job Description</td>
+            <td>
+                <div class="mb-1" id="jobDesc" style="max-height: 150px; width: 450px; overflow: hidden; position: relative;">
+                   @Html.Raw(Model.JobDescription?.Description ?? "Job Description")
+                </div>
+                <p id="toggleText" class="bold" onclick="toggleDesc()"
+                    style="margin-top: 10px; font-weight: bold; color: rgb(25, 75, 173); cursor: pointer; display: flex; align-items: center;">
+                    Read More <i id="chevronIcon" class="bi bi-chevron-down" style="margin-left: 5px;"></i>
+                </p>
+            </td>
+            <td>
+                <a href="@Url.Action("JobDescription", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    @* <div class="custom-divider mb-5 mt-5"></div> *@
+
+    <label class="abc" for="review job-type">Settings</label>
+    <table>
+        <tr>
+            <td>Application Method</td>
+            <td>@(Model.JobBasic?.WorkArrangement ?? "Work Arrangement")</td>
+            <td>
+                <a href="@Url.Action("JobBasics", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>require cv</td>
+            <td>@(Model.JobPreferences == null ? "CV" : (Model.JobPreferences.DisplayCV ? "Yes" : "No"))</td>
+            <td>
+                <a href="@Url.Action("JobPreferences", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Application Updates</td>
+            <td>@(Model.JobPreferences == null ? "Application Updates" : (Model.JobPreferences.EmailUpdates == true ? "Yes" : "No"))</td>
+            <td>
+                <a href="@Url.Action("JobPreferences", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Candidates Contact</td>
+            <td>@(Model.JobPreferences == null ? "Candidates Contact" : (Model.JobPreferences.CanContactYou ? "Yes" : "No"))</td>
+            <td>
+                <a href="@Url.Action("JobPreferences", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Your Email</td>
+            <td>@(Model.JobPreferences?.EmpContactEmail ?? "Employee Contact Email")</td>
+            <td>
+                <a href="@Url.Action("JobPreferences", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Application Deadline</td>
+            <td>@(Model.JobPreferences?.DeadLineDate.HasValue == true ? Model.JobPreferences.DeadLineDate.Value.ToString("yyyy-MM-dd") : "yyyy-mm-dd")</td>
+            <td>
+                <a href="@Url.Action("JobPreferences", "JobDetails", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>expected start date</td>
+            <td>@(Model.JobDetail?.StartDate.HasValue == true ? Model.JobDetail.StartDate.Value.ToString("yyyy-MM-dd") : "yyyy-mm-dd")</td>
+            <td>
+                <a href="@Url.Action("JobDeatils", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    @* <div class="custom-divider mb-5 mt-5"></div> *@
+
+    <label class="abc" for="review job-type">Account</label>
+    <table>
+         <tr>
+            <td>Full Name</td>
+            <td>@(Model.JobOrganization?.FullName ?? "Full Name")</td>
+            <td>
+                <a href="@Url.Action("Retrieve", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>contact</td>
+            <td>@(Model.JobOrganization?.MobileNumber ?? "Mobile Number")</td>
+            <td>
+                <a href="@Url.Action("Retrieve", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>GSTIN number</td>
+            <td>@(Model.JobOrganization?.GstinNumber ?? "GSTIN Number")</td>
+            <td>
+                <a href="@Url.Action("Retrieve", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Your Job Id</td>
+            <td>@(Model.JobOrganization?.JobUid ?? "Job Id")</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>how you heard about Indeed</td>
+            <td>@(Model.JobOrganization?.ReferralSource?.ToString() ?? "Referral Source")</td>
+            <td>
+                <a href="@Url.Action("Retrieve", "JobPost", new { jobUid = Model.JobOrganization?.JobUid, returnToReview = true})">
+                <i class="bi bi-pencil-fill"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    @* <div class="custom-divider mb-5 mt-5"></div> *@
+
+
+    <!-- Continue Button -->
+    <div style="display: flex; justify-content: end; margin-top: 20px;">
+        <a href="@Url.Action("Qualifications", "JobReview", new { jobUid = Model.JobOrganization?.JobUid})" class="btn btn-primary">
+            <div class="d-flex align-items-center justify-content-center">
+                <span>Continue</span>
+            </div>
+        </a>
+    </div>
+
+</form>
+
+
+
+<script>
+    function fixReviewListStyles() {
+        const jobDesc = document.getElementById('jobDesc');
+        if (!jobDesc) return;
+        jobDesc.querySelectorAll('ul, ol').forEach(list => {
+            list.style.cssText = 'padding-left: 1rem !important; margin: 0.5rem 0 !important;';
+        });
+        jobDesc.querySelectorAll('li').forEach(item => {
+            item.style.cssText = 'margin-bottom: 0.25rem !important; display: list-item !important;';
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        fixReviewListStyles();
+        const toggleText = document.getElementById('toggleText');
+        if (toggleText) {
+            const originalToggle = toggleText.onclick;
+            toggleText.onclick = function() {
+                if (originalToggle) originalToggle();
+                setTimeout(fixReviewListStyles, 100);
+            };
+        }
+    });
+    function toggleDesc() {
+        const jobDesc = document.getElementById('jobDesc');
+        const toggleText = document.getElementById('toggleText');
+        const chevronIcon = document.getElementById('chevronIcon');
+        if (jobDesc.style.maxHeight === '150px' || jobDesc.style.maxHeight === '') {
+            jobDesc.style.maxHeight = jobDesc.scrollHeight + 'px';
+            toggleText.innerHTML = 'Read Less <i class="bi bi-chevron-up" style="margin-left: 5px;"></i>';
+        } else {
+            jobDesc.style.maxHeight = '150px';
+            toggleText.innerHTML = 'Read More <i class="bi bi-chevron-down" style="margin-left: 5px;"></i>';
+        }
+    }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+﻿:root {
+    --primary-color: #004599;
+    --secondary-color: #2557a7;
+    --border-color: rgb(177, 178, 182);
+}
+
+body {
+    padding: 0 !important;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif !important;
+    }
+
+/* Navbar Styles */
+.navbar {
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.5rem 1rem;
+    position: relative;
+    z-index: 1030;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+    .navbar-brand strong {
+        font-size: 24px;
+        color: var(--primary-color);
+        letter-spacing: -1.5px;
+        font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Indeed Sans', sans-serif;
+    }
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+.nav-item .badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    margin-left: 0.3rem;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+}
+
+/* Vertical separator */
+.vertical-separator {
+    height: 25px;
+    width: 1px;
+    background-color: var(--border-color);
+    margin-top: 18px;
+}
+
+.dashboard-button {
+    background-color: rgb(37, 90, 168);
+    color: white;
+    padding: 8px 8px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    box-shadow: 0 2px 4px rgba(10, 102, 194, 0.2);
+}
+
+/* Mobile Sidebar Styles */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 1040;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+    .mobile-sidebar.active {
+        right: 0;
+    }
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1035;
+    display: none;
+}
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+    .sidebar-header h4 {
+        margin: 0;
+        color: var(--primary-color);
+    }
+
+.close-sidebar {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.sidebar-section {
+    margin-bottom: 25px;
+}
+
+.sidebar-section-title {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav-item {
+    margin-bottom: 8px;
+}
+
+.sidebar-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+    .sidebar-nav-link:hover {
+        background-color: #f5f5f5;
+        color: var(--primary-color);
+    }
+
+    .sidebar-nav-link.active {
+        background-color: #e8f0fe;
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+.sidebar-nav-icon {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.user-info-sidebar {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.user-details h5 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+}
+
+.user-details p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Mobile Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        display: none !important;
+    }
+
+    .vertical-separator {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-sidebar {
+        width: 280px;
+    }
+
+    .navbar-brand strong {
+        font-size: 20px;
+    }
+
+    .navbar-brand img {
+        height: 24px;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 993px) {
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .navbar-collapse {
+        display: flex !important;
+    }
+}

@@ -1,0 +1,207 @@
+﻿
+* {
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif !important;
+}
+
+.input-container {
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+input[type="name"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    /* border: 1px solid #dadce0; */
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif !important;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+    input[type="name"]:focus {
+        border-color: rgb(11, 87, 208);
+        box-shadow: 0 0 0 0px rgb(11, 87, 208);
+    }
+
+label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #9aa0a6;
+    /* Default label color */
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="text"]:not(:placeholder-shown) {
+    border-color: rgb(11, 87, 208);
+    color: #4d5258;
+}
+
+/* Label styles when input is focused or has a value */
+input[type="name"]:focus + label,
+input[type="name"]:not(:placeholder-shown) + label {
+    top: 0;
+    left: 8px;
+    font-size: 12px;
+    color: rgb(11, 87, 208);
+    /* Label color when focused or has value */
+    background-color: white;
+    padding: 0 4px;
+}
+
+
+
+/* Email Styles */
+/* body {
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Google Sans', Roboto, Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+  } */
+
+.input-container {
+    margin-bottom: 20px;
+    max-width: 400px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #dadce0;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+    input[type="email"]:focus {
+        border-color: rgb(11, 87, 208);
+        box-shadow: 0 0 0 0.7px rgb(11, 87, 208);
+    }
+
+label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+input[type="email"]:focus,
+input[type="email"]:not(:placeholder-shown) {
+    border-color: rgb(11, 87, 208);
+    color: #4d5258;
+}
+
+    input[type="email"]:focus + label,
+    input[type="email"]:not(:placeholder-shown) + label {
+        top: 0;
+        left: 8px;
+        font-size: 12px;
+        color: rgb(11, 87, 208);
+        background-color: white;
+        padding: 0 4px;
+    }
+
+
+/* Password Styles */
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+    .form-control:focus {
+        border-color: rgb(11, 87, 208);
+        box-shadow: 0 0 0 0.7px rgb(11, 87, 208);
+    }
+
+.form-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #9aa0a6;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    /* Initial background */
+    padding: 0 4px;
+    /* Initial padding */
+}
+
+input[type="password"]:focus,
+input[type="password"]:not(:placeholder-shown) {
+    border-color: rgb(11, 87, 208);
+    color: #4d5258;
+}
+
+.form-control:focus + .form-label,
+.form-control:not(:placeholder-shown) + .form-label {
+    top: 0;
+    left: 8px;
+    font-size: 12px;
+    color: #1a73e8;
+    background-color: white;
+    /* Add background to prevent overlap */
+    padding: 0 4px;
+    /* Add padding to separate from border */
+}
+
+/* Show Password Toggle */
+.toggle-password {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+    .toggle-password i {
+        font-size: 18px;
+        color: #9aa0a6;
+    }
+
+        .toggle-password i:hover {
+            color: #1a73e8;
+        }
+
+/* Optional: Hide the placeholder visually */
+.form-control::placeholder {
+    color: transparent;
+}

@@ -1,0 +1,468 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Indeed Sans", "Noto Sans", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", Roboto, Noto, sans-serif;: 'Noto Sans', sans-serif;: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f3f5f7;
+    color: #2d2d2d;
+    line-height: 1.5;
+}
+
+/* Indeed-style Application Container */
+.indeed-application-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+}
+
+/* Progress Bar - Indeed Style */
+.indeed-progress-container {
+    margin-bottom: 24px;
+}
+
+.indeed-progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.indeed-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+    .indeed-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 15px;
+        right: -50%;
+        width: 100%;
+        height: 2px;
+        background-color: #e1e5e9;
+        z-index: 1;
+    }
+
+    .indeed-step.active .step-circle,
+    .indeed-step.completed .step-circle {
+        background-color: #0a66c2;
+        border-color: #0a66c2;
+        color: white;
+    }
+
+    .indeed-step.completed:not(:last-child)::after {
+        background-color: #0a66c2;
+    }
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #d1d7dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: #5f6b7a;
+    z-index: 2;
+    margin-bottom: 8px;
+}
+
+.step-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #5f6b7a;
+}
+
+.indeed-step.active .step-label,
+.indeed-step.completed .step-label {
+    color: #0a66c2;
+    font-weight: 600;
+}
+
+/* Job Card - Indeed Style */
+.indeed-job-card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.indeed-job-header {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eef2f5;
+}
+
+.indeed-job-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.01em;
+}
+
+.indeed-company-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5f6b7a;
+    font-size: 15px;
+}
+
+    .indeed-company-info i {
+        font-size: 16px;
+        color: #0a66c2;
+    }
+
+.indeed-company-divider {
+    color: #d1d7dc;
+    font-size: 12px;
+}
+
+/* Section Title */
+.indeed-section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .indeed-section-title i {
+        color: #0a66c2;
+        font-size: 20px;
+    }
+
+/* CV Upload Area - Indeed Style */
+.indeed-cv-area {
+    border: 2px dashed #d1d7dc;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    background-color: #fafcff;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+    .indeed-cv-area:hover {
+        border-color: #0a66c2;
+        background-color: #f4f9ff;
+    }
+
+.indeed-cv-icon {
+    width: 64px;
+    height: 64px;
+    background-color: #e8f1fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: #0a66c2;
+}
+
+    .indeed-cv-icon i {
+        font-size: 28px;
+    }
+
+.indeed-cv-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.indeed-cv-subtitle {
+    font-size: 14px;
+    color: #6f7d8c;
+    margin-bottom: 16px;
+}
+
+.indeed-cv-formats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 12px;
+    color: #8a98a9;
+}
+
+    .indeed-cv-formats span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+/* Existing CV File - Indeed Style */
+.indeed-file-card {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 16px;
+    background-color: #f8fafd;
+    margin-bottom: 20px;
+}
+
+.indeed-file-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.indeed-file-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #e8f1fe;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a66c2;
+}
+
+    .indeed-file-icon i {
+        font-size: 24px;
+    }
+
+.indeed-file-details {
+    flex: 1;
+}
+
+.indeed-file-name {
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    font-size: 16px;
+}
+
+.indeed-file-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #6f7d8c;
+    font-size: 13px;
+}
+
+.indeed-file-badge {
+    background-color: #e1f0fa;
+    color: #0a66c2;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.indeed-file-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.indeed-file-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #e1e5e9;
+    background-color: white;
+    color: #5f6b7a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+    .indeed-file-action-btn:hover {
+        background-color: #f4f9ff;
+        border-color: #0a66c2;
+        color: #0a66c2;
+    }
+
+/* Resume Preview - Indeed Style */
+.indeed-preview-card {
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.indeed-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background-color: #f8fafd;
+    border-bottom: 1px solid #e9ecef;
+}
+
+    .indeed-preview-header h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .indeed-preview-header h3 i {
+            color: #0a66c2;
+        }
+
+.indeed-download-btn {
+    background-color: #0a66c2;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+    border: none;
+    cursor: pointer;
+}
+
+    .indeed-download-btn:hover {
+        background-color: #0a4ebb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(10, 102, 194, 0.2);
+        color: white;
+    }
+
+.indeed-preview-body {
+    background-color: #f5f7fa;
+    min-height: 500px;
+    position: relative;
+}
+
+.indeed-preview-iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    background-color: white;
+}
+
+.indeed-preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: #8a98a9;
+}
+
+    .indeed-preview-placeholder i {
+        font-size: 48px;
+        margin-bottom: 16px;
+        color: #d1d7dc;
+    }
+
+/* Button Styles */
+.indeed-btn-primary {
+    background-color: #0a66c2;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 32px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(10, 102, 194, 0.2);
+}
+
+    .indeed-btn-primary:hover {
+        background-color: #0a4ebb;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 12px rgba(10, 102, 194, 0.3);
+    }
+
+    .indeed-btn-primary:disabled {
+        background-color: #c1c7cd;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+.indeed-btn-outline {
+    background-color: white;
+    color: #0a66c2;
+    padding: 12px 24px;
+    border-radius: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid #0a66c2;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .indeed-btn-outline:hover {
+        background-color: #f4f9ff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(10, 102, 194, 0.1);
+    }
+
+/* Utility Classes */
+.indeed-mt-4 {
+    margin-top: 24px;
+}
+
+.indeed-mb-3 {
+    margin-bottom: 16px;
+}
+
+.indeed-text-center {
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .indeed-application-wrapper {
+        padding: 16px;
+    }
+
+    .indeed-job-title {
+        font-size: 20px;
+    }
+
+    .indeed-file-header {
+        flex-wrap: wrap;
+    }
+
+    .indeed-file-actions {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .indeed-preview-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+

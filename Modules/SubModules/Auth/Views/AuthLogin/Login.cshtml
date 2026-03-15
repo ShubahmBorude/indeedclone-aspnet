@@ -1,0 +1,271 @@
+﻿@{
+    Layout = "_AuthNavbarLayout";
+    ViewData["Title"] = "Login";
+ }
+    @inject IConfiguration Configuration
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <!-- Fav Icon -->
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"] - IndeedClone </title>
+
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/auth/custom-auth.css" />    
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+    <link rel="stylesheet" href="~/css/app-home/jobcard.css">
+
+    <!-- Google OAuth Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Gith-Hub OAuth Scripts -->
+    <script src="https://unpkg.com/github-auth-button@1.0.0/dist/github-auth-button.min.js"></script>
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+
+</head>
+
+  <body>
+
+
+     <!-- Container -->
+     <div class="container py-5 py-sm-7">
+        <div class="container py-5 py-sm-7 mb-0 pb-0">   
+          
+        <!-- Flash Messages -->
+        <div class="flash-messages-container">
+            @if (TempData["Success"] != null)
+            {
+                 <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                    <div class="flash-content">
+                        <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                             <span>@Html.Raw(TempData["Success"])</span>
+                    </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+             }
+
+            @if (TempData["Error"] != null)
+            {
+                 <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+                    <div class="flash-content">
+                        <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                             <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                              <span>@Html.Raw(TempData["Error"])</span>
+                    </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                 </div>
+             }
+        </div>
+         
+            <div class="mx-auto" style="max-width: 24rem;">
+                <div class="card card-lg mb-5 shadow p-3 mb-5 bg-white border-0 rounded-1">
+                    <div class="card-body mt-0 mb-0 pb-0 pt-0">
+                        <div class="row justify-content-center mt-0 mb-0 pb-0 pt-0">
+                            <div class="w-100 content-space-t-4 content-space-t-lg-2 content-space-b-1 mt-0 mb-0 pb-0 pt-0" style="max-width: 20rem;">
+
+                                <!-- Form -->
+                                <form id="login" class="js-validate needs-validation" method="post" action="@Url.Action("Update", "Auth")" novalidate>
+
+                                    <div class="text-center">
+                                        <div class="mb-4">
+                                            <h2 class="display-6" style="font-size: 1.8rem; line-height: 3.2rem; font-weight: 900;color: rgb(58, 66, 74);">Sign in</h2>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Email or Phone No -->
+                                    <div class="mb-3 input-container">
+                                        <div class="input-wrapper">
+                                            <input type="email" class="js-toggle-password form-control form-control-lg rounded-1" name="email" id="signinSrEmail" tabindex="1" placeholder=" " required>
+                                            <label class="form-label" for="email">Email address</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="mb-3 input-container">
+                                        <div class="input-wrapper">
+                                            <input type="password" class="js-toggle-password form-control form-control-lg rounded-1" name="password" id="confirmPassword" placeholder=" " aria-label="*************" autocomplete="new-password" data-msg="Invalid Password Entered. Please try again."
+                                                data-hs-toggle-password-options="{
+                                                    &quot;target&quot;: &quot;#changePassTarget&quot;,
+                                                    &quot;defaultClass&quot;: &quot;tio-hidden-outlined&quot;,
+                                                    &quot;showClass&quot;: &quot;tio-visible-outlined&quot;,
+                                                    &quot;classChangeTarget&quot;: &quot;#changePassIcon2&quot;
+                                                }">
+                                            <label class="form-label" for="password">Password</label>
+                                            <!-- Show Password Toggle -->
+                                            <span class="input-group-text toggle-password" id="togglePassword2">
+                                                <i class="bi bi-eye-slash" id="changePassIcon2"></i>
+                                            </span>
+
+                                        </div>
+                                        <span class="invalid-feedback">Please enter a valid password.</span>
+                                    </div>
+
+                                    <!--  Checkbox -->
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <div class="form-check">
+                                            <input type="checkbox" id="formCheckCreate" name="status" class="form-check-input border-secondary shadow menuOrGroup">
+                                            <span class="form-check-label" for="termsCheckbox" style='color: rgb(93, 107, 123);'>Remember me</span>
+                                        </div>
+                                        <a class="form-label-link" href="@Url.Action("Retrieve", "ResetPassword")" style="color: rgb(37, 90, 168); font-weight: 600;line-height: 1.2rem; margin-top: 2px;text-decoration:none">Forgot Password?</a>
+                                    </div>
+
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-white btn-md rounded-1" style=' font-weight: 600; background-color: rgb(37, 90, 168); color: white; padding: 9px;'> Login</button>
+                                    </div>
+
+                                </form>
+
+                                <!-- Divider -->
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1 border-top"></div>
+                                    <span class="mx-2 text-muted">or use one of these options</span>
+                                    <div class="flex-grow-1 border-top"></div>
+                                </div>
+
+                               <!-- Google -->
+                                <div class="d-flex gap-2 border-0 justify-content-center">
+                                    <div>
+                                        <a id="custom-google-button" class="btn btn-white btn-md rounded-1" title="Sign in with Google"></a>
+                                    </div>
+                                </div>
+                                <!-- Hidden form for Google token submission -->
+                                <form id="google-signin-form" method="post" action="@Url.Action("GoogleSignIn", "Auth")" style="display: none;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="token" id="google-token-input" />
+                                </form>
+
+                                  <!-- Divider -->
+                                <div class="d-flex align-items-center mb-1">
+                                    <div class="flex-grow-1 border-top"></div>
+                                    <div class="flex-grow-1 border-top"></div>
+                                </div>
+
+                                <!-- sign in or sign up -->
+                                <div class="text-center mb-3 pb-0">
+                                    <p style='color: rgb(93, 107, 123);'>Don' t have an account yet?
+                                        <a class="link" href="@Url.Action("Retrieve", "Register")" style="color: rgb(37, 90, 168); font-weight: 600;line-height: 1.2rem;text-decoration:none"> Register</a>
+                                    </p>
+                                </div>
+
+                                <!-- Agreement -->
+                                <p class="text-center d-flex  mb-0 pb-0">
+                                    <small class="" style='color: rgba(93, 107, 123, 0.81);'>
+                                        By clicking sign in or Continue, you agree to the our
+                                        <a href="Agreement.html" target="_blank" style='color: rgb(11, 87, 208);text-decoration: none;'>User Agreement,</a>
+                                        <a href="Agreement.html" target="_blank" style='color: rgb(11, 87, 208);text-decoration: none;'> Privacy Policy</a> and
+                                        <a href="Agreement.html" target="_blank" style='color: rgb(11, 87, 208);text-decoration: none;'> Cookie Policy</a>.
+                                    </small>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Bottom Footer -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                © @DateTime.Now.Year IndeedClone
+            </div>
+            <div class="footer-bottom-links">
+                <a href="@Url.Action("Privacyy", "FooterInfo")">Privacy</a>
+                <span class="separator">•</span>
+                <a href="@Url.Action("Terms", "FooterInfo")">Terms</a>
+                <span class="separator">•</span>
+                <a href="@Url.Action("CookiePolicy", "FooterInfo")">Cookie policy</a>
+                <span class="separator">•</span>
+                <a href="@Url.Action("Accessibility", "FooterInfo")">Accessibility</a>
+            </div>
+        </div>
+
+    </div>
+
+
+       
+
+
+     <!-- Password eye visibility -->
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('#togglePassword2');
+            const passwordInput = document.querySelector('#confirmPassword');
+            const changePassIcon = document.querySelector('#changePassIcon2');
+
+            togglePassword.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                } else {
+                    passwordInput.type = 'password';
+                }
+                changePassIcon.classList.toggle('bi-eye');
+                changePassIcon.classList.toggle('bi-eye-slash');
+            });
+        });
+    </script>
+
+     <!-- Google Oauth -->
+     <script>
+     <!-- Google Oauth -->
+        window.onload = function() {
+        const Google_Client_Id = "@Configuration["Authentication:GoogleClientId"]";
+        google.accounts.id.initialize({
+            client_id: Google_Client_Id, 
+            callback: handleCredentialResponse
+        });
+        
+        google.accounts.id.renderButton(document.getElementById("custom-google-button"), {
+            size: "icon",
+            type: "icon",
+        });
+    };
+
+    function handleCredentialResponse(response) {
+        // Set the Google JWT token in the hidden form
+        document.getElementById('google-token-input').value = response.credential;
+        // Submit the form (triggers full page POST)
+        document.getElementById('google-signin-form').submit();
+    }
+</script>
+
+   
+  </body>
+  </html>

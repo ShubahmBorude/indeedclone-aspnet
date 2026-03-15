@@ -1,0 +1,270 @@
+﻿@{
+    Layout = "_AuthNavbarLayout";
+    ViewData["Title"] = "Cookie Policy - IndeedClone";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- ionicons -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/footer/policy-pages.css" />
+</head>
+<body>
+
+<div class="policy-page">
+    <!-- Hero Section -->
+    <section class="policy-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Cookie <span style="color: rgb(37, 90, 168);">Policy</span></h1>
+                <p class="hero-subtitle">How we use cookies and similar technologies on IndeedClone</p>
+                <p class="last-updated">Last Updated: March 10, 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cookie Consent Simulation -->
+    <section class="cookie-demo-section">
+        <div class="container">
+            <div class="cookie-preference-card">
+                <div class="cookie-icon">
+                    <i class="bi bi-cookie" style="color: rgb(37, 90, 168);"></i>
+                </div>
+                <h3>Your Cookie Preferences</h3>
+                <p>You can customize your cookie settings below. Essential cookies are always enabled as they're necessary for the website to function.</p>
+                <div class="cookie-options">
+                    <div class="cookie-option">
+                        <div class="cookie-option-header">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="essentialCookies" checked disabled>
+                                <label class="form-check-label" for="essentialCookies">Essential Cookies</label>
+                            </div>
+                            <span class="cookie-badge always">Always Active</span>
+                        </div>
+                        <p class="cookie-option-desc">Required for basic site functionality, including logging in and managing your session.</p>
+                    </div>
+                    <div class="cookie-option">
+                        <div class="cookie-option-header">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="analyticsCookies" checked>
+                                <label class="form-check-label" for="analyticsCookies">Analytics Cookies</label>
+                            </div>
+                        </div>
+                        <p class="cookie-option-desc">Help us understand how visitors interact with our website by collecting anonymous information.</p>
+                    </div>
+                    <div class="cookie-option">
+                        <div class="cookie-option-header">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="marketingCookies">
+                                <label class="form-check-label" for="marketingCookies">Marketing Cookies</label>
+                            </div>
+                        </div>
+                        <p class="cookie-option-desc">Used to deliver personalized advertisements and track campaign performance.</p>
+                    </div>
+                    <div class="cookie-option">
+                        <div class="cookie-option-header">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="functionalCookies" checked>
+                                <label class="form-check-label" for="functionalCookies">Functional Cookies</label>
+                            </div>
+                        </div>
+                        <p class="cookie-option-desc">Remember your preferences and settings to enhance your experience.</p>
+                    </div>
+                </div>
+                <div class="cookie-buttons">
+                    <button class="save-preferences" style="background: rgb(37, 90, 168);">Save Preferences</button>
+                    <button class="accept-all">Accept All</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="policy-content-section">
+        <div class="container">
+            <div class="policy-container">
+                <div class="policy-toc">
+                    <h3>Table of Contents</h3>
+                    <ul>
+                        <li><a href="#what-are-cookies">1. What Are Cookies?</a></li>
+                        <li><a href="#how-we-use">2. How We Use Cookies</a></li>
+                        <li><a href="#types">3. Types of Cookies We Use</a></li>
+                        <li><a href="#third-party">4. Third-Party Cookies</a></li>
+                        <li><a href="#manage">5. How to Manage Cookies</a></li>
+                        <li><a href="#duration">6. Cookie Duration</a></li>
+                        <li><a href="#updates">7. Updates to This Policy</a></li>
+                        <li><a href="#contact">8. Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="policy-content">
+                    <section id="what-are-cookies" class="policy-section">
+                        <h2>1. What Are Cookies?</h2>
+                        <p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide valuable information to website owners.</p>
+                        <p>Cookies help us:</p>
+                        <ul>
+                            <li>Keep you signed in to your account</li>
+                            <li>Remember your preferences and settings</li>
+                            <li>Understand how you use our platform</li>
+                            <li>Personalize your job search experience</li>
+                            <li>Improve site performance and functionality</li>
+                        </ul>
+                    </section>
+
+                    <section id="how-we-use" class="policy-section">
+                        <h2>2. How We Use Cookies</h2>
+                        <p>IndeedClone uses cookies for the following purposes:</p>
+                        
+                        <h3>Authentication and Security</h3>
+                        <p>Cookies help us verify your account and keep your information secure. They remember your login session so you don't have to sign in every time you visit.</p>
+                        
+                        <h3>Preferences and Settings</h3>
+                        <p>We use cookies to remember your preferences, such as job search filters, language preferences, and notification settings.</p>
+                        
+                        <h3>Analytics and Performance</h3>
+                        <p>Cookies help us understand how visitors interact with our platform, which pages are most popular, and how we can improve your experience.</p>
+                        
+                        <h3>Personalization</h3>
+                        <p>We use cookies to recommend relevant jobs based on your browsing history and saved searches.</p>
+                    </section>
+
+                    <section id="types" class="policy-section">
+                        <h2>3. Types of Cookies We Use</h2>
+                        
+                        <div class="cookie-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Cookie Type</th>
+                                        <th>Purpose</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Essential Cookies</strong></td>
+                                        <td>Required for basic site functionality, account authentication, and security</td>
+                                        <td>Session / Persistent</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Analytics Cookies</strong></td>
+                                        <td>Track page visits, click patterns, and site performance (Google Analytics)</td>
+                                        <td>Up to 2 years</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Functional Cookies</strong></td>
+                                        <td>Remember your preferences, saved jobs, and search filters</td>
+                                        <td>Up to 1 year</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Marketing Cookies</strong></td>
+                                        <td>Deliver personalized job recommendations and measure ad effectiveness</td>
+                                        <td>Up to 90 days</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section id="third-party" class="policy-section">
+                        <h2>4. Third-Party Cookies</h2>
+                        <p>Some cookies are placed by third-party services that appear on our pages. These include:</p>
+                        
+                        <h3>Google Analytics</h3>
+                        <p>We use Google Analytics to understand how visitors use our site and improve our services. Google Analytics collects information anonymously and reports website trends.</p>
+                        
+                        <h3>Social Media Platforms</h3>
+                        <p>Our pages may include sharing buttons for platforms like LinkedIn, Twitter, and Facebook. These platforms may set their own cookies when you interact with these buttons.</p>
+                        
+                        <h3>Advertising Partners</h3>
+                        <p>We work with advertising partners to show you relevant job opportunities. These partners may use cookies to build a profile of your interests.</p>
+                    </section>
+
+                    <section id="manage" class="policy-section">
+                        <h2>5. How to Manage Cookies</h2>
+                        <p>You can control and manage cookies in several ways:</p>
+                        
+                        <h3>Browser Settings</h3>
+                        <p>Most browsers allow you to view, delete, or block cookies. The method varies by browser:</p>
+                        <ul>
+                            <li><strong>Chrome:</strong> Settings → Privacy and Security → Cookies and other site data</li>
+                            <li><strong>Firefox:</strong> Options → Privacy & Security → Cookies and Site Data</li>
+                            <li><strong>Safari:</strong> Preferences → Privacy → Manage Website Data</li>
+                            <li><strong>Edge:</strong> Settings → Cookies and site permissions</li>
+                        </ul>
+                        
+                        <h3>Cookie Banner</h3>
+                        <p>When you first visit IndeedClone, you'll see a cookie banner where you can accept or customize your cookie preferences. You can change these settings anytime using the cookie preference center.</p>
+                        
+                        <h3>Opt-Out Tools</h3>
+                        <p>You can opt out of Google Analytics by installing the <a href="#" style="color: rgb(37, 90, 168);">Google Analytics Opt-out Browser Add-on</a>.</p>
+                        
+                        <div class="note-box" style="background: rgba(37, 90, 168, 0.05); border-left: 4px solid rgb(37, 90, 168);">
+                            <p><strong>Note:</strong> Blocking essential cookies may affect your ability to use certain features of IndeedClone, such as signing in to your account or applying for jobs.</p>
+                        </div>
+                    </section>
+
+                    <section id="duration" class="policy-section">
+                        <h2>6. Cookie Duration</h2>
+                        <p>Cookies can be either "session cookies" or "persistent cookies":</p>
+                        
+                        <h3>Session Cookies</h3>
+                        <p>These cookies expire when you close your browser. They are used for temporary functions like remembering what's in your job application as you navigate between pages.</p>
+                        
+                        <h3>Persistent Cookies</h3>
+                        <p>These cookies remain on your device for a set period or until you delete them. They help us remember your preferences and settings for future visits.</p>
+                    </section>
+
+                    <section id="updates" class="policy-section">
+                        <h2>7. Updates to This Policy</h2>
+                        <p>We may update this Cookie Policy periodically to reflect changes in technology, legislation, or our practices. When we make significant changes, we'll notify you by email or through a notice on our website. Your continued use of IndeedClone after changes constitutes acceptance of the revised policy.</p>
+                    </section>
+
+                    <section id="contact" class="policy-section">
+                        <h2>8. Contact Us</h2>
+                        <p>If you have questions about our use of cookies, please contact us:</p>
+                        <ul class="contact-list">
+                            <li><i class="bi bi-envelope" style="color: rgb(37, 90, 168);"></i> privacy@indeedclone.com</li>
+                            <li><i class="bi bi-telephone" style="color: rgb(37, 90, 168);"></i> +91 98765 43210</li>
+                            <li><i class="bi bi-geo-alt" style="color: rgb(37, 90, 168);"></i> 123 Tech Park, Baner, Pune, Maharashtra 411045</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+</body>
+</html>

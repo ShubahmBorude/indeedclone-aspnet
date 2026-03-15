@@ -1,0 +1,302 @@
+﻿@model IndeedClone.Modules.SubModules.JobApplication.DTO.JobApplicationReviewDTO
+@{
+    Layout = "_JobApplicationNavbarLayout";
+    ViewData["Title"] = " Review Job Application - IndeedClone";
+
+ }
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+
+    <link rel="icon" type="image/png" href="~/new/IndeedClone.png">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap-5 and custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/css/job-application/review.css">
+    <link rel="stylesheet" href="~/css/errors/error.css" />    
+
+    <!-- Google Fonts Script -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Roboto&family=Noto+Sans+Myanmar+UI&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <!-- Indeed Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indeed+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Helvetica+Neue:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    @* <style> body{ padding : 0 !important;  margin: 0 !important; } </style> *@
+</head>
+
+<body>
+
+
+
+<!-- Flash Messages -->
+<div class="flash-messages-container">
+    @if (TempData["Success"] != null)
+    {
+         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                     <span>@Html.Raw(TempData["Success"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+     }
+
+    @if (TempData["Error"] != null)
+    {
+         <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <div class="flash-content">
+                <svg class="flash-icon" viewBox="0 0 24 24" width="20" height="20">
+                     <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                      <span>@Html.Raw(TempData["Error"])</span>
+            </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+     }
+</div>
+
+<!-- Main Content -->
+<div class="container">
+
+    <form method="GET" action="@Url.Action("Review", "JobApplication")">
+
+    <!-- Job Title Card - Indeed Style -->
+    <div class="indeed-job-header-card">
+        <h1 class="indeed-job-title">@(Model.CV?.JobTitle ?? "Job title")</h1>
+        <div class="indeed-company-info">
+            <i class="bi bi-building"></i>
+            <span>@(Model.CV?.CompanyName ?? "Company Name")</span>
+            <span class="indeed-company-divider">•</span>
+            <i class="bi bi-geo-alt"></i>
+            <span>@(Model.CV?.City ?? "City"), @(Model.CV?.JobLocation ?? "Job Location")</span>
+        </div>
+    </div>
+
+    <!-- Review Application Card -->
+    <div class="job-card">
+        <h2 class="indeed-section-title">
+            <i class="bi bi-check2-circle"></i>
+            Please review your application
+        </h2>
+
+        <!-- Contact Information Section -->
+        <div class="indeed-review-section">
+            <div class="indeed-section-header">
+                <div class="indeed-header-title">
+                    <i class="bi bi-person-badge"></i>
+                    <h3>Contact information</h3>
+                </div>
+                <a href="@Url.Action("ScreenerQuestions", "JobApplication", new { applicationUid = Model.CV?.ApplicationUid, returnToReview = true } )" class="indeed-edit-link">
+                    <i class="bi bi-pencil"></i>
+                    Edit
+                </a>
+            </div>
+
+            <div class="indeed-review-card">
+                <!-- Full Name -->
+                <div class="indeed-review-item">
+                    <div class="indeed-review-label">Full Name</div>
+                    <div class="indeed-review-value">@(Model.ScreenerQuestions?.ApplicantFullName ?? "Your Name")</div>
+                </div>
+
+                <div class="indeed-review-divider"></div>
+
+                <!-- Email -->
+                <div class="indeed-review-item">
+                    <div class="indeed-review-label">Email address</div>
+                    <div class="indeed-review-value">@(Model.ScreenerQuestions?.ApplicantEmail ?? "Your Email")</div>
+                    <div class="indeed-review-hint">
+                        <i class="bi bi-shield-check"></i>
+                        To mitigate fraud, Indeed may mask your email address. If masked, the employer will see an address like 
+                        <strong>j***email.com</strong>. Some employers, however, may still be able to unmask and see your actual email address.
+                    </div>
+                </div>
+
+                <div class="indeed-review-divider"></div>
+
+                <!-- Location -->
+                <div class="indeed-review-item">
+                    <div class="indeed-review-label">City, State</div>
+                    <div class="indeed-review-value">@(Model.ScreenerQuestions?.ApplicantArea ?? "Your Area"), @(Model.ScreenerQuestions?.ApplicantCity ?? "Your City"), @(Model.ScreenerQuestions?.ApplicantJobLocation ?? "Your Job Location")</div>
+                </div>
+
+                <div class="indeed-review-divider"></div>
+
+                <!-- Phone -->
+                <div class="indeed-review-item">
+                    <div class="indeed-review-label">Phone Number</div>
+                    <div class="indeed-review-value">@(Model.ScreenerQuestions?.ApplicantMobileNumber ?? "Your Phone Number")</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CV Section -->
+        <div class="indeed-review-section">
+            <div class="indeed-section-header">
+                <div class="indeed-header-title">
+                    <i class="bi bi-file-earmark-text"></i>
+                    <h3>CV / Resume</h3>
+                </div>
+                <a href="@Url.Action("CV", "JobApplication", new { applicationUid = Model.CV?.ApplicationUid, returnToReview = true } )" class="indeed-edit-link">
+                    <i class="bi bi-pencil"></i>
+                    Edit
+                </a>
+            </div>
+
+            <div class="indeed-review-card">
+                <div class="indeed-file-preview">
+                    <div class="indeed-file-icon">
+                        <i class="bi bi-file-earmark-pdf-fill"></i>
+                    </div>
+                    <div class="indeed-file-details">
+                        <div class="indeed-file-name">@(Model.CV?.FilePath ?? "Resume_CV.pdf")</div>
+                        <div class="indeed-file-meta">
+                            <span><i class="bi bi-check-circle-fill"></i> Uploaded</span>
+                            <span>•</span>
+                            <span>@((Model.CV?.FileSize / 1024.0 / 1024.0)?.ToString("0.##") ?? "2.4") MB</span>
+                        </div>
+                    </div>
+                    <div class="indeed-file-badge">
+                        <i class="bi bi-check2"></i>
+                        Attached
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relevant Experience Section -->
+        <div class="indeed-review-section">
+            <div class="indeed-section-header">
+                <div class="indeed-header-title">
+                    <i class="bi bi-briefcase"></i>
+                    <h3>Relevant experience</h3>
+                </div>
+                <a href="@Url.Action("RelevantExperience", "JobApplication", new { applicationUid = Model.CV?.ApplicationUid, returnToReview = true } )" class="indeed-edit-link">
+                    <i class="bi bi-pencil"></i>
+                    Edit
+                </a>
+            </div>
+
+            <div class="indeed-review-card">
+                <div class="indeed-experience-preview">
+                    <div class="indeed-exp-icon">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+                    <div class="indeed-exp-details">
+                        <div class="indeed-exp-title">@Model.RelExperience?.PreviousJobTitle</div>
+                        <div class="indeed-exp-company">
+                            <i class="bi bi-building"></i>
+                            @Model.RelExperience?.PreviousCompanyName
+                        </div>
+                    </div>
+                    <div class="indeed-exp-badge">
+                        Most recent
+                    </div>
+                </div>
+
+                <!-- Add more experience if exists -->
+                <!-- <div class="indeed-review-divider"></div>
+                <div class="indeed-experience-preview">
+                    <div class="indeed-exp-icon">
+                        <i class="bi bi-briefcase"></i>
+                    </div>
+                    <div class="indeed-exp-details">
+                        <div class="indeed-exp-title">Previous Job 2</div>
+                        <div class="indeed-exp-company">
+                            <i class="bi bi-building"></i>
+                            Company Name 2
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Additional Questions Summary (if any) -->
+        <div class="indeed-review-section">
+            <div class="indeed-section-header">
+                <div class="indeed-header-title">
+                    <i class="bi bi-question-circle"></i>
+                    <h3>Additional questions</h3>
+                </div>
+                <a href="@Url.Action("ScreenerQuestions", "JobApplication", new { applicationUid = Model.CV?.ApplicationUid, returnToReview = true } )" class="indeed-edit-link">
+                    <i class="bi bi-pencil"></i>
+                    Edit
+                </a>
+            </div>
+
+            <div class="indeed-review-card">
+                <div class="indeed-questions-summary">
+                    <div class="indeed-question-item">
+                        <span>Current salary:</span>
+                        <strong>@(Model.ScreenerQuestions?.CurrentSalary.ToString("C") ?? "Your Current salary")</strong>
+                    </div>
+                    <div class="indeed-question-item">
+                        <span>Expected salary:</span>
+                        <strong>@(Model.ScreenerQuestions?.ExpectedSalary.ToString("C") ?? "Your Expected salary")</strong>
+                    </div>
+                    <div class="indeed-question-item">
+                        <span>Experience:</span>
+                        <strong>@(Model.ScreenerQuestions?.TotalExperience.ToString("C") ?? "Your Experience")</strong>
+                    </div>
+                    <div class="indeed-question-item">
+                        <span>Education:</span>
+                        <strong>@(Model.ScreenerQuestions?.ApplicantEducation ?? "Your Education")</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legal Agreement -->
+        <div class="indeed-legal-agreement">
+            <label class="indeed-checkbox-label">
+                <input type="checkbox" class="indeed-checkbox" required>
+                <span>I confirm that the information provided is accurate and complete to the best of my knowledge.</span>
+            </label>
+            <p class="indeed-legal-text">
+                By submitting this application, you agree to Indeed's 
+                <a href="#">Terms of Service</a> and 
+                <a href="#">Privacy Policy</a>. You also acknowledge that 
+                your information will be shared with the employer.
+            </p>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="indeed-button-container">
+            <a href="@Url.Action("Submit", "JobApplication", new { applicationUid = Model.CV?.ApplicationUid })" class="indeed-btn-primary">
+                <i class="bi bi-send"></i>
+                Submit application
+            </a >
+        </div>
+
+        <!-- Save for later option -->
+        <div class="indeed-skip-option">
+            <a href="@Url.Action("Retrieve", "IndeedClone")" class="indeed-skip-link">Save draft and come back later</a>
+        </div>
+    </div>
+</div>
+
+</form>
+
+
+</div>
+
+</body>
+</html>
