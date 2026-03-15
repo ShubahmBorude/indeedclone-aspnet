@@ -24,7 +24,7 @@ The project is built using **ASP.NET Core MVC with a modular HMVC architecture**
 
 Home Page
 ```
-![Home Page](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/3fc6e8173d7e2923bc470336ea06f863f7dfa2da/Screenshot%20(195).png)
+![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/3fc6e8173d7e2923bc470336ea06f863f7dfa2da/Screenshot%20(195).png)
 
 ![Job Search](screenshots/job-search.png)
 
