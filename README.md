@@ -1,3 +1,5 @@
+ASP.NET Core MVC | HMVC Architecture | SQL Server | Entity Framework | ADO.NET
+
 # IndeedClone – ASP.NET Core MVC Job Portal (HMVC Architecture)
 
 IndeedClone is a full-stack job portal web application inspired by Indeed.
