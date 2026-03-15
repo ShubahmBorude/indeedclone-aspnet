@@ -22,28 +22,8 @@ The project is built using **ASP.NET Core MVC with a modular HMVC architecture**
 
 # Screenshots
 
-Home Page
-```
-![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/3fc6e8173d7e2923bc470336ea06f863f7dfa2da/Screenshot%20(195).png)
+![image alt](https://github.com/ShubahmBorude/indeedclone-aspnet/blob/3bb7be0e940e6ba5e8586ffe6b68f8d194c93bce/Screenshot%20(200).png)
 
-![Job Search](screenshots/job-search.png)
-
-![Job Details](screenshots/job-details.png)
-
-![Recruiter Dashboard](screenshots/dashboard.png)
-
-![Job Post Wizard](screenshots/job-post.png)
-```
-
-You can create a folder like:
-
-```
-/screenshots
-```
-
-inside the repository and place your images there.
-
----
 
 # Folder Structure
 
