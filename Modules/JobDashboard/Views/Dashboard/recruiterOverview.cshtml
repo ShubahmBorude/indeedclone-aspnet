@@ -184,7 +184,7 @@
                             <td>@job.SubmittedCount</td>
                             <td>@job.ShortlistedCountPerJob</td>
                             <td>@job.RejectedCount</td>
-                            <td>@DateTimeAgoHelper.GetPostedAgo(job.LastApplication, job.LastApplication)</td>
+                            <td>@((job.LastApplication != DateTime.MinValue) ? job.LastApplication.ToString("MMM dd, yyyy") : "None")</td>
                             <td>
                                 <a href="@Url.Action("Applicants", "JobDashboard", new { jobUid = job.JobUid })" class="view-btn">
                                     <i class="bi bi-eye"></i> View
