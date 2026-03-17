@@ -17,7 +17,7 @@ The project is built using **ASP.NET Core MVC with a modular HMVC architecture**
 * **Transaction-based job activation system**
 * **AJAX-powered UI interactions**
 * Resume upload, preview, and download system
-* Centralized error handling using **ErrorError library**
+* Centralized error handling using a custom **ErrorError library**
 * Clean **Repository + Service layer architecture**
 
 ---
