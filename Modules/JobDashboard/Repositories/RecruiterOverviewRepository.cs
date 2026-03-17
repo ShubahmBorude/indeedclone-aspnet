@@ -1,4 +1,4 @@
-﻿using IndeedClone.Modules.JobDashboard.DTO;
+using IndeedClone.Modules.JobDashboard.DTO;
 using IndeedClone.Modules.JobDashboard.RepoContracts;
 using IndeedClone.Modules.Shared.Data;
 using IndeedClone.Modules.Shared.Enums;
@@ -39,7 +39,13 @@ namespace IndeedClone.Modules.JobDashboard.Repositories
             List<JobApplicationModel> applications = new List<JobApplicationModel>();
             if (jobUids.Any())
                 applications = await _jobApplicationDbContext.JobApplications.Where(a => jobUids.Contains(a.JobUid)).ToListAsync();
-            
+
+         // # Get Last application time 
+            var lastApplications = await _jobApplicationDbContext.JobApplications
+                .Where(jp => jobUids.Contains(jp.JobUid) && jp.Status == JobApplicationStatus.SUBMITTED)
+                .GroupBy(jp => jp.JobUid)
+                .Select(g => new { JobUid = g.Key, LastApplication = g.Max(x => x.Created) })
+                .ToDictionaryAsync(x => x.JobUid, x => x.LastApplication);
 
          // # Calculate summary stats - use separate queries for each context
             var allJobsCount = await _jobPostDbContext.JobOrganizations.CountAsync(x => x.RefNo == refNo);
@@ -67,7 +73,7 @@ namespace IndeedClone.Modules.JobDashboard.Repositories
                 SubmittedCount = applications.Count(a => a.JobUid == job.j.JobUid && a.Status == JobApplicationStatus.SUBMITTED),
                 ShortlistedCountPerJob = applications.Count(a => a.JobUid == job.j.JobUid && a.Status == JobApplicationStatus.SHORTLISTED),
                 RejectedCount = applications.Count(a => a.JobUid == job.j.JobUid && a.Status == JobApplicationStatus.REJECTED),
-                LastApplication = applications.Where(a => a.JobUid == job.j.JobUid).OrderByDescending(a => a.Created).FirstOrDefault()?.Created ?? DateTime.MinValue,
+                LastApplication = lastApplications.ContainsKey(job.j.JobUid) ? lastApplications[job.j.JobUid]: DateTime.MinValue,
                 Posted = job.j.Created
             }).ToList();
 
